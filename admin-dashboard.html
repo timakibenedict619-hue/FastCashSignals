@@ -4222,32 +4222,38 @@
              * 6. Create admin audit record.
              * 7. Use a Firestore transaction.
              */
-            await addDoc(
-  collection(db, "adminActions"),
-  {
-    type: "balanceAdjustment",
+            const userRef = doc(db, "users", selectedUser.id);
 
-    userId: selectedUser.id,
+const userSnap = await getDoc(userRef);
 
-    userEmail: selectedUser.email || "",
+if (!userSnap.exists()) {
+  throw new Error("User account not found.");
+}
 
-    action,
+const userData = userSnap.data();
+const currentBalance =
+  Number(userData.balances?.[category] || 0);
 
-    category,
+const newBalance =
+  currentBalance + Number(amount);
 
-    amount: Number(amount),
+await updateDoc(userRef, {
+  [`balances.${category}`]: newBalance,
+  updatedAt: serverTimestamp()
+});
 
-    currency,
-
-    reason: reason || "",
-
-    status: "pending",
-
-    adminId: auth.currentUser.uid,
-
-    createdAt: serverTimestamp()
-  }
-);
+await addDoc(collection(db, "transactions"), {
+  userId: selectedUser.id,
+  type: "admin_balance_adjustment",
+  category,
+  amount: Number(amount),
+  currency,
+  action,
+  reason: reason || "",
+  status: "completed",
+  adminId: auth.currentUser.uid,
+  createdAt: serverTimestamp()
+});
 
 
             showToast(
