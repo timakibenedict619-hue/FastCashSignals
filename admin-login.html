@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login | FastCashSignals</title>
+
+    <meta
+        name="description"
+        content="FastCashSignals administrator login"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+    <style>
+
+        :root {
+            --dark: #070b14;
+            --dark-2: #0d1422;
+            --dark-3: #111b2e;
+
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --cyan-light: #22d3ee;
+
+            --green: #10b981;
+            --red: #ef4444;
+
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+
+            --border: rgba(148,163,184,.13);
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: "Inter", sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(37,99,235,.20),
+                    transparent 32%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(6,182,212,.13),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #050810 0%,
+                    #0b1220 55%,
+                    #07101c 100%
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+        }
+
+
+        .background-glow {
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            opacity: .13;
+
+            pointer-events: none;
+        }
+
+
+        .glow-one {
+
+            background: #2563eb;
+
+            top: -180px;
+            left: -150px;
+        }
+
+
+        .glow-two {
+
+            background: #06b6d4;
+
+            bottom: -180px;
+            right: -150px;
+        }
+
+
+        .page {
+
+            width: 100%;
+            max-width: 470px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .brand {
+
+            text-align: center;
+
+            margin-bottom: 28px;
+        }
+
+
+        .logo {
+
+            width: 58px;
+            height: 58px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 15px 35px rgba(37,99,235,.28);
+        }
+
+
+        .logo i {
+
+            color: white;
+
+            font-size: 23px;
+        }
+
+
+        .brand-name {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing: -.5px;
+
+            color: white;
+        }
+
+
+        .brand-name span {
+
+            color: var(--cyan-light);
+        }
+
+
+        .brand-subtitle {
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-top: 6px;
+        }
+
+
+        .login-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,23,42,.96),
+                    rgba(8,15,28,.97)
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 25px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35);
+
+            backdrop-filter: blur(20px);
+        }
+
+
+        .admin-badge {
+
+            width: fit-content;
+
+            margin: 0 auto 18px;
+
+            padding: 7px 12px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(37,99,235,.08);
+
+            border:
+                1px solid rgba(37,99,235,.18);
+
+            color: #93c5fd;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+        }
+
+
+        .admin-badge i {
+
+            font-size: 10px;
+
+            color: var(--cyan-light);
+        }
+
+
+        .heading {
+
+            text-align: center;
+
+            margin-bottom: 27px;
+        }
+
+
+        .heading h1 {
+
+            margin: 0;
+
+            color: white;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            letter-spacing: -.6px;
+        }
+
+
+        .heading p {
+
+            margin: 9px 0 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .input-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        .label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            pointer-events: none;
+        }
+
+
+        .input {
+
+            width: 100%;
+
+            padding:
+                14px
+                44px
+                14px
+                42px;
+
+            border-radius: 13px;
+
+            border:
+                1px solid rgba(148,163,184,.16);
+
+            background: #080f1c;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: .2s;
+        }
+
+
+        .input::placeholder {
+
+            color: #475569;
+        }
+
+
+        .input:focus {
+
+            border-color:
+                rgba(34,211,238,.55);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(6,182,212,.08);
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 12px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 32px;
+            height: 32px;
+
+            border: 0;
+
+            background: transparent;
+
+            color: #64748b;
+
+            cursor: pointer;
+        }
+
+
+        .password-toggle:hover {
+
+            color: white;
+        }
+
+
+        .options {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin: 4px 0 22px;
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+
+        .remember input {
+
+            width: 15px;
+            height: 15px;
+
+            accent-color: var(--blue);
+
+            cursor: pointer;
+        }
+
+
+        .forgot {
+
+            color: var(--cyan-light);
+
+            font-size: 12px;
+
+            text-decoration: none;
+
+            cursor: pointer;
+        }
+
+
+        .forgot:hover {
+
+            text-decoration: underline;
+        }
+
+
+        .login-button {
+
+            width: 100%;
+
+            border: 0;
+
+            border-radius: 13px;
+
+            padding: 14px 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb 0%,
+                    #06b6d4 100%
+                );
+
+            color: white;
+
+            font-weight: 800;
+
+            font-size: 14px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(37,99,235,.22);
+
+            transition: .2s;
+
+            cursor: pointer;
+        }
+
+
+        .login-button:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 14px 35px
+                rgba(37,99,235,.32);
+        }
+
+
+        .login-button:disabled {
+
+            opacity: .65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        .security-note {
+
+            margin-top: 21px;
+
+            padding: 13px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(16,185,129,.05);
+
+            border:
+                1px solid rgba(16,185,129,.10);
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items: flex-start;
+        }
+
+
+        .security-note i {
+
+            color: #34d399;
+
+            font-size: 13px;
+
+            margin-top: 2px;
+        }
+
+
+        .security-note p {
+
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        .error-box {
+
+            display: none;
+
+            margin-bottom: 17px;
+
+            padding: 13px 14px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(239,68,68,.08);
+
+            border:
+                1px solid rgba(239,68,68,.18);
+
+            color: #fca5a5;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            gap: 9px;
+
+            align-items: flex-start;
+        }
+
+
+        .error-box.active {
+
+            display: flex;
+        }
+
+
+        .success-box {
+
+            display: none;
+
+            margin-bottom: 17px;
+
+            padding: 13px 14px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(16,185,129,.08);
+
+            border:
+                1px solid rgba(16,185,129,.18);
+
+            color: #6ee7b7;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .success-box.active {
+
+            display: block;
+        }
+
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #475569;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        .back-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 12px;
+
+            color: #64748b;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            transition: .2s;
+        }
+
+
+        .back-link:hover {
+
+            color: var(--cyan-light);
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+                padding: 16px;
+            }
+
+            .login-card {
+                padding: 23px 19px;
+                border-radius: 21px;
+            }
+
+            .heading h1 {
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <div class="page">
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="logo">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <div class="brand-name">
+                FastCash<span>Signals</span>
+            </div>
+
+            <div class="brand-subtitle">
+                Administrative Control Center
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN CARD -->
+
+        <div class="login-card">
+
+            <div class="admin-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                Administrator Access
+            </div>
+
+
+            <div class="heading">
+
+                <h1>
+                    Admin Sign In
+                </h1>
+
+                <p>
+                    Sign in with an authorized administrator
+                    account to access the control panel.
+                </p>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="errorBox"
+                class="error-box"
+            >
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span id="errorText"></span>
+
+            </div>
+
+
+            <!-- SUCCESS -->
+
+            <div
+                id="successBox"
+                class="success-box"
+            >
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span id="successText"></span>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="adminLoginForm">
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label
+                        class="label"
+                        for="email"
+                    >
+                        Administrator Email
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-regular fa-envelope input-icon"
+                        ></i>
+
+                        <input
+                            id="email"
+                            class="input"
+                            type="email"
+                            autocomplete="username"
+                            placeholder="admin@example.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label
+                        class="label"
+                        for="password"
+                    >
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-solid fa-lock input-icon"
+                        ></i>
+
+                        <input
+                            id="password"
+                            class="input"
+                            type="password"
+                            autocomplete="current-password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword"
+                            aria-label="Show password"
+                        >
+
+                            <i
+                                id="passwordIcon"
+                                class="fa-regular fa-eye"
+                            ></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            id="rememberMe"
+                            type="checkbox"
+                            checked
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                        id="forgotPassword"
+                    >
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    id="loginButton"
+                    type="submit"
+                    class="login-button"
+                >
+
+                    <i class="fa-solid fa-right-to-bracket mr-2"></i>
+
+                    Sign In to Admin Panel
+
+                </button>
+
+            </form>
+
+
+            <!-- SECURITY -->
+
+            <div class="security-note">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <p>
+                    This area is restricted to authorized
+                    administrators. Unauthorized access is
+                    not permitted.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            FastCashSignals Administrative Portal
+
+            <br>
+
+            Authorized personnel only.
+
+            <br>
+
+            <a
+                href="index.html"
+                class="back-link"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to FastCashSignals
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- FIREBASE -->
+
+    <script type="module">
+
+        import {
+            auth,
+            db
+        } from "./firebase-config.js";
+
+
+        import {
+            signInWithEmailAndPassword,
+            sendPasswordResetEmail,
+            setPersistence,
+            browserLocalPersistence,
+            browserSessionPersistence,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+        import {
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
+
+        const form =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+        const emailInput =
+            document.getElementById(
+                "email"
+            );
+
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
+
+        const rememberInput =
+            document.getElementById(
+                "rememberMe"
+            );
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+        const errorBox =
+            document.getElementById(
+                "errorBox"
+            );
+
+        const errorText =
+            document.getElementById(
+                "errorText"
+            );
+
+        const successBox =
+            document.getElementById(
+                "successBox"
+            );
+
+        const successText =
+            document.getElementById(
+                "successText"
+            );
+
+
+        /* ==========================================
+           HELPERS
+        ========================================== */
+
+        function showError(message) {
+
+            errorText.textContent =
+                message;
+
+            errorBox.classList.add(
+                "active"
+            );
+
+            successBox.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        function hideError() {
+
+            errorBox.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        function showSuccess(message) {
+
+            successText.textContent =
+                message;
+
+            successBox.classList.add(
+                "active"
+            );
+
+            errorBox.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        function getFirebaseError(error) {
+
+            switch (error.code) {
+
+                case "auth/invalid-email":
+                    return "Please enter a valid administrator email.";
+
+                case "auth/invalid-credential":
+                    return "The email or password is incorrect.";
+
+                case "auth/user-not-found":
+                    return "The administrator account was not found.";
+
+                case "auth/wrong-password":
+                    return "The password is incorrect.";
+
+                case "auth/user-disabled":
+                    return "This administrator account has been disabled.";
+
+                case "auth/too-many-requests":
+                    return "Too many login attempts. Please wait and try again.";
+
+                case "auth/network-request-failed":
+                    return "Network error. Check your internet connection.";
+
+                default:
+                    return "Unable to sign in. Please try again.";
+
+            }
+
+        }
+
+
+        /* ==========================================
+           PASSWORD VISIBILITY
+        ========================================== */
+
+        document
+            .getElementById(
+                "togglePassword"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    const isPassword =
+                        passwordInput.type ===
+                        "password";
+
+
+                    passwordInput.type =
+                        isPassword
+                            ? "text"
+                            : "password";
+
+
+                    document
+                        .getElementById(
+                            "passwordIcon"
+                        )
+                        .className =
+                            isPassword
+                                ? "fa-regular fa-eye-slash"
+                                : "fa-regular fa-eye";
+
+                }
+            );
+
+
+        /* ==========================================
+           ADMIN ROLE CHECK
+        ========================================== */
+
+        async function verifyAdmin(user) {
+
+            try {
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const snapshot =
+                    await getDoc(
+                        userRef
+                    );
+
+
+                if (!snapshot.exists()) {
+
+                    return false;
+
+                }
+
+
+                const userData =
+                    snapshot.data();
+
+
+                return (
+                    userData.role ===
+                    "admin"
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Admin verification error:",
+                    error
+                );
+
+                throw error;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           LOGIN
+        ========================================== */
+
+        form.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+                hideError();
+
+
+                const email =
+                    emailInput
+                        .value
+                        .trim();
+
+                const password =
+                    passwordInput
+                        .value;
+
+
+                if (!email) {
+
+                    showError(
+                        "Enter your administrator email."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!password) {
+
+                    showError(
+                        "Enter your administrator password."
+                    );
+
+                    return;
+
+                }
+
+
+                loginButton.disabled =
+                    true;
+
+                loginButton.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Authenticating...';
+
+
+                try {
+
+                    /*
+                     * Set Firebase authentication
+                     * persistence.
+                     */
+
+                    await setPersistence(
+                        auth,
+                        rememberInput.checked
+                            ? browserLocalPersistence
+                            : browserSessionPersistence
+                    );
+
+
+                    /*
+                     * Authenticate with Firebase.
+                     */
+
+                    const credential =
+                        await signInWithEmailAndPassword(
+                            auth,
+                            email,
+                            password
+                        );
+
+
+                    /*
+                     * Verify that the authenticated
+                     * account is actually marked
+                     * as an administrator.
+                     */
+
+                    loginButton.innerHTML =
+                        '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Verifying access...';
+
+
+                    const isAdmin =
+                        await verifyAdmin(
+                            credential.user
+                        );
+
+
+                    if (!isAdmin) {
+
+                        /*
+                         * Immediately sign out a
+                         * normal user attempting to
+                         * access the admin portal.
+                         */
+
+                        await signOut(
+                            auth
+                        );
+
+
+                        showError(
+                            "This account does not have administrator privileges."
+                        );
+
+                        loginButton.disabled =
+                            false;
+
+                        loginButton.innerHTML =
+                            '<i class="fa-solid fa-right-to-bracket mr-2"></i>Sign In to Admin Panel';
+
+                        return;
+
+                    }
+
+
+                    showSuccess(
+                        "Administrator access verified. Opening control panel..."
+                    );
+
+
+                    /*
+                     * Redirect after successful
+                     * admin verification.
+                     */
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "admin-dashboard.html";
+
+                        },
+                        700
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Admin login:",
+                        error
+                    );
+
+
+                    showError(
+                        getFirebaseError(
+                            error
+                        )
+                    );
+
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.innerHTML =
+                        '<i class="fa-solid fa-right-to-bracket mr-2"></i>Sign In to Admin Panel';
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           FORGOT PASSWORD
+        ========================================== */
+
+        document
+            .getElementById(
+                "forgotPassword"
+            )
+            .addEventListener(
+                "click",
+                async event => {
+
+                    event.preventDefault();
+
+                    hideError();
+
+
+                    const email =
+                        emailInput
+                            .value
+                            .trim();
+
+
+                    if (!email) {
+
+                        showError(
+                            "Enter your administrator email first, then select Forgot password."
+                        );
+
+                        emailInput.focus();
+
+                        return;
+
+                    }
+
+
+                    try {
+
+                        await sendPasswordResetEmail(
+                            auth,
+                            email
+                        );
+
+
+                        showSuccess(
+                            "If an account exists for this email, a password reset email has been sent."
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Password reset:",
+                            error
+                        );
+
+
+                        showError(
+                            getFirebaseError(
+                                error
+                            )
+                        );
+
+                    }
+
+                }
+            );
+
+
+        /* ==========================================
+           EXISTING SESSION CHECK
+        ========================================== */
+
+        onAuthStateChanged(
+            auth,
+            async user => {
+
+                if (!user) {
+                    return;
+                }
+
+
+                /*
+                 * If an already authenticated account
+                 * is an administrator, it can proceed
+                 * directly to the admin dashboard.
+                 */
+
+                try {
+
+                    const isAdmin =
+                        await verifyAdmin(
+                            user
+                        );
+
+
+                    if (isAdmin) {
+
+                        window.location.href =
+                            "admin-dashboard.html";
+
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Existing admin session:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
