@@ -4222,29 +4222,32 @@
              * 6. Create admin audit record.
              * 7. Use a Firestore transaction.
              */
+            await addDoc(
+  collection(db, "adminActions"),
+  {
+    type: "balanceAdjustment",
 
-            const adminAdjustBalance =
-              httpsCallable(
-                functions,
-                "adminAdjustBalance"
-              );
+    userId: selectedUser.id,
 
+    userEmail: selectedUser.email || "",
 
-            await adminAdjustBalance({
-              userId:
-                selectedUser.id,
+    action,
 
-              action,
+    category,
 
-              category,
+    amount: Number(amount),
 
-              amount,
+    currency,
 
-              currency,
+    reason: reason || "",
 
-              reason
+    status: "pending",
 
-            });
+    adminId: auth.currentUser.uid,
+
+    createdAt: serverTimestamp()
+  }
+);
 
 
             showToast(
