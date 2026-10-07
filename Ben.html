@@ -1,0 +1,4374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | FastCashSignals</title>
+
+    <meta name="description" content="FastCashSignals account dashboard">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+    <style>
+        :root {
+            --dark: #070b14;
+            --dark-2: #0d1422;
+            --dark-3: #111b2e;
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --cyan-light: #22d3ee;
+            --bitcoin: #f7931a;
+            --green: #10b981;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --card: #0f172a;
+            --border: rgba(148,163,184,.13);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(37,99,235,.10),
+                    transparent 30%
+                ),
+                #070b14;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .gradient-blue {
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb 0%,
+                    #06b6d4 100%
+                );
+        }
+
+        .gradient-hero {
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(37,99,235,.22),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 30%,
+                    rgba(6,182,212,.14),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #050810 0%,
+                    #0b1220 55%,
+                    #07101c 100%
+                );
+        }
+
+        .glass {
+            background: rgba(15,23,42,.78);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .card {
+            background: linear-gradient(
+                145deg,
+                rgba(15,23,42,.96),
+                rgba(10,17,30,.96)
+            );
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,.18);
+        }
+
+        .card:hover {
+            border-color: rgba(34,211,238,.18);
+        }
+
+        .topbar {
+            background: rgba(7,11,20,.88);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #06b6d4
+            );
+            box-shadow: 0 8px 25px rgba(37,99,235,.3);
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(15,23,42,.7);
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+        }
+
+        .icon-btn:hover {
+            color: white;
+            border-color: rgba(34,211,238,.3);
+            background: rgba(30,41,59,.8);
+        }
+
+        .primary-btn {
+            border: 0;
+            border-radius: 13px;
+            padding: 12px 18px;
+            color: white;
+            font-weight: 700;
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #06b6d4
+            );
+            box-shadow: 0 8px 25px rgba(37,99,235,.2);
+            transition: .2s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(37,99,235,.3);
+        }
+
+        .secondary-btn {
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 12px 18px;
+            color: var(--text);
+            background: rgba(15,23,42,.8);
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(30,41,59,.9);
+            border-color: rgba(34,211,238,.25);
+        }
+
+        .action-card {
+            min-height: 112px;
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,23,42,.95),
+                    rgba(13,20,34,.95)
+                );
+            transition: .2s;
+            text-align: left;
+        }
+
+        .action-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(34,211,238,.28);
+            box-shadow: 0 15px 35px rgba(0,0,0,.2);
+        }
+
+        .action-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .balance-card {
+            background: rgba(15,23,42,.8);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 17px;
+            transition: .2s;
+        }
+
+        .balance-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(34,211,238,.22);
+        }
+
+        .balance-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(0,0,0,.72);
+            backdrop-filter: blur(7px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 540px;
+            max-height: 92vh;
+            overflow-y: auto;
+            background: #0b1220;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0,0,0,.5);
+            animation: modalIn .2s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 22px;
+        }
+
+        .input-group {
+            margin-bottom: 17px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .input,
+        .select,
+        .textarea {
+            width: 100%;
+            background: #080f1c;
+            color: white;
+            border: 1px solid rgba(148,163,184,.17);
+            border-radius: 12px;
+            padding: 13px 14px;
+            outline: none;
+            transition: .2s;
+        }
+
+        .input:focus,
+        .select:focus,
+        .textarea:focus {
+            border-color: rgba(34,211,238,.55);
+            box-shadow: 0 0 0 3px rgba(6,182,212,.08);
+        }
+
+        .textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .available-balance {
+            padding: 15px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            background: rgba(16,185,129,.08);
+            border: 1px solid rgba(16,185,129,.18);
+        }
+
+        .error-box {
+            display: none;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: rgba(239,68,68,.09);
+            border: 1px solid rgba(239,68,68,.2);
+            color: #fca5a5;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .error-box.active {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .success-box {
+            display: none;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: rgba(16,185,129,.09);
+            border: 1px solid rgba(16,185,129,.2);
+            color: #6ee7b7;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .success-box.active {
+            display: block;
+        }
+
+        .transaction-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(148,163,184,.08);
+        }
+
+        .transaction-row:last-child {
+            border-bottom: 0;
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .status-pending {
+            background: rgba(245,158,11,.1);
+            color: #fbbf24;
+        }
+
+        .status-success {
+            background: rgba(16,185,129,.1);
+            color: #34d399;
+        }
+
+        .status-failed {
+            background: rgba(239,68,68,.1);
+            color: #f87171;
+        }
+
+        .ticker {
+            overflow: hidden;
+            white-space: nowrap;
+            background: rgba(6,182,212,.04);
+            border-top: 1px solid rgba(6,182,212,.08);
+            border-bottom: 1px solid rgba(6,182,212,.08);
+        }
+
+        .ticker-content {
+            display: inline-flex;
+            gap: 70px;
+            padding: 10px 0;
+            animation: ticker 35s linear infinite;
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .bottom-nav {
+            display: none;
+        }
+
+        .notification-panel {
+            position: fixed;
+            top: 75px;
+            right: 20px;
+            width: min(360px, calc(100vw - 30px));
+            background: #0b1220;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 25px 60px rgba(0,0,0,.4);
+            z-index: 200;
+            display: none;
+            overflow: hidden;
+        }
+
+        .notification-panel.active {
+            display: block;
+        }
+
+        .notification-item {
+            padding: 14px;
+            border-bottom: 1px solid rgba(148,163,184,.08);
+        }
+
+        .notification-item:last-child {
+            border-bottom: 0;
+        }
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 25px;
+            z-index: 500;
+            min-width: 280px;
+            max-width: 400px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: #111827;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,.4);
+            transform: translateY(120px);
+            opacity: 0;
+            transition: .25s;
+        }
+
+        .toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .btc-price {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .desktop-only {
+                display: none !important;
+            }
+
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 150;
+                background: rgba(7,11,20,.96);
+                border-top: 1px solid var(--border);
+                backdrop-filter: blur(20px);
+                padding: 9px 8px;
+                justify-content: space-around;
+            }
+
+            .bottom-nav button {
+                color: #64748b;
+                font-size: 10px;
+                background: transparent;
+                border: 0;
+                padding: 7px 12px;
+            }
+
+            .bottom-nav button.active {
+                color: var(--cyan-light);
+            }
+
+            body {
+                padding-bottom: 70px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .mobile-padding {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .action-card {
+                min-height: 105px;
+                padding: 16px;
+            }
+
+            .action-icon {
+                width: 38px;
+                height: 38px;
+                margin-bottom: 10px;
+            }
+
+            .modal {
+                border-radius: 20px;
+            }
+
+            .transaction-row {
+                align-items: flex-start;
+            }
+
+            .toast {
+                left: 15px;
+                right: 15px;
+                bottom: 85px;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="topbar">
+        <div class="max-w-7xl mx-auto px-4 lg:px-6">
+            <div class="h-[70px] flex items-center justify-between">
+
+                <a href="dashboard.html" class="flex items-center gap-3">
+                    <div class="logo-mark">
+                        <i class="fa-solid fa-bolt text-white"></i>
+                    </div>
+
+                    <div>
+                        <div class="font-extrabold text-white leading-none">
+                            FastCash<span class="text-cyan-400">Signals</span>
+                        </div>
+
+                        <div class="text-[10px] text-slate-500 mt-1">
+                            Account Dashboard
+                        </div>
+                    </div>
+                </a>
+
+                <div class="flex items-center gap-2">
+
+                    <button
+                        class="icon-btn"
+                        id="supportBtn"
+                        title="Support"
+                    >
+                        <i class="fa-regular fa-circle-question"></i>
+                    </button>
+
+                    <button
+                        class="icon-btn"
+                        id="notificationBtn"
+                        title="Notifications"
+                    >
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+
+                    <button
+                        class="icon-btn"
+                        id="profileBtn"
+                        title="Profile"
+                    >
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+
+                    <button
+                        class="secondary-btn desktop-only"
+                        id="logoutBtn"
+                    >
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                        Logout
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- =========================
+         NOTIFICATIONS
+    ========================== -->
+
+    <div id="notificationPanel" class="notification-panel">
+
+        <div class="px-4 py-4 border-b border-slate-800 flex justify-between">
+            <div>
+                <div class="font-bold text-white">
+                    Notifications
+                </div>
+
+                <div class="text-xs text-slate-500 mt-1">
+                    Account updates
+                </div>
+            </div>
+
+            <button
+                id="closeNotifications"
+                class="text-slate-500 hover:text-white"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="notificationsList">
+            <div class="p-5 text-sm text-slate-500 text-center">
+                No notifications
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="max-w-7xl mx-auto px-4 lg:px-6 py-6">
+
+        <!-- Welcome -->
+
+        <section class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-7">
+
+            <div>
+
+                <div class="text-sm text-slate-500 mb-1">
+                    Dashboard
+                </div>
+
+                <h1 class="text-2xl md:text-3xl font-extrabold text-white">
+                    Welcome back,
+                    <span id="userName">User</span>
+                </h1>
+
+                <p class="text-slate-400 text-sm mt-2">
+                    Manage your account, balances and requests.
+                </p>
+
+            </div>
+
+            <div class="flex items-center gap-3">
+
+                <div class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+
+                    <span class="text-xs text-emerald-400">
+                        Account Active
+                    </span>
+                </div>
+
+                <button
+                    class="primary-btn"
+                    id="profileTopBtn"
+                >
+                    <i class="fa-regular fa-user mr-2"></i>
+                    My Profile
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TICKER
+        ========================== -->
+
+        <div class="ticker rounded-xl mb-7">
+
+            <div class="ticker-content">
+
+                <span class="text-xs text-slate-400">
+                    <i class="fa-solid fa-circle text-emerald-400 text-[7px] mr-2"></i>
+                    Account connected
+                </span>
+
+                <span class="text-xs text-slate-400">
+                    Secure account dashboard
+                </span>
+
+                <span class="text-xs text-slate-400">
+                    <i class="fa-brands fa-bitcoin text-orange-400 mr-2"></i>
+                    BTC
+                    <strong id="tickerBtcPrice">
+                        Loading...
+                    </strong>
+                </span>
+
+                <span class="text-xs text-slate-400">
+                    FastCashSignals
+                </span>
+
+                <span class="text-xs text-slate-400">
+                    Account activity updates automatically
+                </span>
+
+                <span class="text-xs text-slate-400">
+                    Secure account dashboard
+                </span>
+
+                <span class="text-xs text-slate-400">
+                    <i class="fa-brands fa-bitcoin text-orange-400 mr-2"></i>
+                    BTC
+                    <strong id="tickerBtcPrice2">
+                        Loading...
+                    </strong>
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TOTAL ASSETS
+        ========================== -->
+
+        <section class="card gradient-hero p-6 md:p-8 mb-7">
+
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-7">
+
+                <div>
+
+                    <div class="flex items-center gap-2 text-slate-400 text-sm">
+                        Total Account Assets
+
+                        <i
+                            class="fa-regular fa-circle-question text-slate-600"
+                            title="Total of account balance categories"
+                        ></i>
+                    </div>
+
+                    <div
+                        id="totalAssets"
+                        class="text-4xl md:text-5xl font-extrabold text-white mt-2"
+                    >
+                        $0.00
+                    </div>
+
+                    <div class="flex items-center gap-2 mt-3">
+
+                        <span class="text-xs text-slate-500">
+                            Account currency
+                        </span>
+
+                        <span
+                            id="accountCurrency"
+                            class="text-xs font-bold text-cyan-400"
+                        >
+                            USD
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grid grid-cols-2 gap-3 min-w-[280px]">
+
+                    <div class="bg-black/20 border border-white/5 rounded-2xl p-4">
+
+                        <div class="text-xs text-slate-500">
+                            Wallet
+                        </div>
+
+                        <div
+                            id="walletSummary"
+                            class="text-xl font-bold text-white mt-1"
+                        >
+                            $0.00
+                        </div>
+
+                    </div>
+
+                    <div class="bg-black/20 border border-white/5 rounded-2xl p-4">
+
+                        <div class="text-xs text-slate-500">
+                            Trading
+                        </div>
+
+                        <div
+                            id="tradingSummary"
+                            class="text-xl font-bold text-white mt-1"
+                        >
+                            $0.00
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUICK ACTIONS
+        ========================== -->
+
+        <section class="mb-8">
+
+            <div class="flex items-end justify-between mb-4">
+
+                <div>
+                    <h2 class="text-lg font-bold text-white">
+                        Quick Actions
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Manage your account
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+
+                <button
+                    class="action-card"
+                    id="fundWalletBtn"
+                >
+
+                    <div
+                        class="action-icon"
+                        style="background:rgba(37,99,235,.12);color:#60a5fa;"
+                    >
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+
+                    <div class="font-bold text-white text-sm">
+                        Fund Wallet
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Request wallet funding
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="sendFundsBtn"
+                >
+
+                    <div
+                        class="action-icon"
+                        style="background:rgba(6,182,212,.12);color:#22d3ee;"
+                    >
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+
+                    <div class="font-bold text-white text-sm">
+                        Send Funds
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Send from wallet
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="exchangeBtn"
+                >
+
+                    <div
+                        class="action-icon"
+                        style="background:rgba(139,92,246,.12);color:#a78bfa;"
+                    >
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+
+                    <div class="font-bold text-white text-sm">
+                        Exchange
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Exchange assets
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="withdrawBtn"
+                >
+
+                    <div
+                        class="action-icon"
+                        style="background:rgba(16,185,129,.12);color:#34d399;"
+                    >
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                    </div>
+
+                    <div class="font-bold text-white text-sm">
+                        Withdraw
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Request withdrawal
+                    </div>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BALANCES
+        ========================== -->
+
+        <section class="mb-8">
+
+            <div class="flex items-end justify-between mb-4">
+
+                <div>
+                    <h2 class="text-lg font-bold text-white">
+                        Account Balances
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Your available account balances
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div
+                id="balancesGrid"
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3"
+            >
+
+                <!-- Generated by JavaScript -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MARKET + REFERRAL
+        ========================== -->
+
+        <section class="grid lg:grid-cols-3 gap-5 mb-8">
+
+            <div class="card lg:col-span-2 p-6">
+
+                <div class="flex items-center justify-between mb-6">
+
+                    <div>
+
+                        <div class="text-sm text-slate-400">
+                            Bitcoin Market
+                        </div>
+
+                        <div class="text-xs text-slate-600 mt-1">
+                            Current BTC market reference
+                        </div>
+
+                    </div>
+
+                    <div class="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center">
+                        <i class="fa-brands fa-bitcoin"></i>
+                    </div>
+
+                </div>
+
+
+                <div class="flex items-end justify-between gap-4">
+
+                    <div>
+
+                        <div
+                            id="btcPrice"
+                            class="btc-price text-3xl font-extrabold text-white"
+                        >
+                            $0.00
+                        </div>
+
+                        <div
+                            id="btcChange"
+                            class="text-sm mt-2"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                    <div class="text-right">
+
+                        <div class="text-xs text-slate-500">
+                            Asset
+                        </div>
+
+                        <div class="font-bold text-white">
+                            BTC / USD
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="h-24 mt-7 relative overflow-hidden rounded-xl bg-black/20">
+
+                    <svg
+                        viewBox="0 0 600 100"
+                        preserveAspectRatio="none"
+                        class="absolute inset-0 w-full h-full"
+                    >
+
+                        <path
+                            d="M0 76
+                               C30 70 45 80 70 64
+                               C95 48 110 65 135 57
+                               C160 49 177 69 200 55
+                               C225 40 245 45 270 49
+                               C295 53 310 30 335 36
+                               C360 42 378 29 400 34
+                               C425 39 445 20 468 28
+                               C492 36 505 17 530 25
+                               C555 33 575 16 600 8"
+                            fill="none"
+                            stroke="#06b6d4"
+                            stroke-width="3"
+                        />
+
+                    </svg>
+
+                </div>
+
+            </div>
+
+
+            <div class="card p-6">
+
+                <div class="flex items-start justify-between">
+
+                    <div>
+
+                        <div class="text-sm text-slate-400">
+                            Referral Program
+                        </div>
+
+                        <div class="text-xs text-slate-600 mt-1">
+                            Your referral code
+                        </div>
+
+                    </div>
+
+                    <div class="w-10 h-10 rounded-xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="referralCode"
+                    class="mt-6 bg-black/20 border border-slate-800 rounded-xl p-4 font-bold text-cyan-400 text-center"
+                >
+                    Loading...
+                </div>
+
+
+                <button
+                    id="copyReferralBtn"
+                    class="secondary-btn w-full mt-3"
+                >
+                    <i class="fa-regular fa-copy mr-2"></i>
+                    Copy Referral Code
+                </button>
+
+
+                <div class="mt-5">
+
+                    <div class="flex justify-between text-xs">
+
+                        <span class="text-slate-500">
+                            Referral Bonus
+                        </span>
+
+                        <span
+                            id="referralBonus"
+                            class="font-bold text-white"
+                        >
+                            $0.00
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TRANSACTIONS
+        ========================== -->
+
+        <section class="card p-6 mb-8">
+
+            <div class="flex items-center justify-between mb-4">
+
+                <div>
+
+                    <h2 class="text-lg font-bold text-white">
+                        Recent Transactions
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Latest account activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="transactionsList">
+
+                <div class="py-10 text-center text-sm text-slate-500">
+                    Loading transactions...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         BOTTOM NAV
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+        <button class="active" id="navHome">
+            <i class="fa-solid fa-house block text-base mb-1"></i>
+            Home
+        </button>
+
+        <button id="navSend">
+            <i class="fa-solid fa-paper-plane block text-base mb-1"></i>
+            Send
+        </button>
+
+        <button id="navFund">
+            <i class="fa-solid fa-wallet block text-base mb-1"></i>
+            Fund
+        </button>
+
+        <button id="navWithdraw">
+            <i class="fa-solid fa-money-bill-transfer block text-base mb-1"></i>
+            Withdraw
+        </button>
+
+        <button id="navProfile">
+            <i class="fa-regular fa-user block text-base mb-1"></i>
+            Profile
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         SEND MODAL
+    ========================== -->
+
+    <div
+        id="sendModal"
+        class="modal-overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <div class="font-bold text-white text-lg">
+                        Send Funds
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Send funds from your wallet
+                    </div>
+
+                </div>
+
+                <button
+                    class="icon-btn"
+                    data-close="sendModal"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="available-balance">
+
+                    <div class="text-xs text-slate-500">
+                        Available Wallet Balance
+                    </div>
+
+                    <div
+                        id="sendAvailableBalance"
+                        class="text-2xl font-extrabold text-emerald-400 mt-1"
+                    >
+                        $0.00
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="sendError"
+                    class="error-box"
+                >
+                    <i class="fa-solid fa-circle-exclamation mt-0.5"></i>
+
+                    <span id="sendErrorText">
+                        Insufficient funds.
+                    </span>
+                </div>
+
+
+                <div
+                    id="sendSuccess"
+                    class="success-box"
+                >
+                    Transfer request submitted successfully.
+                </div>
+
+
+                <form id="sendForm">
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Recipient
+                        </label>
+
+                        <input
+                            id="sendRecipient"
+                            class="input"
+                            type="text"
+                            placeholder="Recipient email or user ID"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Amount
+                        </label>
+
+                        <div class="relative">
+
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                                $
+                            </span>
+
+                            <input
+                                id="sendAmount"
+                                class="input pl-8"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="0.00"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Note
+                        </label>
+
+                        <textarea
+                            id="sendNote"
+                            class="textarea"
+                            placeholder="Optional note"
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        id="sendSubmitBtn"
+                        type="submit"
+                        class="primary-btn w-full"
+                    >
+                        <i class="fa-solid fa-paper-plane mr-2"></i>
+                        Send Funds
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FUND WALLET MODAL
+    ========================== -->
+
+    <div
+        id="fundModal"
+        class="modal-overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <div class="font-bold text-white text-lg">
+                        Fund Wallet
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Submit a funding request
+                    </div>
+
+                </div>
+
+                <button
+                    class="icon-btn"
+                    data-close="fundModal"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="bg-blue-500/5 border border-blue-500/10 rounded-xl p-4 mb-5">
+
+                    <div class="flex gap-3">
+
+                        <i class="fa-solid fa-circle-info text-blue-400 mt-1"></i>
+
+                        <div class="text-xs text-slate-400 leading-5">
+                            Submit your funding request here. The wallet balance
+                            is updated only after the request has been reviewed
+                            and approved through the trusted account system.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="fundError"
+                    class="error-box"
+                >
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="fundErrorText"></span>
+                </div>
+
+
+                <div
+                    id="fundSuccess"
+                    class="success-box"
+                >
+                    Funding request submitted successfully.
+                </div>
+
+
+                <form id="fundForm">
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Amount
+                        </label>
+
+                        <input
+                            id="fundAmount"
+                            class="input"
+                            type="number"
+                            min="1"
+                            step="0.01"
+                            placeholder="Enter amount"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Funding Method
+                        </label>
+
+                        <select
+                            id="fundMethod"
+                            class="select"
+                            required
+                        >
+
+                            <option value="">
+                                Select method
+                            </option>
+
+                            <option value="bank">
+                                Bank Transfer
+                            </option>
+
+                            <option value="crypto">
+                                Cryptocurrency
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Reference
+                        </label>
+
+                        <input
+                            id="fundReference"
+                            class="input"
+                            type="text"
+                            placeholder="Payment/reference ID"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="fundSubmitBtn"
+                        class="primary-btn w-full"
+                    >
+                        Submit Funding Request
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WITHDRAW MODAL
+    ========================== -->
+
+    <div
+        id="withdrawModal"
+        class="modal-overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <div class="font-bold text-white text-lg">
+                        Withdraw
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Submit a withdrawal request
+                    </div>
+
+                </div>
+
+                <button
+                    class="icon-btn"
+                    data-close="withdrawModal"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="available-balance">
+
+                    <div class="text-xs text-slate-500">
+                        Available Wallet Balance
+                    </div>
+
+                    <div
+                        id="withdrawAvailableBalance"
+                        class="text-2xl font-extrabold text-emerald-400 mt-1"
+                    >
+                        $0.00
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="withdrawError"
+                    class="error-box"
+                >
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="withdrawErrorText"></span>
+                </div>
+
+
+                <form id="withdrawForm">
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Withdrawal Method
+                        </label>
+
+                        <select
+                            id="withdrawMethod"
+                            class="select"
+                            required
+                        >
+
+                            <option value="">
+                                Select method
+                            </option>
+
+                            <option value="bitcoin">
+                                Bitcoin
+                            </option>
+
+                            <option value="bank">
+                                Bank Account
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Amount
+                        </label>
+
+                        <input
+                            id="withdrawAmount"
+                            class="input"
+                            type="number"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Destination
+                        </label>
+
+                        <input
+                            id="withdrawDestination"
+                            class="input"
+                            type="text"
+                            placeholder="Wallet address or account details"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="withdrawSubmitBtn"
+                        class="primary-btn w-full"
+                    >
+                        Submit Withdrawal Request
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXCHANGE MODAL
+    ========================== -->
+
+    <div
+        id="exchangeModal"
+        class="modal-overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <div class="font-bold text-white text-lg">
+                        Exchange
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Create an exchange request
+                    </div>
+
+                </div>
+
+                <button
+                    class="icon-btn"
+                    data-close="exchangeModal"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div
+                    id="exchangeError"
+                    class="error-box"
+                >
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="exchangeErrorText"></span>
+                </div>
+
+
+                <form id="exchangeForm">
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            From
+                        </label>
+
+                        <select
+                            id="exchangeFrom"
+                            class="select"
+                            required
+                        >
+
+                            <option value="">
+                                Select asset
+                            </option>
+
+                            <option value="wallet">
+                                Wallet Balance
+                            </option>
+
+                            <option value="trading">
+                                Trading Balance
+                            </option>
+
+                            <option value="funding">
+                                Funding Balance
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            To
+                        </label>
+
+                        <select
+                            id="exchangeTo"
+                            class="select"
+                            required
+                        >
+
+                            <option value="">
+                                Select destination
+                            </option>
+
+                            <option value="wallet">
+                                Wallet Balance
+                            </option>
+
+                            <option value="trading">
+                                Trading Balance
+                            </option>
+
+                            <option value="funding">
+                                Funding Balance
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label class="input-label">
+                            Amount
+                        </label>
+
+                        <input
+                            id="exchangeAmount"
+                            class="input"
+                            type="number"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn w-full"
+                    >
+                        Create Exchange Request
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PROFILE MODAL
+    ========================== -->
+
+    <div
+        id="profileModal"
+        class="modal-overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <div class="font-bold text-white text-lg">
+                        My Profile
+                    </div>
+
+                    <div class="text-xs text-slate-500 mt-1">
+                        Account information
+                    </div>
+
+                </div>
+
+                <button
+                    class="icon-btn"
+                    data-close="profileModal"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="flex items-center gap-4 mb-6">
+
+                    <div class="w-16 h-16 rounded-2xl gradient-blue flex items-center justify-center text-xl font-bold">
+                        <span id="profileInitial">
+                            U
+                        </span>
+                    </div>
+
+                    <div>
+
+                        <div
+                            id="profileName"
+                            class="font-bold text-white text-lg"
+                        >
+                            User
+                        </div>
+
+                        <div
+                            id="profileEmail"
+                            class="text-sm text-slate-500"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="space-y-3">
+
+                    <div class="bg-black/20 rounded-xl p-4">
+
+                        <div class="text-xs text-slate-500">
+                            Country
+                        </div>
+
+                        <div
+                            id="profileCountry"
+                            class="font-semibold text-white mt-1"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <div class="bg-black/20 rounded-xl p-4">
+
+                        <div class="text-xs text-slate-500">
+                            Referral Code
+                        </div>
+
+                        <div
+                            id="profileReferral"
+                            class="font-semibold text-cyan-400 mt-1"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <div class="bg-black/20 rounded-xl p-4">
+
+                        <div class="text-xs text-slate-500">
+                            Account Status
+                        </div>
+
+                        <div
+                            id="profileStatus"
+                            class="font-semibold text-emerald-400 mt-1"
+                        >
+                            Active
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="profileLogoutBtn"
+                    class="secondary-btn w-full mt-5"
+                >
+                    <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div id="toast" class="toast">
+
+        <div class="flex items-start gap-3">
+
+            <div id="toastIcon">
+                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            </div>
+
+            <div>
+
+                <div
+                    id="toastTitle"
+                    class="font-bold text-white text-sm"
+                >
+                    Success
+                </div>
+
+                <div
+                    id="toastMessage"
+                    class="text-xs text-slate-400 mt-1"
+                >
+                    Done.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FIREBASE
+    ========================== -->
+
+    <script type="module">
+
+        import { auth, db } from "./firebase-config.js";
+
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+        import {
+            doc,
+            getDoc,
+            collection,
+            addDoc,
+            query,
+            where,
+            orderBy,
+            limit,
+            onSnapshot,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+        /* ==========================================
+           STATE
+        ========================================== */
+
+        let currentUser = null;
+        let userProfile = null;
+
+        let walletBalance = 0;
+
+        let balances = {
+            wallet: 0,
+            bonus: 0,
+            funding: 0,
+            trading: 0,
+            investmentProfit: 0,
+            investmentBonus: 0,
+            tradingProfit: 0,
+            tradingBonus: 0,
+            rewards: 0,
+            referralBonus: 0
+        };
+
+
+        /* ==========================================
+           BALANCE DEFINITIONS
+        ========================================== */
+
+        const balanceDefinitions = [
+
+            {
+                key: "wallet",
+                label: "Wallet Balance",
+                icon: "fa-wallet",
+                iconClass: "text-cyan-400 bg-cyan-400/10"
+            },
+
+            {
+                key: "funding",
+                label: "Funding",
+                icon: "fa-money-bill-transfer",
+                iconClass: "text-blue-400 bg-blue-400/10"
+            },
+
+            {
+                key: "trading",
+                label: "Trading",
+                icon: "fa-chart-line",
+                iconClass: "text-indigo-400 bg-indigo-400/10"
+            },
+
+            {
+                key: "investmentProfit",
+                label: "Investment Profit",
+                icon: "fa-arrow-trend-up",
+                iconClass: "text-emerald-400 bg-emerald-400/10"
+            },
+
+            {
+                key: "tradingProfit",
+                label: "Trading Profit",
+                icon: "fa-arrow-trend-up",
+                iconClass: "text-emerald-400 bg-emerald-400/10"
+            },
+
+            {
+                key: "bonus",
+                label: "Bonus Balance",
+                icon: "fa-dollar-sign",
+                iconClass: "text-emerald-400 bg-emerald-400/10"
+            },
+
+            {
+                key: "investmentBonus",
+                label: "Investment Bonus",
+                icon: "fa-sack-dollar",
+                iconClass: "text-yellow-400 bg-yellow-400/10"
+            },
+
+            {
+                key: "tradingBonus",
+                label: "Trading Bonus",
+                icon: "fa-sack-dollar",
+                iconClass: "text-yellow-400 bg-yellow-400/10"
+            },
+
+            {
+                key: "rewards",
+                label: "Rewards",
+                icon: "fa-trophy",
+                iconClass: "text-yellow-400 bg-yellow-400/10"
+            },
+
+            {
+                key: "referralBonus",
+                label: "Referral Bonus",
+                icon: "fa-users",
+                iconClass: "text-yellow-400 bg-yellow-400/10"
+            }
+
+        ];
+
+
+        /* ==========================================
+           HELPERS
+        ========================================== */
+
+        function money(value) {
+
+            const number = Number(value || 0);
+
+            return new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(number);
+
+        }
+
+
+        function escapeHtml(value) {
+
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+        function showToast(
+            message,
+            title = "Success",
+            type = "success"
+        ) {
+
+            const toast = document.getElementById("toast");
+
+            const icon = document.getElementById("toastIcon");
+
+            document.getElementById("toastTitle").textContent = title;
+
+            document.getElementById("toastMessage").textContent = message;
+
+
+            if (type === "error") {
+
+                icon.innerHTML =
+                    '<i class="fa-solid fa-circle-exclamation text-red-400"></i>';
+
+            } else {
+
+                icon.innerHTML =
+                    '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
+
+            }
+
+
+            toast.classList.add("active");
+
+            setTimeout(() => {
+
+                toast.classList.remove("active");
+
+            }, 3500);
+
+        }
+
+
+        function openModal(id) {
+
+            document.getElementById(id)?.classList.add("active");
+
+        }
+
+
+        function closeModal(id) {
+
+            document.getElementById(id)?.classList.remove("active");
+
+        }
+
+
+        function showError(elementId, message) {
+
+            const box = document.getElementById(elementId);
+
+            if (!box) return;
+
+            box.classList.add("active");
+
+            const textElement = box.querySelector("span");
+
+            if (textElement) {
+
+                textElement.textContent = message;
+
+            }
+
+        }
+
+
+        function hideError(elementId) {
+
+            document
+                .getElementById(elementId)
+                ?.classList.remove("active");
+
+        }
+
+
+        /* ==========================================
+           USER PROFILE
+        ========================================== */
+
+        async function ensureUserProfile(user) {
+
+            const userRef = doc(db, "users", user.uid);
+
+            const snapshot = await getDoc(userRef);
+
+            if (snapshot.exists()) {
+
+                return snapshot.data();
+
+            }
+
+            /*
+             * The browser only creates the initial profile.
+             * Sensitive balances remain zero until a trusted
+             * admin/backend operation changes them.
+             */
+
+            const initialProfile = {
+
+                name:
+                    user.displayName ||
+                    user.email?.split("@")[0] ||
+                    "User",
+
+                email: user.email || "",
+
+                country: "",
+
+                referralCode:
+                    "REF-" +
+                    user.uid
+                        .substring(0, 8)
+                        .toUpperCase(),
+
+                role: "user",
+
+                status: "active",
+
+                balances: {
+
+                    wallet: 0,
+                    bonus: 0,
+                    funding: 0,
+                    trading: 0,
+                    investmentProfit: 0,
+                    investmentBonus: 0,
+                    tradingProfit: 0,
+                    tradingBonus: 0,
+                    rewards: 0,
+                    referralBonus: 0
+
+                },
+
+                createdAt: serverTimestamp(),
+
+                updatedAt: serverTimestamp()
+
+            };
+
+
+            /*
+             * This intentionally does not create money.
+             * Your Firestore rules should permit creation of
+             * the user's own profile while preventing users
+             * from changing sensitive balances.
+             */
+
+            const { setDoc } =
+                await import(
+                    "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js"
+                );
+
+            await setDoc(
+                userRef,
+                initialProfile
+            );
+
+            return initialProfile;
+
+        }
+
+
+        /* ==========================================
+           RENDER PROFILE
+        ========================================== */
+
+        function renderProfile(data) {
+
+            const name =
+                data?.name ||
+                currentUser?.displayName ||
+                currentUser?.email?.split("@")[0] ||
+                "User";
+
+            document.getElementById("userName").textContent = name;
+
+            document.getElementById("profileName").textContent = name;
+
+            document.getElementById("profileEmail").textContent =
+                data?.email ||
+                currentUser?.email ||
+                "-";
+
+            document.getElementById("profileCountry").textContent =
+                data?.country || "Not specified";
+
+            document.getElementById("profileReferral").textContent =
+                data?.referralCode || "-";
+
+            document.getElementById("profileStatus").textContent =
+                data?.status || "Active";
+
+            document.getElementById("referralCode").textContent =
+                data?.referralCode || "-";
+
+            document.getElementById("profileInitial").textContent =
+                name.charAt(0).toUpperCase();
+
+        }
+
+
+        /* ==========================================
+           RENDER BALANCES
+        ========================================== */
+
+        function renderBalances(data) {
+
+            balances = {
+
+                ...balances,
+
+                ...(data?.balances || {})
+
+            };
+
+
+            walletBalance =
+                Number(balances.wallet || 0);
+
+
+            document.getElementById("walletSummary").textContent =
+                money(balances.wallet);
+
+            document.getElementById("tradingSummary").textContent =
+                money(balances.trading);
+
+            document.getElementById("referralBonus").textContent =
+                money(balances.referralBonus);
+
+
+            /*
+             * This total is a display total across the separate
+             * balance categories. For a production ledger, decide
+             * which categories represent actual asset value and
+             * calculate the portfolio total from that ledger.
+             */
+
+            const total = Object.values(balances)
+                .reduce(
+                    (sum, value) =>
+                        sum + Number(value || 0),
+                    0
+                );
+
+
+            document.getElementById("totalAssets").textContent =
+                money(total);
+
+
+            document.getElementById("sendAvailableBalance").textContent =
+                money(walletBalance);
+
+            document.getElementById("withdrawAvailableBalance").textContent =
+                money(walletBalance);
+
+
+            const grid =
+                document.getElementById("balancesGrid");
+
+
+            grid.innerHTML = balanceDefinitions
+                .map(item => {
+
+                    const amount =
+                        Number(
+                            balances[item.key] || 0
+                        );
+
+                    return `
+
+                        <div class="balance-card">
+
+                            <div class="flex items-center justify-between gap-2">
+
+                                <div class="balance-icon ${item.iconClass}">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="text-xs text-slate-500 mt-4">
+                                ${escapeHtml(item.label)}
+                            </div>
+
+                            <div class="text-base font-bold text-white mt-1">
+                                ${money(amount)}
+                            </div>
+
+                        </div>
+
+                    `;
+
+                })
+                .join("");
+
+        }
+
+
+        /* ==========================================
+           REAL-TIME USER PROFILE
+        ========================================== */
+
+        function subscribeToUser() {
+
+            if (!currentUser) return;
+
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                );
+
+
+            return onSnapshot(
+                userRef,
+
+                snapshot => {
+
+                    if (!snapshot.exists()) return;
+
+                    userProfile =
+                        snapshot.data();
+
+                    renderProfile(
+                        userProfile
+                    );
+
+                    renderBalances(
+                        userProfile
+                    );
+
+                },
+
+                error => {
+
+                    console.error(
+                        "User listener:",
+                        error
+                    );
+
+                }
+
+            );
+
+        }
+
+
+        /* ==========================================
+           TRANSACTIONS
+        ========================================== */
+
+        function subscribeToTransactions() {
+
+            if (!currentUser) return;
+
+
+            const transactionsRef =
+                collection(
+                    db,
+                    "transactions"
+                );
+
+
+            const transactionQuery =
+                query(
+
+                    transactionsRef,
+
+                    where(
+                        "userId",
+                        "==",
+                        currentUser.uid
+                    ),
+
+                    orderBy(
+                        "createdAt",
+                        "desc"
+                    ),
+
+                    limit(10)
+
+                );
+
+
+            onSnapshot(
+                transactionQuery,
+
+                snapshot => {
+
+                    renderTransactions(
+                        snapshot.docs.map(
+                            item => ({
+                                id: item.id,
+                                ...item.data()
+                            })
+                        )
+                    );
+
+                },
+
+                error => {
+
+                    console.error(
+                        "Transactions:",
+                        error
+                    );
+
+                    document.getElementById(
+                        "transactionsList"
+                    ).innerHTML = `
+
+                        <div class="py-10 text-center text-sm text-slate-500">
+                            Unable to load transactions.
+                        </div>
+
+                    `;
+
+                }
+
+            );
+
+        }
+
+
+        function renderTransactions(transactions) {
+
+            const container =
+                document.getElementById(
+                    "transactionsList"
+                );
+
+
+            if (!transactions.length) {
+
+                container.innerHTML = `
+
+                    <div class="py-10 text-center">
+
+                        <div class="w-12 h-12 rounded-2xl bg-slate-800 mx-auto flex items-center justify-center text-slate-500">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+
+                        <div class="text-sm text-slate-400 mt-3">
+                            No transactions yet
+                        </div>
+
+                        <div class="text-xs text-slate-600 mt-1">
+                            Your recent activity will appear here.
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                transactions
+                    .map(transaction => {
+
+                        const type =
+                            transaction.type ||
+                            "Transaction";
+
+                        const amount =
+                            Number(
+                                transaction.amount || 0
+                            );
+
+                        const status =
+                            String(
+                                transaction.status ||
+                                "pending"
+                            ).toLowerCase();
+
+
+                        let icon =
+                            "fa-receipt";
+
+                        if (
+                            type
+                                .toLowerCase()
+                                .includes("deposit")
+                        ) {
+                            icon =
+                                "fa-arrow-down";
+                        }
+
+                        if (
+                            type
+                                .toLowerCase()
+                                .includes("send")
+                        ) {
+                            icon =
+                                "fa-paper-plane";
+                        }
+
+                        if (
+                            type
+                                .toLowerCase()
+                                .includes("withdraw")
+                        ) {
+                            icon =
+                                "fa-arrow-up";
+                        }
+
+
+                        let statusClass =
+                            "status-pending";
+
+                        if (
+                            status === "completed" ||
+                            status === "success" ||
+                            status === "approved"
+                        ) {
+                            statusClass =
+                                "status-success";
+                        }
+
+                        if (
+                            status === "failed" ||
+                            status === "rejected"
+                        ) {
+                            statusClass =
+                                "status-failed";
+                        }
+
+
+                        let dateText = "";
+
+                        if (
+                            transaction.createdAt &&
+                            typeof transaction.createdAt.toDate ===
+                                "function"
+                        ) {
+
+                            dateText =
+                                transaction.createdAt
+                                    .toDate()
+                                    .toLocaleString();
+
+                        } else {
+
+                            dateText =
+                                "Recently";
+
+                        }
+
+
+                        return `
+
+                            <div class="transaction-row">
+
+                                <div class="flex items-center gap-3 min-w-0">
+
+                                    <div class="transaction-icon bg-blue-500/10 text-blue-400">
+
+                                        <i class="fa-solid ${icon}"></i>
+
+                                    </div>
+
+                                    <div class="min-w-0">
+
+                                        <div class="font-semibold text-white text-sm truncate">
+                                            ${escapeHtml(type)}
+                                        </div>
+
+                                        <div class="text-[11px] text-slate-600 mt-1">
+                                            ${escapeHtml(dateText)}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="text-right shrink-0">
+
+                                    <div class="font-bold text-white text-sm">
+                                        ${money(amount)}
+                                    </div>
+
+                                    <span class="status ${statusClass} mt-1">
+                                        ${escapeHtml(status)}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* ==========================================
+           NOTIFICATIONS
+        ========================================== */
+
+        function subscribeToNotifications() {
+
+            if (!currentUser) return;
+
+
+            const notificationsRef =
+                collection(
+                    db,
+                    "notifications"
+                );
+
+
+            const notificationQuery =
+                query(
+
+                    notificationsRef,
+
+                    where(
+                        "userId",
+                        "==",
+                        currentUser.uid
+                    ),
+
+                    orderBy(
+                        "createdAt",
+                        "desc"
+                    ),
+
+                    limit(25)
+
+                );
+
+
+            onSnapshot(
+                notificationQuery,
+
+                snapshot => {
+
+                    const list =
+                        document.getElementById(
+                            "notificationsList"
+                        );
+
+
+                    if (snapshot.empty) {
+
+                        list.innerHTML = `
+
+                            <div class="p-5 text-sm text-slate-500 text-center">
+                                No notifications
+                            </div>
+
+                        `;
+
+                        return;
+
+                    }
+
+
+                    list.innerHTML =
+                        snapshot.docs
+                            .map(
+                                item => {
+
+                                    const data =
+                                        item.data();
+
+                                    return `
+
+                                        <div class="notification-item">
+
+                                            <div class="font-semibold text-sm text-white">
+                                                ${escapeHtml(
+                                                    data.title ||
+                                                    "Notification"
+                                                )}
+                                            </div>
+
+                                            <div class="text-xs text-slate-500 mt-1 leading-5">
+                                                ${escapeHtml(
+                                                    data.message ||
+                                                    ""
+                                                )}
+                                            </div>
+
+                                        </div>
+
+                                    `;
+
+                                }
+                            )
+                            .join("");
+
+                },
+
+                error => {
+
+                    console.error(
+                        "Notifications:",
+                        error
+                    );
+
+                }
+
+            );
+
+        }
+
+
+        /* ==========================================
+           FUNDING REQUEST
+        ========================================== */
+
+        document
+            .getElementById("fundForm")
+            .addEventListener(
+                "submit",
+                async event => {
+
+                    event.preventDefault();
+
+
+                    const amount =
+                        Number(
+                            document.getElementById(
+                                "fundAmount"
+                            ).value
+                        );
+
+                    const method =
+                        document.getElementById(
+                            "fundMethod"
+                        ).value;
+
+                    const reference =
+                        document.getElementById(
+                            "fundReference"
+                        ).value.trim();
+
+
+                    hideError("fundError");
+
+
+                    if (
+                        !Number.isFinite(amount) ||
+                        amount <= 0
+                    ) {
+
+                        showError(
+                            "fundError",
+                            "Enter a valid funding amount."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (!method) {
+
+                        showError(
+                            "fundError",
+                            "Select a funding method."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const button =
+                        document.getElementById(
+                            "fundSubmitBtn"
+                        );
+
+
+                    button.disabled = true;
+
+                    button.innerHTML =
+                        '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
+
+
+                    try {
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "fundingRequests"
+                            ),
+                            {
+
+                                userId:
+                                    currentUser.uid,
+
+                                email:
+                                    currentUser.email || "",
+
+                                amount,
+
+                                currency:
+                                    "USD",
+
+                                method,
+
+                                reference,
+
+                                status:
+                                    "pending",
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "transactions"
+                            ),
+                            {
+
+                                userId:
+                                    currentUser.uid,
+
+                                type:
+                                    "Funding Request",
+
+                                amount,
+
+                                currency:
+                                    "USD",
+
+                                status:
+                                    "pending",
+
+                                method,
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        document
+                            .getElementById(
+                                "fundForm"
+                            )
+                            .reset();
+
+
+                        document
+                            .getElementById(
+                                "fundSuccess"
+                            )
+                            .classList.add(
+                                "active"
+                            );
+
+
+                        showToast(
+                            "Your funding request has been submitted.",
+                            "Request Submitted"
+                        );
+
+
+                        setTimeout(
+                            () => {
+
+                                closeModal(
+                                    "fundModal"
+                                );
+
+                                document
+                                    .getElementById(
+                                        "fundSuccess"
+                                    )
+                                    .classList.remove(
+                                        "active"
+                                    );
+
+                            },
+                            1800
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            error
+                        );
+
+                        showError(
+                            "fundError",
+                            "Unable to submit the funding request. Please try again."
+                        );
+
+                    } finally {
+
+                        button.disabled = false;
+
+                        button.textContent =
+                            "Submit Funding Request";
+
+                    }
+
+                }
+            );
+
+
+        /* ==========================================
+           SEND FUNDS
+        ========================================== */
+
+        document
+            .getElementById("sendForm")
+            .addEventListener(
+                "submit",
+                async event => {
+
+                    event.preventDefault();
+
+
+                    hideError("sendError");
+
+
+                    const recipient =
+                        document
+                            .getElementById(
+                                "sendRecipient"
+                            )
+                            .value
+                            .trim();
+
+                    const amount =
+                        Number(
+                            document
+                                .getElementById(
+                                    "sendAmount"
+                                )
+                                .value
+                        );
+
+                    const note =
+                        document
+                            .getElementById(
+                                "sendNote"
+                            )
+                            .value
+                            .trim();
+
+
+                    if (!recipient) {
+
+                        showError(
+                            "sendError",
+                            "Enter the recipient email or user ID."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !Number.isFinite(amount) ||
+                        amount <= 0
+                    ) {
+
+                        showError(
+                            "sendError",
+                            "Enter a valid amount."
+                        );
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Important wallet check.
+                     *
+                     * This prevents a normal user from submitting
+                     * a request that is obviously larger than the
+                     * balance currently displayed to them.
+                     *
+                     * A trusted backend must perform the final
+                     * balance validation before any actual transfer.
+                     */
+
+                    if (amount > walletBalance) {
+
+                        showError(
+                            "sendError",
+                            `Insufficient funds. Your available wallet balance is ${money(walletBalance)}.`
+                        );
+
+                        return;
+
+                    }
+
+
+                    const button =
+                        document.getElementById(
+                            "sendSubmitBtn"
+                        );
+
+
+                    button.disabled = true;
+
+                    button.innerHTML =
+                        '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
+
+
+                    try {
+
+                        /*
+                         * This creates a transfer request.
+                         *
+                         * It does NOT directly change balances
+                         * from the browser.
+                         *
+                         * A trusted server/admin process should
+                         * validate the sender balance and perform
+                         * the actual ledger movement.
+                         */
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "transfers"
+                            ),
+                            {
+
+                                senderId:
+                                    currentUser.uid,
+
+                                senderEmail:
+                                    currentUser.email || "",
+
+                                recipient,
+
+                                amount,
+
+                                currency:
+                                    "USD",
+
+                                note,
+
+                                status:
+                                    "pending",
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "transactions"
+                            ),
+                            {
+
+                                userId:
+                                    currentUser.uid,
+
+                                type:
+                                    "Send Funds",
+
+                                amount,
+
+                                currency:
+                                    "USD",
+
+                                status:
+                                    "pending",
+
+                                recipient,
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        document
+                            .getElementById(
+                                "sendForm"
+                            )
+                            .reset();
+
+
+                        document
+                            .getElementById(
+                                "sendSuccess"
+                            )
+                            .classList.add(
+                                "active"
+                            );
+
+
+                        showToast(
+                            "Your transfer request has been submitted.",
+                            "Transfer Submitted"
+                        );
+
+
+                        setTimeout(
+                            () => {
+
+                                closeModal(
+                                    "sendModal"
+                                );
+
+                                document
+                                    .getElementById(
+                                        "sendSuccess"
+                                    )
+                                    .classList.remove(
+                                        "active"
+                                    );
+
+                            },
+                            1800
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Send error:",
+                            error
+                        );
+
+                        showError(
+                            "sendError",
+                            "Unable to submit the transfer request."
+                        );
+
+                    } finally {
+
+                        button.disabled = false;
+
+                        button.innerHTML =
+                            '<i class="fa-solid fa-paper-plane mr-2"></i>Send Funds';
+
+                    }
+
+                }
+            );
+
+
+        /* ==========================================
+           WITHDRAW
+        ========================================== */
+
+        document
+            .getElementById("withdrawForm")
+            .addEventListener(
+                "submit",
+                async event => {
+
+                    event.preventDefault();
+
+
+                    hideError(
+                        "withdrawError"
+                    );
+
+
+                    const method =
+                        document
+                            .getElementById(
+                                "withdrawMethod"
+                            )
+                            .value;
+
+                    const amount =
+                        Number(
+                            document
+                                .getElementById(
+                                    "withdrawAmount"
+                                )
+                                .value
+                        );
+
+                    const destination =
+                        document
+                            .getElementById(
+                                "withdrawDestination"
+                            )
+                            .value
+                            .trim();
+
+
+                    if (!method) {
+
+                        showError(
+                            "withdrawError",
+                            "Select a withdrawal method."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !Number.isFinite(amount) ||
+                        amount <= 0
+                    ) {
+
+                        showError(
+                            "withdrawError",
+                            "Enter a valid withdrawal amount."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        amount >
+                        walletBalance
+                    ) {
+
+                        showError(
+                            "withdrawError",
+                            `Insufficient funds. Your available wallet balance is ${money(walletBalance)}.`
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (!destination) {
+
+                        showError(
+                            "withdrawError",
+                            "Enter the withdrawal destination."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const button =
+                        document.getElementById(
+                            "withdrawSubmitBtn"
+                        );
+
+
+                    button.disabled = true;
+
+                    button.innerHTML =
+                        '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
+
+
+                    try {
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "withdrawals"
+                            ),
+                            {
+
+                                userId:
+                                    currentUser.uid,
+
+                                email:
+                                    currentUser.email || "",
+
+                                amount,
+
+                                currency:
+                                    "USD",
+
+                                method,
+
+                                destination,
+
+                                status:
+                                    "pending",
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "transactions"
+                            ),
+                            {
+
+                                userId:
+                                    currentUser.uid,
+
+                                type:
+                                    "Withdrawal",
+
+                                amount,
+
+                                currency:
+                                    "USD",
+
+                                status:
+                                    "pending",
+
+                                method,
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        document
+                            .getElementById(
+                                "withdrawForm"
+                            )
+                            .reset();
+
+
+                        closeModal(
+                            "withdrawModal"
+                        );
+
+
+                        showToast(
+                            "Withdrawal request submitted.",
+                            "Request Submitted"
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            error
+                        );
+
+                        showError(
+                            "withdrawError",
+                            "Unable to submit the withdrawal request."
+                        );
+
+                    } finally {
+
+                        button.disabled = false;
+
+                        button.textContent =
+                            "Submit Withdrawal Request";
+
+                    }
+
+                }
+            );
+
+
+        /* ==========================================
+           EXCHANGE
+        ========================================== */
+
+        document
+            .getElementById("exchangeForm")
+            .addEventListener(
+                "submit",
+                async event => {
+
+                    event.preventDefault();
+
+
+                    hideError(
+                        "exchangeError"
+                    );
+
+
+                    const from =
+                        document.getElementById(
+                            "exchangeFrom"
+                        ).value;
+
+                    const to =
+                        document.getElementById(
+                            "exchangeTo"
+                        ).value;
+
+                    const amount =
+                        Number(
+                            document.getElementById(
+                                "exchangeAmount"
+                            ).value
+                        );
+
+
+                    if (!from || !to) {
+
+                        showError(
+                            "exchangeError",
+                            "Select both assets."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (from === to) {
+
+                        showError(
+                            "exchangeError",
+                            "The source and destination cannot be the same."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !Number.isFinite(amount) ||
+                        amount <= 0
+                    ) {
+
+                        showError(
+                            "exchangeError",
+                            "Enter a valid amount."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const sourceBalance =
+                        Number(
+                            balances[from] || 0
+                        );
+
+
+                    if (
+                        amount >
+                        sourceBalance
+                    ) {
+
+                        showError(
+                            "exchangeError",
+                            `Insufficient funds. Available ${from} balance is ${money(sourceBalance)}.`
+                        );
+
+                        return;
+
+                    }
+
+
+                    try {
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "exchanges"
+                            ),
+                            {
+
+                                userId:
+                                    currentUser.uid,
+
+                                from,
+
+                                to,
+
+                                amount,
+
+                                status:
+                                    "pending",
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        await addDoc(
+                            collection(
+                                db,
+                                "transactions"
+                            ),
+                            {
+
+                                userId:
+                                    currentUser.uid,
+
+                                type:
+                                    "Exchange",
+
+                                amount,
+
+                                currency:
+                                    "USD",
+
+                                status:
+                                    "pending",
+
+                                from,
+
+                                to,
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        document
+                            .getElementById(
+                                "exchangeForm"
+                            )
+                            .reset();
+
+
+                        closeModal(
+                            "exchangeModal"
+                        );
+
+
+                        showToast(
+                            "Exchange request submitted.",
+                            "Exchange Submitted"
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            error
+                        );
+
+                        showError(
+                            "exchangeError",
+                            "Unable to submit the exchange request."
+                        );
+
+                    }
+
+                }
+            );
+
+
+        /* ==========================================
+           BTC PRICE
+        ========================================== */
+
+        async function loadBitcoinPrice() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Market request failed"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                const price =
+                    Number(
+                        data?.bitcoin?.usd || 0
+                    );
+
+
+                const change =
+                    Number(
+                        data?.bitcoin
+                            ?.usd_24h_change || 0
+                    );
+
+
+                document.getElementById(
+                    "btcPrice"
+                ).textContent =
+                    money(price);
+
+
+                document.getElementById(
+                    "tickerBtcPrice"
+                ).textContent =
+                    money(price);
+
+
+                document.getElementById(
+                    "tickerBtcPrice2"
+                ).textContent =
+                    money(price);
+
+
+                const changeElement =
+                    document.getElementById(
+                        "btcChange"
+                    );
+
+
+                changeElement.textContent =
+                    `${change >= 0 ? "+" : ""}${change.toFixed(2)}% today`;
+
+
+                changeElement.className =
+                    change >= 0
+                        ? "text-sm mt-2 text-emerald-400"
+                        : "text-sm mt-2 text-red-400";
+
+            } catch (error) {
+
+                console.error(
+                    "BTC price:",
+                    error
+                );
+
+                document.getElementById(
+                    "btcPrice"
+                ).textContent =
+                    "Unavailable";
+
+                document.getElementById(
+                    "btcChange"
+                ).textContent =
+                    "Market data unavailable";
+
+            }
+
+        }
+
+
+        /* ==========================================
+           COPY REFERRAL
+        ========================================== */
+
+        document
+            .getElementById(
+                "copyReferralBtn"
+            )
+            .addEventListener(
+                "click",
+                async () => {
+
+                    const code =
+                        userProfile
+                            ?.referralCode ||
+                        "";
+
+                    if (!code) return;
+
+
+                    try {
+
+                        await navigator.clipboard.writeText(
+                            code
+                        );
+
+                        showToast(
+                            "Referral code copied.",
+                            "Copied"
+                        );
+
+                    } catch {
+
+                        showToast(
+                            "Unable to copy referral code.",
+                            "Copy Failed",
+                            "error"
+                        );
+
+                    }
+
+                }
+            );
+
+
+        /* ==========================================
+           OPEN BUTTONS
+        ========================================== */
+
+        document
+            .getElementById(
+                "sendFundsBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    hideError(
+                        "sendError"
+                    );
+
+                    document.getElementById(
+                        "sendAvailableBalance"
+                    ).textContent =
+                        money(walletBalance);
+
+                    openModal(
+                        "sendModal"
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "navSend"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById(
+                            "sendFundsBtn"
+                        )
+                        .click();
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "fundWalletBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    hideError(
+                        "fundError"
+                    );
+
+                    openModal(
+                        "fundModal"
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "navFund"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById(
+                            "fundWalletBtn"
+                        )
+                        .click();
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "withdrawBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    hideError(
+                        "withdrawError"
+                    );
+
+                    document.getElementById(
+                        "withdrawAvailableBalance"
+                    ).textContent =
+                        money(walletBalance);
+
+                    openModal(
+                        "withdrawModal"
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "navWithdraw"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById(
+                            "withdrawBtn"
+                        )
+                        .click();
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "exchangeBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    hideError(
+                        "exchangeError"
+                    );
+
+                    openModal(
+                        "exchangeModal"
+                    );
+
+                }
+            );
+
+
+        /* ==========================================
+           PROFILE
+        ========================================== */
+
+        document
+            .getElementById(
+                "profileBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    openModal(
+                        "profileModal"
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "profileTopBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    openModal(
+                        "profileModal"
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "navProfile"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    openModal(
+                        "profileModal"
+                    );
+
+                }
+            );
+
+
+        /* ==========================================
+           NOTIFICATIONS
+        ========================================== */
+
+        document
+            .getElementById(
+                "notificationBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById(
+                            "notificationPanel"
+                        )
+                        .classList.toggle(
+                            "active"
+                        );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "closeNotifications"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById(
+                            "notificationPanel"
+                        )
+                        .classList.remove(
+                            "active"
+                        );
+
+                }
+            );
+
+
+        /* ==========================================
+           SUPPORT
+        ========================================== */
+
+        document
+            .getElementById(
+                "supportBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    showToast(
+                        "Please contact the FastCashSignals support team.",
+                        "Support"
+                    );
+
+                }
+            );
+
+
+        /* ==========================================
+           CLOSE MODALS
+        ========================================== */
+
+        document
+            .querySelectorAll(
+                "[data-close]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            closeModal(
+                                button.dataset.close
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                ".modal-overlay"
+            )
+            .forEach(
+                overlay => {
+
+                    overlay.addEventListener(
+                        "click",
+                        event => {
+
+                            if (
+                                event.target ===
+                                overlay
+                            ) {
+
+                                overlay.classList.remove(
+                                    "active"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+        document
+            .addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key ===
+                        "Escape"
+                    ) {
+
+                        document
+                            .querySelectorAll(
+                                ".modal-overlay.active"
+                            )
+                            .forEach(
+                                modal => {
+
+                                    modal.classList.remove(
+                                        "active"
+                                    );
+
+                                }
+                            );
+
+                    }
+
+                }
+            );
+
+
+        /* ==========================================
+           LOGOUT
+        ========================================== */
+
+        async function logout() {
+
+            try {
+
+                await signOut(
+                    auth
+                );
+
+                window.location.href =
+                    "index.html";
+
+            } catch (error) {
+
+                console.error(
+                    error
+                );
+
+                showToast(
+                    "Unable to log out.",
+                    "Logout Error",
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        document
+            .getElementById(
+                "logoutBtn"
+            )
+            .addEventListener(
+                "click",
+                logout
+            );
+
+
+        document
+            .getElementById(
+                "profileLogoutBtn"
+            )
+            .addEventListener(
+                "click",
+                logout
+            );
+
+
+        /* ==========================================
+           AUTH
+        ========================================== */
+
+        onAuthStateChanged(
+            auth,
+            async user => {
+
+                if (!user) {
+
+                    /*
+                     * Unauthenticated users should go
+                     * to the login page, not the dashboard.
+                     */
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                currentUser =
+                    user;
+
+
+                try {
+
+                    userProfile =
+                        await ensureUserProfile(
+                            user
+                        );
+
+
+                    renderProfile(
+                        userProfile
+                    );
+
+                    renderBalances(
+                        userProfile
+                    );
+
+
+                    subscribeToUser();
+
+                    subscribeToTransactions();
+
+                    subscribeToNotifications();
+
+                    loadBitcoinPrice();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Dashboard initialization:",
+                        error
+                    );
+
+                    showToast(
+                        "Unable to load your account information.",
+                        "Dashboard Error",
+                        "error"
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
