@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | FastCashSignals</title>
+    <meta
+        name="description"
+        content="Sign in to your FastCashSignals account."
+    >
+    <meta name="theme-color" content="#070b14">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        :root {
+            --dark: #070b14;
+            --dark-2: #0d1422;
+            --dark-3: #111b2e;
+
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --cyan-light: #22d3ee;
+
+            --bitcoin: #f7931a;
+            --green: #10b981;
+            --red: #ef4444;
+
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+
+            --card: #0f172a;
+            --border: rgba(148, 163, 184, .13);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background: var(--dark);
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        .page {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            background:
+                radial-gradient(
+                    circle at 12% 15%,
+                    rgba(37, 99, 235, .17),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 88% 25%,
+                    rgba(6, 182, 212, .11),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #050810 0%,
+                    #0b1220 55%,
+                    #07101c 100%
+                );
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            width: 100%;
+
+            border-bottom: 1px solid var(--border);
+
+            background: rgba(7, 11, 20, .75);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+
+            padding: 20px 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            text-decoration: none;
+            color: white;
+
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    var(--cyan)
+                );
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, .25);
+        }
+
+        .logo-icon i {
+            font-size: 18px;
+        }
+
+        .register-link {
+            color: var(--muted);
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: .2s ease;
+        }
+
+        .register-link:hover {
+            color: var(--cyan-light);
+        }
+
+        .register-link span {
+            color: var(--text);
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            flex: 1;
+
+            width: 100%;
+
+            padding: 60px 20px 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 1060px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
+
+        .intro {
+            padding: 20px 0;
+        }
+
+        .intro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 13px;
+
+            border-radius: 999px;
+
+            background: rgba(6, 182, 212, .08);
+
+            border: 1px solid rgba(6, 182, 212, .18);
+
+            color: var(--cyan-light);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 22px;
+        }
+
+        .intro-badge i {
+            font-size: 11px;
+        }
+
+        .intro h1 {
+            font-size: clamp(36px, 5vw, 55px);
+
+            line-height: 1.08;
+
+            letter-spacing: -1.8px;
+
+            margin-bottom: 20px;
+        }
+
+        .intro h1 span {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    var(--cyan-light)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .intro-text {
+            max-width: 500px;
+
+            color: var(--muted);
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            margin-bottom: 32px;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+            gap: 16px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 13px;
+        }
+
+        .feature-icon {
+            flex: 0 0 36px;
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(37, 99, 235, .10);
+
+            border: 1px solid rgba(37, 99, 235, .18);
+
+            color: var(--cyan-light);
+        }
+
+        .feature h3 {
+            font-size: 14px;
+
+            margin-bottom: 4px;
+        }
+
+        .feature p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .login-card {
+            width: 100%;
+            max-width: 480px;
+
+            margin-left: auto;
+
+            padding: 34px;
+
+            background:
+                rgba(15, 23, 42, .88);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, .35),
+                inset 0 1px 0 rgba(255, 255, 255, .025);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .card-heading {
+            margin-bottom: 28px;
+        }
+
+        .card-heading h2 {
+            font-size: 26px;
+
+            margin-bottom: 8px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           ALERT
+        ========================= */
+
+        .alert {
+            display: none;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            padding: 12px 14px;
+
+            margin-bottom: 18px;
+
+            border-radius: 11px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        .alert.show {
+            display: flex;
+        }
+
+        .alert.error {
+            background: rgba(239, 68, 68, .08);
+
+            border:
+                1px solid rgba(239, 68, 68, .18);
+
+            color: #fca5a5;
+        }
+
+        .alert.success {
+            background: rgba(16, 185, 129, .08);
+
+            border:
+                1px solid rgba(16, 185, 129, .18);
+
+            color: #6ee7b7;
+        }
+
+        .alert i {
+            margin-top: 2px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 15px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            pointer-events: none;
+        }
+
+        .input-wrap input {
+            width: 100%;
+
+            height: 50px;
+
+            padding:
+                0 45px
+                0 44px;
+
+            border-radius: 11px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(7, 11, 20, .72);
+
+            color: var(--text);
+
+            outline: none;
+
+            font-size: 13px;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .input-wrap input::placeholder {
+            color: #64748b;
+        }
+
+        .input-wrap input:focus {
+            border-color:
+                rgba(6, 182, 212, .65);
+
+            background:
+                rgba(7, 11, 20, .9);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(6, 182, 212, .08);
+        }
+
+
+        /* =========================
+           PASSWORD TOGGLE
+        ========================= */
+
+        .password-toggle {
+            position: absolute;
+
+            right: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            padding: 5px;
+        }
+
+        .password-toggle:hover {
+            color: var(--cyan-light);
+        }
+
+
+        /* =========================
+           FORM OPTIONS
+        ========================= */
+
+        .form-options {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: -4px;
+
+            margin-bottom: 22px;
+        }
+
+        .remember {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .remember input {
+            width: 15px;
+            height: 15px;
+
+            accent-color: var(--blue);
+
+            cursor: pointer;
+        }
+
+        .remember label {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            font-weight: 400;
+
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            border: none;
+
+            background: transparent;
+
+            color: var(--cyan-light);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            text-decoration: none;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .btn-primary {
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue) 0%,
+                    var(--cyan) 100%
+                );
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            box-shadow:
+                0 10px 28px
+                rgba(37, 99, 235, .22);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                opacity .2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 14px 32px
+                rgba(37, 99, 235, .3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: .65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =========================
+           DIVIDER
+        ========================= */
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 24px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: var(--border);
+        }
+
+        .divider span {
+            color: #64748b;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+        }
+
+
+        /* =========================
+           REGISTER BOTTOM
+        ========================= */
+
+        .register-bottom {
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .register-bottom a {
+            color: var(--cyan-light);
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        .register-bottom a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid var(--border);
+
+            background:
+                rgba(5, 8, 16, .65);
+        }
+
+        .footer-inner {
+            max-width: 1180px;
+
+            margin: 0 auto;
+
+            padding: 20px 24px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .footer-inner p {
+            color: #64748b;
+
+            font-size: 11px;
+        }
+
+        .footer-security {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #64748b;
+
+            font-size: 11px;
+        }
+
+        .footer-security i {
+            color: var(--green);
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .login-wrapper {
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+
+                gap: 35px;
+            }
+
+            .intro {
+                text-align: center;
+            }
+
+            .intro-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .features {
+                max-width: 430px;
+
+                margin: 0 auto;
+
+                text-align: left;
+            }
+
+            .login-card {
+                margin: 0 auto;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            main {
+                padding:
+                    35px
+                    15px
+                    50px;
+            }
+
+            .header-inner {
+                padding:
+                    15px
+                    17px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .register-link {
+                font-size: 12px;
+            }
+
+            .intro h1 {
+                font-size: 36px;
+            }
+
+            .intro-text {
+                font-size: 13px;
+            }
+
+            .login-card {
+                padding:
+                    24px
+                    18px;
+
+                border-radius: 18px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+
+                text-align: center;
+            }
+        }
+
+
+        @media (max-width: 380px) {
+
+            .intro h1 {
+                font-size: 31px;
+            }
+
+            .login-card {
+                padding:
+                    21px
+                    15px;
+            }
+
+            .form-options {
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+
+                <span class="logo-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </span>
+
+                <span>
+                    FastCashSignals
+                </span>
+
+            </a>
+
+
+            <a
+                href="register.html"
+                class="register-link"
+            >
+                Don't have an account?
+                <span>Sign up</span>
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <div class="login-wrapper">
+
+
+            <!-- =========================
+                 INTRO
+            ========================== -->
+
+            <section class="intro">
+
+                <div class="intro-badge">
+
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    WELCOME BACK
+
+                </div>
+
+
+                <h1>
+
+                    Welcome back to
+                    <span>
+                        FastCashSignals
+                    </span>
+
+                </h1>
+
+
+                <p class="intro-text">
+
+                    Sign in to access your personal
+                    account dashboard and manage your
+                    profile.
+
+                </p>
+
+
+                <div class="features">
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Secure Authentication
+                            </h3>
+
+                            <p>
+                                Your account is protected
+                                using Firebase Authentication.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+
+                            <i class="fa-solid fa-gauge-high"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Personal Dashboard
+                            </h3>
+
+                            <p>
+                                Access your account information
+                                from one convenient dashboard.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Protected Account
+                            </h3>
+
+                            <p>
+                                Your password is securely handled
+                                by Firebase Authentication.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 LOGIN CARD
+            ========================== -->
+
+            <section class="login-card">
+
+
+                <div class="card-heading">
+
+                    <h2>
+                        Sign In
+                    </h2>
+
+                    <p>
+                        Enter your account details to continue.
+                    </p>
+
+                </div>
+
+
+                <!-- ALERT -->
+
+                <div
+                    id="alert"
+                    class="alert"
+                >
+
+                    <i
+                        id="alertIcon"
+                        class="fa-solid fa-circle-exclamation"
+                    ></i>
+
+                    <span id="alertMessage"></span>
+
+                </div>
+
+
+                <!-- LOGIN FORM -->
+
+                <form
+                    id="loginForm"
+                    novalidate
+                >
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <i
+                                class="fa-solid fa-envelope input-icon"
+                            ></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <i
+                                class="fa-solid fa-lock input-icon"
+                            ></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="passwordToggle"
+                                class="password-toggle"
+                                aria-label="Show password"
+                            >
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="form-options">
+
+
+                        <div class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                                name="remember"
+                            >
+
+                            <label for="remember">
+                                Remember me
+                            </label>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="forgotPassword"
+                            class="forgot-link"
+                        >
+                            Forgot password?
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        id="loginBtn"
+                        class="btn-primary"
+                    >
+
+                        <span id="loginBtnText">
+                            Sign In
+                        </span>
+
+                        <i
+                            id="loginBtnIcon"
+                            class="fa-solid fa-arrow-right"
+                        ></i>
+
+                    </button>
+
+
+                </form>
+
+
+                <div class="divider">
+
+                    <span>
+                        Account
+                    </span>
+
+                </div>
+
+
+                <div class="register-bottom">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Create one
+                    </a>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <p>
+                ©
+                <span id="year"></span>
+                FastCashSignals.
+                All rights reserved.
+            </p>
+
+
+            <div class="footer-security">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Firebase Authentication
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =========================
+     FIREBASE JAVASCRIPT
+========================== -->
+
+<script type="module">
+
+    import { auth } from "./firebase-config.js";
+
+    import {
+        signInWithEmailAndPassword,
+        sendPasswordResetEmail,
+        setPersistence,
+        browserLocalPersistence,
+        browserSessionPersistence
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+    /* =========================
+       ELEMENTS
+    ========================== */
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const rememberInput =
+        document.getElementById("remember");
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+    const loginBtnText =
+        document.getElementById("loginBtnText");
+
+    const loginBtnIcon =
+        document.getElementById("loginBtnIcon");
+
+    const passwordToggle =
+        document.getElementById("passwordToggle");
+
+    const forgotPassword =
+        document.getElementById("forgotPassword");
+
+    const alertBox =
+        document.getElementById("alert");
+
+    const alertMessage =
+        document.getElementById("alertMessage");
+
+    const alertIcon =
+        document.getElementById("alertIcon");
+
+
+    /* =========================
+       YEAR
+    ========================== */
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+
+    /* =========================
+       ALERT
+    ========================== */
+
+    function showAlert(
+        message,
+        type = "error"
+    ) {
+
+        alertBox.className =
+            `alert show ${type}`;
+
+        alertMessage.textContent =
+            message;
+
+
+        if (type === "success") {
+
+            alertIcon.className =
+                "fa-solid fa-circle-check";
+
+        } else {
+
+            alertIcon.className =
+                "fa-solid fa-circle-exclamation";
+        }
+    }
+
+
+    function hideAlert() {
+
+        alertBox.className =
+            "alert";
+
+        alertMessage.textContent =
+            "";
+
+    }
+
+
+    /* =========================
+       PASSWORD VISIBILITY
+    ========================== */
+
+    passwordToggle.addEventListener(
+        "click",
+        () => {
+
+            const icon =
+                passwordToggle.querySelector("i");
+
+
+            if (
+                passwordInput.type ===
+                "password"
+            ) {
+
+                passwordInput.type =
+                    "text";
+
+                icon.classList.remove(
+                    "fa-eye"
+                );
+
+                icon.classList.add(
+                    "fa-eye-slash"
+                );
+
+                passwordToggle.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            } else {
+
+                passwordInput.type =
+                    "password";
+
+                icon.classList.remove(
+                    "fa-eye-slash"
+                );
+
+                icon.classList.add(
+                    "fa-eye"
+                );
+
+                passwordToggle.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+            }
+
+        }
+    );
+
+
+    /* =========================
+       FIREBASE ERROR HANDLER
+    ========================== */
+
+    function getFirebaseErrorMessage(error) {
+
+        switch (error.code) {
+
+            case "auth/invalid-email":
+
+                return "Please enter a valid email address.";
+
+            case "auth/invalid-credential":
+
+                return "Incorrect email or password.";
+
+            case "auth/user-not-found":
+
+                return "No account was found with this email.";
+
+            case "auth/wrong-password":
+
+                return "Incorrect email or password.";
+
+            case "auth/user-disabled":
+
+                return "This account has been disabled.";
+
+            case "auth/too-many-requests":
+
+                return "Too many unsuccessful attempts. Please try again later.";
+
+            case "auth/network-request-failed":
+
+                return "Network error. Please check your internet connection.";
+
+            default:
+
+                return (
+                    error.message ||
+                    "Unable to sign in. Please try again."
+                );
+        }
+    }
+
+
+    /* =========================
+       LOGIN
+    ========================== */
+
+    loginForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+            hideAlert();
+
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            /* -------------------------
+               VALIDATION
+            ------------------------- */
+
+            if (!email) {
+
+                showAlert(
+                    "Please enter your email address."
+                );
+
+                emailInput.focus();
+
+                return;
+            }
+
+
+            if (!password) {
+
+                showAlert(
+                    "Please enter your password."
+                );
+
+                passwordInput.focus();
+
+                return;
+            }
+
+
+            /* -------------------------
+               LOADING
+            ------------------------- */
+
+            loginBtn.disabled = true;
+
+            loginBtnText.textContent =
+                "Signing In...";
+
+            loginBtnIcon.className =
+                "fa-solid fa-spinner fa-spin";
+
+
+            try {
+
+                /* -------------------------
+                   SET FIREBASE PERSISTENCE
+                ------------------------- */
+
+                await setPersistence(
+                    auth,
+                    rememberInput.checked
+                        ? browserLocalPersistence
+                        : browserSessionPersistence
+                );
+
+
+                /* -------------------------
+                   SIGN IN
+                ------------------------- */
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+                /* -------------------------
+                   SUCCESS
+                ------------------------- */
+
+                showAlert(
+                    "Signed in successfully. Redirecting...",
+                    "success"
+                );
+
+
+                loginBtnText.textContent =
+                    "Signed In";
+
+                loginBtnIcon.className =
+                    "fa-solid fa-circle-check";
+
+
+                /* -------------------------
+                   REDIRECT
+                ------------------------- */
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                showAlert(
+                    getFirebaseErrorMessage(error)
+                );
+
+
+                loginBtn.disabled = false;
+
+                loginBtnText.textContent =
+                    "Sign In";
+
+                loginBtnIcon.className =
+                    "fa-solid fa-arrow-right";
+            }
+
+        }
+    );
+
+
+    /* =========================
+       FORGOT PASSWORD
+    ========================== */
+
+    forgotPassword.addEventListener(
+        "click",
+        async () => {
+
+            hideAlert();
+
+
+            const email =
+                emailInput.value.trim();
+
+
+            if (!email) {
+
+                showAlert(
+                    "Enter your email address first, then click Forgot password."
+                );
+
+                emailInput.focus();
+
+                return;
+            }
+
+
+            forgotPassword.disabled = true;
+
+            forgotPassword.textContent =
+                "Sending...";
+
+
+            try {
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+
+                showAlert(
+                    "Password reset instructions have been sent to your email.",
+                    "success"
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Password reset error:",
+                    error
+                );
+
+
+                showAlert(
+                    getFirebaseErrorMessage(error)
+                );
+
+            } finally {
+
+                forgotPassword.disabled =
+                    false;
+
+                forgotPassword.textContent =
+                    "Forgot password?";
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
