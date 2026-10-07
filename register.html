@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account | FastCashSignals</title>
+
+    <meta
+        name="description"
+        content="Create your FastCashSignals account."
+    >
+
+    <meta
+        name="theme-color"
+        content="#070b14"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        :root {
+            --dark: #070b14;
+            --dark-2: #0d1422;
+            --dark-3: #111b2e;
+
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --cyan-light: #22d3ee;
+
+            --bitcoin: #f7931a;
+
+            --green: #10b981;
+            --red: #ef4444;
+
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+
+            --card: #0f172a;
+
+            --border: rgba(148,163,184,.13);
+        }
+
+
+        * {
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+
+        body {
+            margin: 0;
+
+            font-family:
+                'Inter',
+                -apple-system,
+                BlinkMacSystemFont,
+                'Segoe UI',
+                Roboto,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(37,99,235,.22),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at 85% 30%,
+                    rgba(6,182,212,.14),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #050810 0%,
+                    #0b1220 55%,
+                    #07101c 100%
+                );
+
+            color: var(--text);
+
+            min-height: 100vh;
+        }
+
+
+        /* =================================
+           PAGE
+        ================================= */
+
+        .page {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* =================================
+           HEADER
+        ================================= */
+
+        header {
+            width: 100%;
+
+            border-bottom:
+                1px solid
+                rgba(148,163,184,.10);
+
+            background:
+                rgba(7,11,20,.82);
+
+            backdrop-filter:
+                blur(16px);
+
+            -webkit-backdrop-filter:
+                blur(16px);
+        }
+
+
+        .header-inner {
+            width: min(
+                1200px,
+                calc(100% - 32px)
+            );
+
+            margin: 0 auto;
+
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        /* =================================
+           LOGO
+        ================================= */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            text-decoration: none;
+            color: white;
+        }
+
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #06b6d4
+                );
+
+            color: white;
+
+            box-shadow:
+                0 10px 30px
+                rgba(37,99,235,.25);
+        }
+
+
+        .logo-name {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -.3px;
+        }
+
+
+        .logo-name span {
+            color: var(--cyan-light);
+        }
+
+
+        .logo-subtitle {
+            margin-top: 2px;
+
+            font-size: 8px;
+
+            letter-spacing: .25em;
+
+            text-transform: uppercase;
+
+            color: #64748b;
+        }
+
+
+        .login-link {
+            color: #cbd5e1;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: .2s ease;
+        }
+
+
+        .login-link:hover {
+            color: white;
+        }
+
+
+        .login-link span {
+            color: var(--cyan-light);
+        }
+
+
+        /* =================================
+           MAIN
+        ================================= */
+
+        main {
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding:
+                50px 16px
+                70px;
+        }
+
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(420px, 500px);
+
+            gap: 60px;
+
+            align-items: center;
+        }
+
+
+        /* =================================
+           LEFT CONTENT
+        ================================= */
+
+        .intro {
+            padding: 20px 0;
+        }
+
+
+        .intro-badge {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            padding:
+                8px 12px;
+
+            border:
+                1px solid
+                rgba(34,211,238,.16);
+
+            background:
+                rgba(6,182,212,.06);
+
+            border-radius: 999px;
+
+            color:
+                var(--cyan-light);
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        .intro-badge-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background:
+                var(--cyan-light);
+
+            box-shadow:
+                0 0 12px
+                rgba(34,211,238,.65);
+        }
+
+
+        .intro h1 {
+            margin:
+                22px 0 0;
+
+            font-size:
+                clamp(
+                    36px,
+                    5vw,
+                    58px
+                );
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            color: white;
+        }
+
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb 0%,
+                    #06b6d4 100%
+                );
+
+            -webkit-background-clip:
+                text;
+
+            background-clip:
+                text;
+
+            color: transparent;
+        }
+
+
+        .intro-description {
+            margin-top: 22px;
+
+            max-width: 540px;
+
+            color:
+                var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =================================
+           FEATURES
+        ================================= */
+
+        .benefits {
+            margin-top: 35px;
+
+            display: grid;
+
+            gap: 17px;
+        }
+
+
+        .benefit {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 14px;
+        }
+
+
+        .benefit-icon {
+            flex-shrink: 0;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(37,99,235,.09);
+
+            color:
+                var(--cyan-light);
+
+            border:
+                1px solid
+                rgba(37,99,235,.12);
+        }
+
+
+        .benefit h3 {
+            margin: 0;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .benefit p {
+            margin:
+                4px 0 0;
+
+            color:
+                #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =================================
+           CARD
+        ================================= */
+
+        .register-card {
+            width: 100%;
+
+            background:
+                rgba(15,23,42,.82);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 22px;
+
+            padding: 34px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,.35);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+        }
+
+
+        .card-header {
+            margin-bottom: 28px;
+        }
+
+
+        .card-header h2 {
+            margin: 0;
+
+            color: white;
+
+            font-size: 26px;
+            font-weight: 800;
+
+            letter-spacing: -.5px;
+        }
+
+
+        .card-header p {
+            margin:
+                8px 0 0;
+
+            color:
+                var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =================================
+           ALERT
+        ================================= */
+
+        .alert {
+            display: none;
+
+            padding:
+                12px 14px;
+
+            margin-bottom: 18px;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .alert.show {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+        }
+
+
+        .alert.error {
+            background:
+                rgba(239,68,68,.08);
+
+            border:
+                1px solid
+                rgba(239,68,68,.18);
+
+            color:
+                #fca5a5;
+        }
+
+
+        .alert.success {
+            background:
+                rgba(16,185,129,.08);
+
+            border:
+                1px solid
+                rgba(16,185,129,.18);
+
+            color:
+                #6ee7b7;
+        }
+
+
+        /* =================================
+           FORM
+        ================================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color:
+                #cbd5e1;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+
+            left: 15px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color:
+                #64748b;
+
+            font-size: 14px;
+
+            pointer-events: none;
+        }
+
+
+        .form-input {
+            width: 100%;
+
+            height: 50px;
+
+            padding:
+                0 45px 0 44px;
+
+            border:
+                1px solid
+                rgba(148,163,184,.15);
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background:
+                rgba(7,11,20,.72);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+
+        .form-input::placeholder {
+            color:
+                #475569;
+        }
+
+
+        .form-input:hover {
+            border-color:
+                rgba(148,163,184,.25);
+        }
+
+
+        .form-input:focus {
+            border-color:
+                var(--cyan);
+
+            background:
+                rgba(7,11,20,.9);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(6,182,212,.08);
+        }
+
+
+        .password-toggle {
+            position: absolute;
+
+            right: 14px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: 0;
+            background: transparent;
+
+            color:
+                #64748b;
+
+            cursor: pointer;
+
+            padding: 5px;
+        }
+
+
+        .password-toggle:hover {
+            color:
+                #cbd5e1;
+        }
+
+
+        /* =================================
+           PASSWORD STRENGTH
+        ================================= */
+
+        .password-strength {
+            margin-top: 8px;
+        }
+
+
+        .strength-bars {
+            display: flex;
+            gap: 4px;
+        }
+
+
+        .strength-bar {
+            flex: 1;
+
+            height: 3px;
+
+            border-radius: 10px;
+
+            background:
+                #1e293b;
+
+            transition:
+                background .2s ease;
+        }
+
+
+        .strength-text {
+            margin-top: 5px;
+
+            font-size: 10px;
+
+            color:
+                #64748b;
+        }
+
+
+        /* =================================
+           CHECKBOX
+        ================================= */
+
+        .terms {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            margin:
+                20px 0;
+        }
+
+
+        .terms input {
+            width: 16px;
+            height: 16px;
+
+            margin-top: 2px;
+
+            accent-color:
+                var(--blue);
+
+            cursor: pointer;
+        }
+
+
+        .terms label {
+            color:
+                #64748b;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            cursor: pointer;
+        }
+
+
+        .terms a {
+            color:
+                var(--cyan-light);
+
+            text-decoration: none;
+        }
+
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =================================
+           BUTTON
+        ================================= */
+
+        .btn-primary {
+            width: 100%;
+
+            min-height: 52px;
+
+            border: 0;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb 0%,
+                    #06b6d4 100%
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                opacity .25s ease;
+        }
+
+
+        .btn-primary:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(37,99,235,.35);
+        }
+
+
+        .btn-primary:disabled {
+            cursor: not-allowed;
+
+            opacity: .65;
+
+            transform: none;
+
+            box-shadow: none;
+        }
+
+
+        /* =================================
+           LOGIN
+        ================================= */
+
+        .login-text {
+            margin-top: 22px;
+
+            text-align: center;
+
+            color:
+                #64748b;
+
+            font-size: 12px;
+        }
+
+
+        .login-text a {
+            color:
+                var(--cyan-light);
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =================================
+           FOOTER
+        ================================= */
+
+        footer {
+            border-top:
+                1px solid
+                rgba(148,163,184,.08);
+
+            padding:
+                22px 16px;
+
+            text-align: center;
+
+            color:
+                #475569;
+
+            font-size: 10px;
+        }
+
+
+        /* =================================
+           LOADING SPINNER
+        ================================= */
+
+        .spinner {
+            width: 17px;
+            height: 17px;
+
+            border:
+                2px solid
+                rgba(255,255,255,.35);
+
+            border-top-color:
+                white;
+
+            border-radius: 50%;
+
+            animation:
+                spin .7s linear infinite;
+
+            display: inline-block;
+
+            vertical-align: middle;
+
+            margin-right: 8px;
+        }
+
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 900px) {
+
+            .register-wrapper {
+                grid-template-columns: 1fr;
+
+                max-width: 520px;
+
+                gap: 25px;
+            }
+
+
+            .intro {
+                text-align: center;
+            }
+
+
+            .intro-badge {
+                margin: 0 auto;
+            }
+
+
+            .intro-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
+            .benefits {
+                max-width: 430px;
+
+                margin-left: auto;
+                margin-right: auto;
+
+                text-align: left;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header-inner {
+                height: 64px;
+
+                width:
+                    calc(100% - 24px);
+            }
+
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+
+            .logo-name {
+                font-size: 16px;
+            }
+
+
+            .logo-subtitle {
+                font-size: 7px;
+            }
+
+
+            .login-link {
+                font-size: 12px;
+            }
+
+
+            main {
+                padding:
+                    35px 12px
+                    50px;
+            }
+
+
+            .intro {
+                padding: 5px 0;
+            }
+
+
+            .intro h1 {
+                font-size: 38px;
+
+                letter-spacing:
+                    -1.5px;
+            }
+
+
+            .intro-description {
+                font-size: 14px;
+            }
+
+
+            .register-card {
+                padding:
+                    25px 18px;
+
+                border-radius: 18px;
+            }
+
+
+            .card-header h2 {
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="header-inner">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+
+                <div>
+
+                    <div class="logo-name">
+                        FastCash<span>Signals</span>
+                    </div>
+
+                    <div class="logo-subtitle">
+                        Market Intelligence
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="login.html"
+                class="login-link"
+            >
+                Already have an account?
+                <span>Login</span>
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <div class="register-wrapper">
+
+
+            <!-- =========================
+                 INTRO
+            ========================== -->
+
+            <section class="intro">
+
+                <div class="intro-badge">
+
+                    <span class="intro-badge-dot"></span>
+
+                    Create your account
+
+                </div>
+
+
+                <h1>
+
+                    Start your journey
+                    with
+
+                    <span class="gradient-text">
+                        FastCashSignals.
+                    </span>
+
+                </h1>
+
+
+                <p class="intro-description">
+
+                    Create your account to access your
+                    FastCashSignals dashboard, market
+                    information and platform tools.
+
+                </p>
+
+
+                <div class="benefits">
+
+
+                    <!-- Benefit 1 -->
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Market Information
+                            </h3>
+
+                            <p>
+                                Explore current cryptocurrency
+                                prices and market movements.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Benefit 2 -->
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Useful Tools
+                            </h3>
+
+                            <p>
+                                Access platform tools including
+                                portfolio and ROI features.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Benefit 3 -->
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Secure Authentication
+                            </h3>
+
+                            <p>
+                                Your account authentication is
+                                handled through Firebase Authentication.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 REGISTER CARD
+            ========================== -->
+
+            <section class="register-card">
+
+
+                <div class="card-header">
+
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Enter your details below to get started.
+                    </p>
+
+                </div>
+
+
+                <!-- ALERT -->
+
+                <div
+                    id="alert"
+                    class="alert"
+                >
+
+                    <i
+                        id="alertIcon"
+                        class="fa-solid fa-circle-exclamation"
+                    ></i>
+
+                    <span id="alertMessage"></span>
+
+                </div>
+
+
+                <!-- =========================
+                     FORM
+                ========================== -->
+
+                <form
+                    id="registerForm"
+                    novalidate
+                >
+
+
+                    <!-- Full Name -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="fullName"
+                            class="form-label"
+                        >
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="input-icon fa-solid fa-user"
+                            ></i>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                class="form-input"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required
+                                maxlength="100"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="email"
+                            class="form-label"
+                        >
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="input-icon fa-solid fa-envelope"
+                            ></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-input"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="password"
+                            class="form-label"
+                        >
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="input-icon fa-solid fa-lock"
+                            ></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                class="form-input"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                required
+                                minlength="6"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="password"
+                                aria-label="Show password"
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+
+                        <!-- Strength -->
+
+                        <div class="password-strength">
+
+                            <div class="strength-bars">
+
+                                <div
+                                    class="strength-bar"
+                                    id="strength1"
+                                ></div>
+
+                                <div
+                                    class="strength-bar"
+                                    id="strength2"
+                                ></div>
+
+                                <div
+                                    class="strength-bar"
+                                    id="strength3"
+                                ></div>
+
+                                <div
+                                    class="strength-bar"
+                                    id="strength4"
+                                ></div>
+
+                            </div>
+
+                            <div
+                                id="strengthText"
+                                class="strength-text"
+                            >
+                                Password strength
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="confirmPassword"
+                            class="form-label"
+                        >
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="input-icon fa-solid fa-lock"
+                            ></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                class="form-input"
+                                placeholder="Confirm your password"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="confirmPassword"
+                                aria-label="Show password"
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Terms -->
+
+                    <div class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <label for="terms">
+
+                            I agree to the
+                            <a href="#" id="termsLink">
+                                Terms of Service
+                            </a>
+                            and acknowledge that cryptocurrency
+                            markets can be volatile.
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        id="registerBtn"
+                        class="btn-primary"
+                    >
+
+                        Create Account
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- Login -->
+
+                <div class="login-text">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Sign in
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        ©
+        <span id="year"></span>
+        FastCashSignals.
+        All rights reserved.
+
+    </footer>
+
+</div>
+
+
+
+<!-- =========================
+     FIREBASE JAVASCRIPT
+========================== -->
+
+<script type="module">
+
+    import {
+        auth,
+        db
+    } from "./firebase-config.js";
+
+
+    import {
+        createUserWithEmailAndPassword,
+        updateProfile
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+    import {
+        doc,
+        setDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const registerForm =
+        document.getElementById(
+            "registerForm"
+        );
+
+
+    const fullNameInput =
+        document.getElementById(
+            "fullName"
+        );
+
+
+    const emailInput =
+        document.getElementById(
+            "email"
+        );
+
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+
+    const confirmPasswordInput =
+        document.getElementById(
+            "confirmPassword"
+        );
+
+
+    const termsInput =
+        document.getElementById(
+            "terms"
+        );
+
+
+    const registerBtn =
+        document.getElementById(
+            "registerBtn"
+        );
+
+
+    const alertBox =
+        document.getElementById(
+            "alert"
+        );
+
+
+    const alertMessage =
+        document.getElementById(
+            "alertMessage"
+        );
+
+
+    const alertIcon =
+        document.getElementById(
+            "alertIcon"
+        );
+
+
+
+    /* =====================================
+       YEAR
+    ====================================== */
+
+    document.getElementById(
+        "year"
+    ).textContent =
+        new Date().getFullYear();
+
+
+
+    /* =====================================
+       ALERT FUNCTION
+    ====================================== */
+
+    function showAlert(
+        message,
+        type = "error"
+    ) {
+
+        alertBox.className =
+            `alert show ${type}`;
+
+        alertMessage.textContent =
+            message;
+
+
+        if (type === "success") {
+
+            alertIcon.className =
+                "fa-solid fa-circle-check";
+
+        } else {
+
+            alertIcon.className =
+                "fa-solid fa-circle-exclamation";
+
+        }
+
+    }
+
+
+    function hideAlert() {
+
+        alertBox.className =
+            "alert";
+
+        alertMessage.textContent =
+            "";
+
+    }
+
+
+
+    /* =====================================
+       PASSWORD VISIBILITY
+    ====================================== */
+
+    document
+        .querySelectorAll(
+            ".password-toggle"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const targetId =
+                        button.dataset.target;
+
+                    const input =
+                        document.getElementById(
+                            targetId
+                        );
+
+                    const icon =
+                        button.querySelector(
+                            "i"
+                        );
+
+
+                    if (
+                        input.type ===
+                        "password"
+                    ) {
+
+                        input.type =
+                            "text";
+
+                        icon.classList.remove(
+                            "fa-eye"
+                        );
+
+                        icon.classList.add(
+                            "fa-eye-slash"
+                        );
+
+                        button.setAttribute(
+                            "aria-label",
+                            "Hide password"
+                        );
+
+                    } else {
+
+                        input.type =
+                            "password";
+
+                        icon.classList.remove(
+                            "fa-eye-slash"
+                        );
+
+                        icon.classList.add(
+                            "fa-eye"
+                        );
+
+                        button.setAttribute(
+                            "aria-label",
+                            "Show password"
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+
+
+    /* =====================================
+       PASSWORD STRENGTH
+    ====================================== */
+
+    const strengthBars = [
+        document.getElementById("strength1"),
+        document.getElementById("strength2"),
+        document.getElementById("strength3"),
+        document.getElementById("strength4")
+    ];
+
+
+    const strengthText =
+        document.getElementById(
+            "strengthText"
+        );
+
+
+    function updatePasswordStrength(
+        password
+    ) {
+
+        let score = 0;
+
+
+        if (password.length >= 6) {
+            score++;
+        }
+
+
+        if (password.length >= 10) {
+            score++;
+        }
+
+
+        if (
+            /[A-Z]/.test(password) &&
+            /[a-z]/.test(password)
+        ) {
+            score++;
+        }
+
+
+        if (
+            /\d/.test(password) ||
+            /[^A-Za-z0-9]/.test(password)
+        ) {
+            score++;
+        }
+
+
+        const labels = [
+            "Password strength",
+            "Weak password",
+            "Fair password",
+            "Good password",
+            "Strong password"
+        ];
+
+
+        strengthText.textContent =
+            labels[score];
+
+
+        strengthBars.forEach(
+            bar => {
+
+                bar.style.background =
+                    "#1e293b";
+
+            }
+        );
+
+
+        if (score === 1) {
+
+            strengthBars[0].style.background =
+                "#ef4444";
+
+        }
+
+
+        if (score === 2) {
+
+            strengthBars[0].style.background =
+                "#f59e0b";
+
+            strengthBars[1].style.background =
+                "#f59e0b";
+
+        }
+
+
+        if (score === 3) {
+
+            strengthBars[0].style.background =
+                "#22c55e";
+
+            strengthBars[1].style.background =
+                "#22c55e";
+
+            strengthBars[2].style.background =
+                "#22c55e";
+
+        }
+
+
+        if (score === 4) {
+
+            strengthBars.forEach(
+                bar => {
+                    bar.style.background =
+                        "#10b981";
+                }
+            );
+
+        }
+
+    }
+
+
+    passwordInput.addEventListener(
+        "input",
+        () => {
+
+            updatePasswordStrength(
+                passwordInput.value
+            );
+
+        }
+    );
+
+
+
+    /* =====================================
+       EMAIL VALIDATION
+    ====================================== */
+
+    function isValidEmail(email) {
+
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            .test(email);
+
+    }
+
+
+
+    /* =====================================
+       FIREBASE ERROR MESSAGES
+    ====================================== */
+
+    function getFirebaseErrorMessage(
+        error
+    ) {
+
+        switch (error.code) {
+
+            case "auth/email-already-in-use":
+
+                return "An account with this email already exists. Please login instead.";
+
+
+            case "auth/invalid-email":
+
+                return "Please enter a valid email address.";
+
+
+            case "auth/weak-password":
+
+                return "Your password is too weak. Please choose a stronger password.";
+
+
+            case "auth/network-request-failed":
+
+                return "Network error. Please check your internet connection and try again.";
+
+
+            case "auth/operation-not-allowed":
+
+                return "Email and password registration is not enabled in Firebase Authentication.";
+
+
+            case "auth/too-many-requests":
+
+                return "Too many registration attempts. Please wait a little and try again.";
+
+
+            default:
+
+                console.error(
+                    "Firebase error:",
+                    error
+                );
+
+                return "Unable to create your account right now. Please try again.";
+
+        }
+
+    }
+
+
+
+    /* =====================================
+       BUTTON LOADING
+    ====================================== */
+
+    function setLoading(
+        loading
+    ) {
+
+        registerBtn.disabled =
+            loading;
+
+
+        if (loading) {
+
+            registerBtn.innerHTML =
+                `
+                <span class="spinner"></span>
+                Creating Account...
+                `;
+
+        } else {
+
+            registerBtn.innerHTML =
+                "Create Account";
+
+        }
+
+    }
+
+
+
+    /* =====================================
+       REGISTER USER
+    ====================================== */
+
+    registerForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            hideAlert();
+
+
+            const fullName =
+                fullNameInput.value.trim();
+
+
+            const email =
+                emailInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                passwordInput.value;
+
+
+            const confirmPassword =
+                confirmPasswordInput.value;
+
+
+            const termsAccepted =
+                termsInput.checked;
+
+
+
+            /* -----------------------------
+               VALIDATION
+            ------------------------------ */
+
+            if (!fullName) {
+
+                showAlert(
+                    "Please enter your full name."
+                );
+
+                fullNameInput.focus();
+
+                return;
+
+            }
+
+
+            if (fullName.length < 2) {
+
+                showAlert(
+                    "Please enter your full name."
+                );
+
+                fullNameInput.focus();
+
+                return;
+
+            }
+
+
+            if (!email) {
+
+                showAlert(
+                    "Please enter your email address."
+                );
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            if (!isValidEmail(email)) {
+
+                showAlert(
+                    "Please enter a valid email address."
+                );
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            if (!password) {
+
+                showAlert(
+                    "Please create a password."
+                );
+
+                passwordInput.focus();
+
+                return;
+
+            }
+
+
+            if (password.length < 6) {
+
+                showAlert(
+                    "Your password must contain at least 6 characters."
+                );
+
+                passwordInput.focus();
+
+                return;
+
+            }
+
+
+            if (
+                password !==
+                confirmPassword
+            ) {
+
+                showAlert(
+                    "The passwords do not match."
+                );
+
+                confirmPasswordInput.focus();
+
+                return;
+
+            }
+
+
+            if (!termsAccepted) {
+
+                showAlert(
+                    "Please accept the terms before creating your account."
+                );
+
+                return;
+
+            }
+
+
+
+            /* -----------------------------
+               CREATE ACCOUNT
+            ------------------------------ */
+
+            setLoading(true);
+
+
+            try {
+
+                /*
+                 * Firebase Authentication
+                 */
+
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+
+                /*
+                 * Set Firebase Auth display name
+                 */
+
+                await updateProfile(
+                    user,
+                    {
+                        displayName:
+                            fullName
+                    }
+                );
+
+
+
+                /*
+                 * Create user's Firestore profile.
+                 *
+                 * IMPORTANT:
+                 * The user's UID is used as the
+                 * document ID.
+                 */
+
+                await setDoc(
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    ),
+                    {
+
+                        uid:
+                            user.uid,
+
+                        fullName:
+                            fullName,
+
+                        email:
+                            user.email,
+
+                        balance:
+                            0,
+
+                        currency:
+                            "USD",
+
+                        role:
+                            "user",
+
+                        accountStatus:
+                            "active",
+
+                        createdAt:
+                            serverTimestamp(),
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+
+                /*
+                 * Registration successful.
+                 */
+
+                showAlert(
+                    "Account created successfully. Redirecting to your dashboard...",
+                    "success"
+                );
+
+
+                /*
+                 * Give Firebase a moment to
+                 * finish the UI update before
+                 * redirecting.
+                 */
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    },
+                    1200
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Registration error:",
+                    error
+                );
+
+
+                showAlert(
+                    getFirebaseErrorMessage(
+                        error
+                    )
+                );
+
+
+                setLoading(false);
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================
+       TERMS LINK
+    ====================================== */
+
+    document
+        .getElementById("termsLink")
+        .addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                showAlert(
+                    "Please add your Terms of Service page before publishing the platform.",
+                    "error"
+                );
+
+            }
+        );
+
+</script>
+
+</body>
+  </html>
