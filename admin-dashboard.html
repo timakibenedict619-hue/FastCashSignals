@@ -5006,70 +5006,670 @@ await addDoc(collection(db, "transactions"), {
       );
 
 
-    async function processRequest(
-      action
-    ) {
+  async function processRequest(action) {
 
-      if (!selectedRequest) {
-        return;
-      }
+  if (!selectedRequest) {
+    showToast("No request selected.", "error");
+    return;
+  }
+
+  try {
+
+    const requestRef = doc(
+      db,
+      selectedRequest.collectionName,
+      selectedRequest.id
+    );
+
+    const requestSnap = await getDoc(requestRef);
+
+    if (!requestSnap.exists()) {
+      showToast("This request no longer exists.", "error");
+      return;
+    }
+
+    const requestData = requestSnap.data();
+
+    // Prevent processing the same request twice
+    if (requestData.status !== "pending") {
+      showToast(
+        `This request is already ${requestData.status}.`,
+        "error"
+      );
+      return;
+    }
+
+    const userId =
+      requestData.userId ||
+      requestData.uid ||
+      "";
+
+    if (!userId) {
+      showToast(
+        "This request has no user ID.",
+        "error"
+      );
+      return;
+    }
+
+    const userRef = doc(
+      db,
+      "users",
+      userId
+    );
+
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      showToast(
+        "User account was not found.",
+        "error"
+      );
+      return;
+    }
+
+    const userData = userSnap.data();
+
+    const amount = Number(
+      requestData.amount || 0
+    );
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      showToast(
+        "Invalid request amount.",
+        "error"
+      );
+      return;
+    }
 
 
-      /*
-       * Sensitive request processing should
-       * also go through a trusted backend.
-       *
-       * Do NOT directly update financial
-       * balances here from the browser.
-       */
+    /* ==========================================
+       REJECT REQUEST
+    ========================================== */
 
-      try {
+    if (action === "reject") {
 
-        const processAdminRequest =
-          httpsCallable(
-            functions,
-            "processAdminRequest"
-          );
+      await updateDoc(
+        requestRef,
+        {
+          status: "rejected",
 
+          reviewedBy:
+            auth.currentUser.uid,
 
-        await processAdminRequest({
-          collection:
-            selectedRequest.collectionName,
+          reviewedAt:
+            serverTimestamp()
+        }
+      );
+
+      await addDoc(
+        collection(db, "adminActions"),
+        {
+          type: "requestReview",
 
           requestId:
             selectedRequest.id,
 
-          action
+          requestType:
+            selectedRequest.type,
 
-        });
+          collection:
+            selectedRequest.collectionName,
+
+          action: "reject",
+
+          userId,
+
+          userEmail:
+            requestData.email ||
+            requestData.userEmail ||
+            userData.email ||
+            "",
+
+          amount,
+
+          adminId:
+            auth.currentUser.uid,
+
+          status: "completed",
+
+          createdAt:
+            serverTimestamp()
+        }
+      );
+
+      showToast(
+        "Request rejected successfully.",
+        "success"
+      );
+
+      closeModal("reviewModal");
+
+      selectedRequest = null;
+
+      return;
+    }
 
 
-        showToast(
-          `Request ${action}d successfully.`,
-          "success"
+    /* ==========================================
+       APPROVE REQUEST
+    ========================================== */
+
+    if (action !== "approve") {
+      showToast(
+        "Invalid request action.",
+        "error"
+      );
+      return;
+    }
+
+
+    /*
+      Make sure balances exists.
+    */
+
+    const balances = {
+      ...(userData.balances || {})
+    };
+
+
+    /* ==========================================
+       FUNDING REQUEST
+       APPROVE = CREDIT USER
+    ========================================== */
+
+    if (
+      selectedRequest.collectionName ===
+      "fundingRequests"
+    ) {
+
+      const category =
+        requestData.category ||
+        "wallet";
+
+      const currentBalance =
+        Number(
+          balances[category] || 0
+        );
+
+      const newBalance =
+        currentBalance + amount;
+
+
+      await updateDoc(
+        userRef,
+        {
+          [`balances.${category}`]:
+            newBalance,
+
+          updatedAt:
+            serverTimestamp()
+        }
+      );
+
+
+      await addDoc(
+        collection(db, "transactions"),
+        {
+          userId,
+
+          type:
+            "funding_approved",
+
+          category,
+
+          amount,
+
+          currency:
+            requestData.currency ||
+            "USD",
+
+          direction:
+            "credit",
+
+          status:
+            "completed",
+
+          requestId:
+            selectedRequest.id,
+
+          adminId:
+            auth.currentUser.uid,
+
+          createdAt:
+            serverTimestamp()
+        }
+      );
+    }
+
+
+    /* ==========================================
+       WITHDRAWAL REQUEST
+       APPROVE = DEDUCT USER
+    ========================================== */
+
+    else if (
+      selectedRequest.collectionName ===
+      "withdrawals"
+    ) {
+
+      const category =
+        requestData.category ||
+        "wallet";
+
+      const currentBalance =
+        Number(
+          balances[category] || 0
         );
 
 
-        closeModal(
-          "reviewModal"
-        );
-
-
-      } catch (error) {
-
-        console.error(error);
+      if (currentBalance < amount) {
 
         showToast(
-          getFirebaseErrorMessage(
-            error
-          ),
+          "User does not have enough balance for this withdrawal.",
           "error"
         );
 
+        return;
       }
 
+
+      const newBalance =
+        currentBalance - amount;
+
+
+      await updateDoc(
+        userRef,
+        {
+          [`balances.${category}`]:
+            newBalance,
+
+          updatedAt:
+            serverTimestamp()
+        }
+      );
+
+
+      await addDoc(
+        collection(db, "transactions"),
+        {
+          userId,
+
+          type:
+            "withdrawal_approved",
+
+          category,
+
+          amount,
+
+          currency:
+            requestData.currency ||
+            "USD",
+
+          direction:
+            "debit",
+
+          status:
+            "completed",
+
+          requestId:
+            selectedRequest.id,
+
+          adminId:
+            auth.currentUser.uid,
+
+          createdAt:
+            serverTimestamp()
+        }
+      );
     }
 
+
+    /* ==========================================
+       TRANSFER REQUEST
+       APPROVE = DEDUCT SENDER
+    ========================================== */
+
+    else if (
+      selectedRequest.collectionName ===
+      "transfers"
+    ) {
+
+      const category =
+        requestData.category ||
+        "wallet";
+
+      const currentBalance =
+        Number(
+          balances[category] || 0
+        );
+
+
+      if (currentBalance < amount) {
+
+        showToast(
+          "Sender does not have enough balance.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const newBalance =
+        currentBalance - amount;
+
+
+      await updateDoc(
+        userRef,
+        {
+          [`balances.${category}`]:
+            newBalance,
+
+          updatedAt:
+            serverTimestamp()
+        }
+      );
+
+
+      /*
+        If the transfer has a recipientUserId,
+        credit the recipient too.
+      */
+
+      const recipientId =
+        requestData.recipientUserId ||
+        requestData.receiverId ||
+        requestData.toUserId ||
+        "";
+
+
+      if (recipientId) {
+
+        const recipientRef =
+          doc(
+            db,
+            "users",
+            recipientId
+          );
+
+        const recipientSnap =
+          await getDoc(
+            recipientRef
+          );
+
+
+        if (!recipientSnap.exists()) {
+
+          showToast(
+            "Recipient account was not found.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        const recipientData =
+          recipientSnap.data();
+
+        const recipientBalances = {
+          ...(recipientData.balances || {})
+        };
+
+
+        const recipientCurrent =
+          Number(
+            recipientBalances[category] ||
+            0
+          );
+
+
+        await updateDoc(
+          recipientRef,
+          {
+            [`balances.${category}`]:
+              recipientCurrent + amount,
+
+            updatedAt:
+              serverTimestamp()
+          }
+        );
+      }
+
+
+      await addDoc(
+        collection(db, "transactions"),
+        {
+          userId,
+
+          type:
+            "transfer_approved",
+
+          category,
+
+          amount,
+
+          currency:
+            requestData.currency ||
+            "USD",
+
+          direction:
+            "debit",
+
+          recipientUserId:
+            recipientId,
+
+          status:
+            "completed",
+
+          requestId:
+            selectedRequest.id,
+
+          adminId:
+            auth.currentUser.uid,
+
+          createdAt:
+            serverTimestamp()
+        }
+      );
+    }
+
+
+    /* ==========================================
+       EXCHANGE REQUEST
+    ========================================== */
+
+    else if (
+      selectedRequest.collectionName ===
+      "exchanges"
+    ) {
+
+      const fromCategory =
+        requestData.fromCategory ||
+        "wallet";
+
+      const toCategory =
+        requestData.toCategory ||
+        "trading";
+
+      const exchangeAmount =
+        Number(
+          requestData.amount ||
+          requestData.fromAmount ||
+          0
+        );
+
+      const receivedAmount =
+        Number(
+          requestData.toAmount ||
+          requestData.receivedAmount ||
+          exchangeAmount
+        );
+
+
+      const fromBalance =
+        Number(
+          balances[fromCategory] || 0
+        );
+
+
+      if (fromBalance < exchangeAmount) {
+
+        showToast(
+          "User does not have enough balance for this exchange.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const toBalance =
+        Number(
+          balances[toCategory] || 0
+        );
+
+
+      await updateDoc(
+        userRef,
+        {
+          [`balances.${fromCategory}`]:
+            fromBalance - exchangeAmount,
+
+          [`balances.${toCategory}`]:
+            toBalance + receivedAmount,
+
+          updatedAt:
+            serverTimestamp()
+        }
+      );
+
+
+      await addDoc(
+        collection(db, "transactions"),
+        {
+          userId,
+
+          type:
+            "exchange_approved",
+
+          fromCategory,
+
+          toCategory,
+
+          amount:
+            exchangeAmount,
+
+          receivedAmount,
+
+          status:
+            "completed",
+
+          requestId:
+            selectedRequest.id,
+
+          adminId:
+            auth.currentUser.uid,
+
+          createdAt:
+            serverTimestamp()
+        }
+      );
+    }
+
+
+    /* ==========================================
+       MARK REQUEST APPROVED
+    ========================================== */
+
+    await updateDoc(
+      requestRef,
+      {
+        status: "approved",
+
+        reviewedBy:
+          auth.currentUser.uid,
+
+        reviewedAt:
+          serverTimestamp()
+      }
+    );
+
+
+    /* ==========================================
+       ADMIN ACTION LOG
+    ========================================== */
+
+    await addDoc(
+      collection(db, "adminActions"),
+      {
+        type:
+          "requestReview",
+
+        requestId:
+          selectedRequest.id,
+
+        requestType:
+          selectedRequest.type,
+
+        collection:
+          selectedRequest.collectionName,
+
+        action:
+          "approve",
+
+        userId,
+
+        userEmail:
+          requestData.email ||
+          requestData.userEmail ||
+          userData.email ||
+          "",
+
+        amount,
+
+        adminId:
+          auth.currentUser.uid,
+
+        status:
+          "completed",
+
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    showToast(
+      "Request approved and balance updated successfully.",
+      "success"
+    );
+
+
+    closeModal(
+      "reviewModal"
+    );
+
+
+    selectedRequest = null;
+
+
+  } catch (error) {
+
+    console.error(
+      "Request processing error:",
+      error
+    );
+
+    showToast(
+      getFirebaseErrorMessage(error),
+      "error"
+    );
+
+  }
+
+      }
 
     /* =====================================
        TRANSACTIONS
