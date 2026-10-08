@@ -2803,25 +2803,14 @@
                 );
 
 
-            const notificationQuery =
-                query(
-
-                    notificationsRef,
-
-                    where(
-                        "userId",
-                        "==",
-                        currentUser.uid
-                    ),
-
-                    orderBy(
-                        "createdAt",
-                        "desc"
-                    ),
-
-                    limit(25)
-
-                );
+            const notificationQuery = query(
+    notificationsRef,
+    where(
+        "userId",
+        "==",
+        currentUser.uid
+    )
+);
 
 
             onSnapshot(
