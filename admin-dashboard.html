@@ -1946,59 +1946,7 @@
 
 
 
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-
-    <div class="flex items-center justify-between gap-4">
-
-        <div>
-            <h3 class="text-white font-semibold">
-                Website Maintenance
-            </h3>
-
-            <p class="text-sm text-slate-400 mt-1">
-                Prevent users from logging in while maintenance is active.
-            </p>
-        </div>
-
-        <label class="relative inline-flex items-center cursor-pointer">
-
-            <input
-                type="checkbox"
-                id="maintenanceModeToggle"
-                class="sr-only peer"
-            >
-
-            <div class="
-                w-12
-                h-6
-                bg-slate-700
-                rounded-full
-                peer
-                peer-checked:bg-red-500
-                after:content-['']
-                after:absolute
-                after:top-[2px]
-                after:left-[2px]
-                after:bg-white
-                after:rounded-full
-                after:h-5
-                after:w-5
-                after:transition-all
-                peer-checked:after:translate-x-6
-            "></div>
-
-        </label>
-
-    </div>
-
-    <div
-        id="maintenanceStatus"
-        class="mt-4 text-sm text-slate-400"
-    >
-        Checking maintenance status...
-    </div>
-
-      </div>
+      
 
 
 
@@ -2204,6 +2152,142 @@
         </div>
 
       </section>
+
+<!-- =================================
+     WEBSITE MAINTENANCE
+================================== -->
+
+<section
+  class="section"
+  id="section-maintenance"
+>
+
+  <div class="section-header">
+
+    <h2>Website Maintenance</h2>
+
+    <p>
+      Temporarily prevent users from logging in while maintenance is active.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <div
+      style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:20px;
+        padding:20px;
+      "
+    >
+
+      <div>
+
+        <h3
+          style="
+            color:#fff;
+            margin:0 0 6px;
+            font-size:17px;
+          "
+        >
+          Maintenance Mode
+        </h3>
+
+        <p
+          style="
+            color:#94a3b8;
+            margin:0;
+            font-size:14px;
+            line-height:1.5;
+          "
+        >
+          When enabled, normal users will be prevented from logging in.
+        </p>
+
+      </div>
+
+
+      <label
+        style="
+          position:relative;
+          display:inline-flex;
+          align-items:center;
+          cursor:pointer;
+          flex-shrink:0;
+        "
+      >
+
+        <input
+          type="checkbox"
+          id="maintenanceModeToggle"
+          style="display:none;"
+        >
+
+        <span
+          id="maintenanceSwitch"
+          style="
+            width:52px;
+            height:28px;
+            background:#334155;
+            border-radius:999px;
+            position:relative;
+            transition:.2s;
+          "
+        >
+
+          <span
+            style="
+              position:absolute;
+              width:22px;
+              height:22px;
+              left:3px;
+              top:3px;
+              background:#fff;
+              border-radius:50%;
+              transition:.2s;
+            "
+          ></span>
+
+        </span>
+
+      </label>
+
+    </div>
+
+
+    <div
+      id="maintenanceStatus"
+      style="
+        margin:0 20px 20px;
+        padding:12px 14px;
+        border-radius:10px;
+        background:rgba(148,163,184,.06);
+        color:#94a3b8;
+        font-size:13px;
+      "
+    >
+      Checking maintenance status...
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =================================
+     ACTIVITY LOGS
+================================== -->
+
+<section
+  class="section"
+  id="section-activity"
+>
+
+      
 
 
       <!-- =================================
