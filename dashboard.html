@@ -2549,25 +2549,14 @@
                 );
 
 
-            const transactionQuery =
-                query(
-
-                    transactionsRef,
-
-                    where(
-                        "userId",
-                        "==",
-                        currentUser.uid
-                    ),
-
-                    orderBy(
-                        "createdAt",
-                        "desc"
-                    ),
-
-                    limit(10)
-
-                );
+            const transactionQuery = query(
+    transactionsRef,
+    where(
+        "userId",
+        "==",
+        currentUser.uid
+    )
+);
 
 
             onSnapshot(
