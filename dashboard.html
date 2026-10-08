@@ -2538,64 +2538,63 @@
         ========================================== */
 
         function subscribeToTransactions() {
+  if (!currentUser) return;
 
-            if (!currentUser) return;
+  const transactionsRef = collection(db, "transactions");
 
-
-            const transactionsRef =
-                collection(
-                    db,
-                    "transactions"
-                );
-
-
-            const transactionQuery = query(
+  const transactionQuery = query(
     transactionsRef,
     where(
-        "userId",
-        "==",
-        currentUser.uid
+      "userId",
+      "==",
+      currentUser.uid
     )
-);
+  );
 
+  onSnapshot(
+    transactionQuery,
+    snapshot => {
 
-            onSnapshot(
-                transactionQuery,
+      const transactions = snapshot.docs
+        .map(item => ({
+          id: item.id,
+          ...item.data()
+        }))
+        .sort((a, b) => {
 
-                snapshot => {
+          const aTime =
+            a.createdAt?.toMillis
+              ? a.createdAt.toMillis()
+              : 0;
 
-                    renderTransactions(
-                        snapshot.docs.map(
-                            item => ({
-                                id: item.id,
-                                ...item.data()
-                            })
-                        )
-                    );
+          const bTime =
+            b.createdAt?.toMillis
+              ? b.createdAt.toMillis()
+              : 0;
 
-                },
+          return bTime - aTime;
+        });
 
-                error => {
+      renderTransactions(
+        transactions.slice(0, 10)
+      );
+    },
 
-                    console.error(
-                        "Transactions:",
-                        error
-                    );
+    error => {
+      console.error(
+        "Transactions:",
+        error
+      );
 
-                    document.getElementById(
-                        "transactionsList"
-                    ).innerHTML = `
-
-                        <div class="py-10 text-center text-sm text-slate-500">
-                            Unable to load transactions.
-                        </div>
-
-                    `;
-
-                }
-
-            );
-
+      document.getElementById(
+        "transactionsList"
+      ).innerHTML = `
+        <div class="py-10 text-center text-sm text-slate-500">
+          Unable to load transactions.
+        </div>
+      `;
+    }
+  );
         }
 
 
