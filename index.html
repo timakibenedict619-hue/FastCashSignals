@@ -1,0 +1,4399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  window.va = window.va || function () {
+    (window.vaq = window.vaq || []).push(arguments);
+  };
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+      
+<title>FastCashSignals | Crypto Trading & Investment Platform</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+  --dark: #070b14;
+  --dark-2: #0d1422;
+  --dark-3: #111b2e;
+  --blue: #2563eb;
+  --cyan: #06b6d4;
+  --cyan-light: #22d3ee;
+  --bitcoin: #f7931a;
+  --green: #10b981;
+  --red: #ef4444;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --card: #0f172a;
+  --border: rgba(148,163,184,.13);
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+               'Segoe UI', Roboto, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.bg-navy {
+  background-color: var(--dark);
+}
+
+.bg-navy-light {
+  background-color: var(--dark-2);
+}
+
+.text-blue {
+  color: var(--blue);
+}
+
+.text-cyan {
+  color: var(--cyan-light);
+}
+
+.text-bitcoin {
+  color: var(--bitcoin);
+}
+
+.bg-blue {
+  background-color: var(--blue);
+}
+
+.border-blue {
+  border-color: var(--blue);
+}
+
+/* Dark hero */
+
+.gradient-hero {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(37,99,235,.22), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(6,182,212,.14), transparent 35%),
+    linear-gradient(135deg, #050810 0%, #0b1220 55%, #07101c 100%);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+}
+
+.gradient-bitcoin {
+  background: linear-gradient(135deg, #f7931a 0%, #ffb04a 100%);
+}
+
+.card-shadow {
+  box-shadow:
+    0 12px 35px rgba(15,23,42,.07);
+  transition: all .3s ease;
+}
+
+.card-shadow:hover {
+  box-shadow:
+    0 20px 45px rgba(15,23,42,.12);
+  transform: translateY(-4px);
+}
+
+/* Buttons */
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+  color: white;
+  font-weight: 700;
+  transition: all .25s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37,99,235,.35);
+}
+
+.btn-secondary {
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font-weight: 700;
+  transition: all .25s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  background: var(--blue);
+  color: white;
+}
+
+/* Navigation */
+
+.nav-link {
+  position: relative;
+  transition: color .25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cyan-light);
+  transition: width .25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Ticker */
+
+.ticker-scroll {
+  animation: ticker 35s linear infinite;
+  width: max-content;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Animations */
+
+.fade-in {
+  animation: fadeIn .7s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pulse-dot {
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%,100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .35;
+  }
+}
+
+/* Mobile menu */
+
+.mobile-menu {
+  transform: translateX(100%);
+  transition: transform .3s ease;
+}
+
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+/* FAQ */
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
+}
+
+.faq-content.active {
+  max-height: 600px;
+}
+
+/* ROI */
+
+.roi-positive {
+  color: var(--green);
+}
+
+.roi-negative {
+  color: var(--red);
+}
+
+input[type="number"],
+input[type="date"] {
+  transition: all .2s ease;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.10);
+}
+
+/* Customer stories */
+
+.story-card {
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.story-card.changing {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 5px rgba(34,197,94,.12);
+}
+
+/* Market cards */
+
+.market-price {
+  min-height: 42px;
+}
+
+.market-change-up {
+  color: #10b981;
+}
+
+.market-change-down {
+  color: #ef4444;
+}
+
+.market-neutral {
+  color: #94a3b8;
+}
+
+/* Loading */
+
+.loading {
+  opacity: .55;
+}
+
+/* Small screen improvements */
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.45rem;
+    line-height: 1.08;
+  }
+
+  .story-card {
+    min-height: 190px;
+  }
+}
+</style>
+</head>
+
+<body class="bg-slate-50">
+
+<!-- =========================================================
+     LIVE CRYPTO TICKER
+========================================================= -->
+
+<div class="bg-navy text-white py-2 overflow-hidden border-b border-white/5">
+  <div class="ticker-scroll flex whitespace-nowrap">
+
+    <div class="flex items-center gap-8 px-8">
+
+      <div class="flex items-center gap-2">
+        <i class="fab fa-bitcoin text-bitcoin"></i>
+        <span class="font-semibold text-sm">BTC</span>
+        <span id="ticker-btc" class="text-gray-300 text-sm">Loading...</span>
+        <span id="ticker-btc-change" class="text-xs">—</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fab fa-ethereum text-indigo-400"></i>
+        <span class="font-semibold text-sm">ETH</span>
+        <span id="ticker-eth" class="text-gray-300 text-sm">Loading...</span>
+        <span id="ticker-eth-change" class="text-xs">—</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-bolt text-green-400"></i>
+        <span class="font-semibold text-sm">SOL</span>
+        <span id="ticker-sol" class="text-gray-300 text-sm">Loading...</span>
+        <span id="ticker-sol-change" class="text-xs">—</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-coins text-yellow-400"></i>
+        <span class="font-semibold text-sm">BNB</span>
+        <span id="ticker-bnb" class="text-gray-300 text-sm">Loading...</span>
+        <span id="ticker-bnb-change" class="text-xs">—</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-circle-notch text-blue-400"></i>
+        <span class="font-semibold text-sm">ADA</span>
+        <span id="ticker-ada" class="text-gray-300 text-sm">Loading...</span>
+        <span id="ticker-ada-change" class="text-xs">—</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-water text-gray-400"></i>
+        <span class="font-semibold text-sm">XRP</span>
+        <span id="ticker-xrp" class="text-gray-300 text-sm">Loading...</span>
+        <span id="ticker-xrp-change" class="text-xs">—</span>
+      </div>
+
+    </div>
+
+    <!-- duplicate for continuous ticker -->
+
+    <div class="flex items-center gap-8 px-8">
+
+      <div class="flex items-center gap-2">
+        <i class="fab fa-bitcoin text-bitcoin"></i>
+        <span class="font-semibold text-sm">BTC</span>
+        <span id="ticker-btc-2" class="text-gray-300 text-sm">Loading...</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fab fa-ethereum text-indigo-400"></i>
+        <span class="font-semibold text-sm">ETH</span>
+        <span id="ticker-eth-2" class="text-gray-300 text-sm">Loading...</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-bolt text-green-400"></i>
+        <span class="font-semibold text-sm">SOL</span>
+        <span id="ticker-sol-2" class="text-gray-300 text-sm">Loading...</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-coins text-yellow-400"></i>
+        <span class="font-semibold text-sm">BNB</span>
+        <span id="ticker-bnb-2" class="text-gray-300 text-sm">Loading...</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-circle-notch text-blue-400"></i>
+        <span class="font-semibold text-sm">ADA</span>
+        <span id="ticker-ada-2" class="text-gray-300 text-sm">Loading...</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <i class="fas fa-water text-gray-400"></i>
+        <span class="font-semibold text-sm">XRP</span>
+        <span id="ticker-xrp-2" class="text-gray-300 text-sm">Loading...</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="bg-navy text-white sticky top-0 z-50 shadow-xl">
+
+  <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex justify-between items-center py-4">
+
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center">
+          <i class="fas fa-chart-line text-white"></i>
+        </div>
+
+        <span class="text-xl sm:text-2xl font-extrabold tracking-tight">
+          FastCash<span class="text-cyan">Signals</span>
+        </span>
+      </a>
+
+      <!-- Desktop -->
+
+      <div class="hidden lg:flex items-center gap-7">
+
+        <a href="#bitcoin" class="nav-link hover:text-cyan">
+          Bitcoin
+        </a>
+
+        <a href="#cryptos" class="nav-link hover:text-cyan">
+          Cryptocurrencies
+        </a>
+
+        <a href="#features" class="nav-link hover:text-cyan">
+          Features
+        </a>
+
+        <a href="#plans" class="nav-link hover:text-cyan">
+          Plans
+        </a>
+
+        <a href="#calculator" class="nav-link hover:text-cyan">
+          Calculator
+        </a>
+
+        <a href="#security" class="nav-link hover:text-cyan">
+          Security
+        </a>
+
+        <a href="#faq" class="nav-link hover:text-cyan">
+          FAQ
+        </a>
+
+      </div>
+
+      <div class="hidden lg:flex items-center gap-3">
+
+        <a href="login.html"
+           class="px-5 py-2.5 rounded-lg hover:bg-white/5 transition font-medium">
+          Sign In
+        </a>
+
+        <a href="register.html"
+           class="btn-primary px-6 py-2.5 rounded-lg">
+          Start Trading
+        </a>
+
+      </div>
+
+      <!-- Mobile -->
+
+      <button id="mobileMenuBtn"
+              class="lg:hidden text-2xl"
+              type="button">
+        <i class="fas fa-bars"></i>
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <!-- Mobile Menu -->
+
+  <div id="mobileMenu"
+       class="mobile-menu fixed top-0 right-0 w-72 max-w-[85%] h-full bg-navy-light z-[60] p-6 shadow-2xl">
+
+    <button id="closeMenuBtn"
+            class="text-2xl mb-8 float-right"
+            type="button">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <div class="clear-both flex flex-col gap-6 mt-8">
+
+      <a href="#bitcoin" class="text-lg mobile-link">
+        Bitcoin
+      </a>
+
+      <a href="#cryptos" class="text-lg mobile-link">
+        Cryptocurrencies
+      </a>
+
+      <a href="#features" class="text-lg mobile-link">
+        Features
+      </a>
+
+      <a href="#plans" class="text-lg mobile-link">
+        Plans
+      </a>
+
+      <a href="#calculator" class="text-lg mobile-link">
+        Calculator
+      </a>
+
+      <a href="#security" class="text-lg mobile-link">
+        Security
+      </a>
+
+      <a href="#faq" class="text-lg mobile-link">
+        FAQ
+      </a>
+
+      <a href="login.html"
+         class="px-6 py-3 rounded-lg border border-blue-500 text-center">
+        Sign In
+      </a>
+
+      <a href="register.html"
+         class="btn-primary px-6 py-3 rounded-lg">
+        Start Trading
+      </a>
+
+    </div>
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     TESTIMONIES
+========================================================= -->
+
+<section class="bg-[#080d18] text-white border-b border-white/5">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
+
+    <div class="flex items-center justify-between gap-4 mb-4">
+
+      <div class="flex items-center gap-3">
+
+        <span class="live-dot"></span>
+
+        <div>
+          <p class="text-xs uppercase tracking-widest text-cyan-300 font-bold">
+            Testimonies & Stories
+          </p>
+
+          <p class="text-xs text-gray-500">
+             feedbacks
+          </p>
+        </div>
+
+      </div>
+
+      <span id="storyCounter"
+            class="text-xs text-gray-500">
+        —
+      </span>
+
+    </div>
+
+    <div id="storyCard"
+         class="story-card bg-white/[0.04] border border-white/10 rounded-2xl p-5 sm:p-6">
+
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+
+        <div id="storyAvatar"
+             class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center font-bold text-white flex-shrink-0">
+          —
+        </div>
+
+        <div class="flex-1">
+
+          <div class="flex flex-wrap items-center gap-2">
+
+            <h3 id="storyName"
+                class="font-bold">
+              Loading customer stories...
+            </h3>
+
+            <span class="text-[10px] uppercase tracking-wide px-2 py-1 rounded-full bg-green-500/10 text-green-400">
+              Testimonies
+            </span>
+
+          </div>
+
+          <p id="storyText"
+             class="text-sm text-gray-300 mt-2 leading-relaxed">
+            Testimonies will appear here.
+          </p>
+
+        </div>
+
+        <div id="storyDate"
+             class="text-xs text-gray-500">
+          —
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="gradient-hero text-white py-16 sm:py-24 lg:py-32">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <div class="fade-in">
+
+        <div class="inline-flex items-center bg-blue-500/10 border border-blue-500/20 text-cyan-300 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+
+          <span class="pulse-dot inline-block w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+
+          Live Market Data
+
+        </div>
+
+        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+
+          Trade Bitcoin &
+
+          <span class="text-cyan">
+            Top Cryptos
+          </span>
+
+          with Confidence
+
+        </h1>
+
+        <p class="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
+
+          Access real-time cryptocurrency market information,
+          professional trading tools, and a modern digital asset
+          experience from one platform.
+
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+
+          <a href="register.html"
+             class="btn-primary px-8 py-4 rounded-lg text-lg">
+
+            Start Trading Now
+
+            <i class="fas fa-arrow-right ml-2"></i>
+
+          </a>
+
+          <a href="#calculator"
+             class="border-2 border-cyan text-cyan px-8 py-4 rounded-lg text-lg hover:bg-cyan hover:text-navy transition text-center">
+
+            <i class="fas fa-calculator mr-2"></i>
+
+            Calculate ROI
+
+          </a>
+
+        </div>
+
+        <div class="flex flex-wrap gap-6 text-sm text-gray-300">
+
+          <div class="flex items-center">
+            <i class="fas fa-shield-alt text-cyan mr-2"></i>
+            Security focused
+          </div>
+
+          <div class="flex items-center">
+            <i class="fas fa-lock text-cyan mr-2"></i>
+            Account protection
+          </div>
+
+          <div class="flex items-center">
+            <i class="fas fa-chart-line text-cyan mr-2"></i>
+            Real-time markets
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Hero market card -->
+
+      <div class="hidden lg:block">
+
+        <div class="bg-white/[0.04] backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+
+          <div class="flex justify-between items-center mb-6">
+
+            <div>
+
+              <p class="text-xs uppercase tracking-widest text-gray-500">
+                Market
+              </p>
+
+              <h3 class="text-xl font-semibold">
+                BTC / USD
+              </h3>
+
+            </div>
+
+            <span id="heroBTCChange"
+                  class="text-sm font-semibold bg-green-400/10 text-green-400 px-3 py-1 rounded-full">
+              Loading...
+            </span>
+
+          </div>
+
+          <div class="mb-4">
+
+            <p id="heroBTCPrice"
+               class="text-4xl font-extrabold">
+              Loading...
+            </p>
+
+            <p class="text-xs text-gray-500 mt-1">
+              Live market price
+            </p>
+
+          </div>
+
+          <canvas id="heroChart"></canvas>
+
+          <div class="grid grid-cols-3 gap-4 mt-6 text-center">
+
+            <div>
+              <p class="text-gray-400 text-xs">
+                24h Volume
+              </p>
+
+              <p id="heroVolume"
+                 class="text-lg font-bold text-cyan">
+                —
+              </p>
+            </div>
+
+            <div>
+              <p class="text-gray-400 text-xs">
+                Market Cap
+              </p>
+
+              <p id="heroMarketCap"
+                 class="text-lg font-bold">
+                —
+              </p>
+            </div>
+
+            <div>
+              <p class="text-gray-400 text-xs">
+                24h High
+              </p>
+
+              <p id="heroHigh"
+                 class="text-lg font-bold">
+                —
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     STATS
+========================================================= -->
+
+<section class="bg-white py-8 border-b">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+
+      <div>
+        <p id="statBTCPrice"
+           class="text-2xl sm:text-3xl font-bold text-navy">
+          —
+        </p>
+
+        <p class="text-gray-500 mt-1 text-sm">
+          Bitcoin Price
+        </p>
+      </div>
+
+      <div>
+        <p id="statETHPrice"
+           class="text-2xl sm:text-3xl font-bold text-navy">
+          —
+        </p>
+
+        <p class="text-gray-500 mt-1 text-sm">
+          Ethereum Price
+        </p>
+      </div>
+
+      <div>
+        <p id="statSOLPrice"
+           class="text-2xl sm:text-3xl font-bold text-navy">
+          —
+        </p>
+
+        <p class="text-gray-500 mt-1 text-sm">
+          Solana Price
+        </p>
+      </div>
+
+      <div>
+        <p id="statUpdated"
+           class="text-2xl sm:text-3xl font-bold text-navy">
+          —
+        </p>
+
+        <p class="text-gray-500 mt-1 text-sm">
+          Market Updated
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     BITCOIN
+========================================================= -->
+
+<section id="bitcoin" class="py-16 sm:py-24">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+
+      <span class="text-blue font-semibold text-sm uppercase tracking-wide">
+        Bitcoin
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        Understanding
+        <span class="text-bitcoin">
+          Bitcoin
+        </span>
+      </h2>
+
+      <p class="text-lg text-gray-600">
+        Learn about Bitcoin, blockchain technology, scarcity,
+        decentralization, and the risks involved in digital assets.
+      </p>
+
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 mb-16">
+
+      <div>
+
+        <div class="bg-white p-8 rounded-2xl card-shadow">
+
+          <div class="w-16 h-16 gradient-bitcoin rounded-xl flex items-center justify-center mb-6">
+            <i class="fab fa-bitcoin text-white text-3xl"></i>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            What is Bitcoin?
+          </h3>
+
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Bitcoin is a decentralized digital currency created in
+            2009. It operates through a peer-to-peer network rather
+            than relying on a central bank.
+          </p>
+
+          <p class="text-gray-600 leading-relaxed">
+            Bitcoin transactions are recorded on a public blockchain,
+            allowing the network to verify transactions without a
+            central authority.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="space-y-6">
+
+        <div class="bg-white p-6 rounded-xl card-shadow">
+
+          <div class="flex items-start">
+
+            <div class="w-12 h-12 bg-blue/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class="fas fa-infinity text-blue text-xl"></i>
+            </div>
+
+            <div>
+
+              <h4 class="font-bold text-lg mb-2">
+                Fixed Supply
+              </h4>
+
+              <p class="text-gray-600 text-sm">
+                Bitcoin has a protocol-defined maximum supply of
+                21 million coins.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="bg-white p-6 rounded-xl card-shadow">
+
+          <div class="flex items-start">
+
+            <div class="w-12 h-12 bg-blue/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class="fas fa-globe text-blue text-xl"></i>
+            </div>
+
+            <div>
+
+              <h4 class="font-bold text-lg mb-2">
+                Decentralized
+              </h4>
+
+              <p class="text-gray-600 text-sm">
+                Bitcoin is maintained by a distributed network of
+                participants around the world.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="bg-white p-6 rounded-xl card-shadow">
+
+          <div class="flex items-start">
+
+            <div class="w-12 h-12 bg-blue/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class="fas fa-lock text-blue text-xl"></i>
+            </div>
+
+            <div>
+
+              <h4 class="font-bold text-lg mb-2">
+                Transparent
+              </h4>
+
+              <p class="text-gray-600 text-sm">
+                Blockchain transactions can be independently
+                verified by participants.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     LIVE CRYPTO MARKET
+========================================================= -->
+
+<section id="cryptos"
+         class="py-16 sm:py-24 bg-slate-50">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+
+      <span class="text-blue font-semibold text-sm uppercase tracking-wide">
+        Live Markets
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        Track Top Cryptocurrencies
+      </h2>
+
+      <p class="text-lg text-gray-600">
+        Prices and 24-hour movements are loaded from live market data.
+      </p>
+
+    </div>
+
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- ETH -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-12 h-12 bg-indigo-500/10 rounded-full flex items-center justify-center">
+              <i class="fab fa-ethereum text-indigo-500 text-2xl"></i>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold">
+                Ethereum
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                ETH
+              </p>
+            </div>
+
+          </div>
+
+          <span id="eth-change"
+                class="text-sm font-semibold">
+            —
+          </span>
+
+        </div>
+
+        <p id="eth-price"
+           class="market-price text-3xl font-bold mb-4">
+          Loading...
+        </p>
+
+        <p class="text-gray-600 text-sm mb-4">
+          Ethereum is a programmable blockchain used for smart
+          contracts and decentralized applications.
+        </p>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-2 rounded-lg text-sm">
+          Trade ETH
+        </a>
+
+      </div>
+
+
+      <!-- SOL -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-bolt text-green-500 text-2xl"></i>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold">
+                Solana
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                SOL
+              </p>
+            </div>
+
+          </div>
+
+          <span id="sol-change"
+                class="text-sm font-semibold">
+            —
+          </span>
+
+        </div>
+
+        <p id="sol-price"
+           class="market-price text-3xl font-bold mb-4">
+          Loading...
+        </p>
+
+        <p class="text-gray-600 text-sm mb-4">
+          Solana is a high-performance blockchain designed for
+          fast and scalable applications.
+        </p>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-2 rounded-lg text-sm">
+          Trade SOL
+        </a>
+
+      </div>
+
+
+      <!-- USDT -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-dollar-sign text-green-500 text-2xl"></i>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold">
+                Tether
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                USDT
+              </p>
+            </div>
+
+          </div>
+
+          <span class="market-neutral text-sm font-semibold">
+            Stablecoin
+          </span>
+
+        </div>
+
+        <p id="usdt-price"
+           class="market-price text-3xl font-bold mb-4">
+          Loading...
+        </p>
+
+        <p class="text-gray-600 text-sm mb-4">
+          USDT is a USD-pegged stablecoin commonly used for
+          transferring and trading digital assets.
+        </p>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-2 rounded-lg text-sm">
+          Trade USDT
+        </a>
+
+      </div>
+
+
+      <!-- BNB -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-coins text-yellow-500 text-2xl"></i>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold">
+                BNB
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                BNB
+              </p>
+            </div>
+
+          </div>
+
+          <span id="bnb-change"
+                class="text-sm font-semibold">
+            —
+          </span>
+
+        </div>
+
+        <p id="bnb-price"
+           class="market-price text-3xl font-bold mb-4">
+          Loading...
+        </p>
+
+        <p class="text-gray-600 text-sm mb-4">
+          BNB is the native asset of the BNB Chain ecosystem.
+        </p>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-2 rounded-lg text-sm">
+          Trade BNB
+        </a>
+
+      </div>
+
+
+      <!-- ADA -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-12 h-12 bg-blue/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-circle-notch text-blue text-2xl"></i>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold">
+                Cardano
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                ADA
+              </p>
+            </div>
+
+          </div>
+
+          <span id="ada-change"
+                class="text-sm font-semibold">
+            —
+          </span>
+
+        </div>
+
+        <p id="ada-price"
+           class="market-price text-3xl font-bold mb-4">
+          Loading...
+        </p>
+
+        <p class="text-gray-600 text-sm mb-4">
+          Cardano is a proof-of-stake blockchain focused on
+          scalability and sustainability.
+        </p>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-2 rounded-lg text-sm">
+          Trade ADA
+        </a>
+
+      </div>
+
+
+      <!-- XRP -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-12 h-12 bg-slate-500/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-water text-slate-500 text-2xl"></i>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold">
+                XRP
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                XRP
+              </p>
+            </div>
+
+          </div>
+
+          <span id="xrp-change"
+                class="text-sm font-semibold">
+            —
+          </span>
+
+        </div>
+
+        <p id="xrp-price"
+           class="market-price text-3xl font-bold mb-4">
+          Loading...
+        </p>
+
+        <p class="text-gray-600 text-sm mb-4">
+          XRP is a digital asset designed for fast settlement
+          and payment-related use cases.
+        </p>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-2 rounded-lg text-sm">
+          Trade XRP
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section id="features" class="py-16 sm:py-24">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+
+      <span class="text-blue font-semibold text-sm uppercase tracking-wide">
+        Why FastCashSignals
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        A Professional Crypto Experience
+      </h2>
+
+      <p class="text-lg text-gray-600">
+        Market information, account tools, and a streamlined
+        digital asset interface.
+      </p>
+
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+        <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6">
+          <i class="fas fa-chart-line text-white text-2xl"></i>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Live Market Data
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed">
+          Monitor current cryptocurrency prices and market
+          movements through live market-data feeds.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+        <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6">
+          <i class="fas fa-shield-alt text-white text-2xl"></i>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Security Focused
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed">
+          Account access and financial operations are designed
+          around authentication and controlled processing.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+        <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6">
+          <i class="fas fa-bolt text-white text-2xl"></i>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Fast Interface
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed">
+          A responsive interface designed to work smoothly
+          across phones, tablets, and desktops.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+        <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6">
+          <i class="fas fa-calculator text-white text-2xl"></i>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          ROI Calculator
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed">
+          Explore historical Bitcoin performance using
+          market-data-based calculations.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+        <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6">
+          <i class="fas fa-mobile-alt text-white text-2xl"></i>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Mobile Ready
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed">
+          Responsive layouts and mobile navigation keep the
+          platform accessible on smaller screens.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+        <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center mb-6">
+          <i class="fas fa-graduation-cap text-white text-2xl"></i>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Crypto Education
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed">
+          Learn the fundamentals of Bitcoin, blockchain,
+          cryptocurrency markets, and risk.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PLANS
+========================================================= -->
+
+<section id="plans" class="py-16 sm:py-24 bg-slate-50">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-12">
+
+      <span class="text-blue font-semibold text-sm uppercase tracking-wide">
+        Account Types
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        Choose Your Account
+      </h2>
+
+      <p class="text-lg text-gray-600 mb-8">
+        Choose the account option that fits your trading needs.
+      </p>
+
+      <div class="inline-flex items-center bg-white p-2 rounded-xl shadow-md">
+
+        <span class="px-4 font-medium text-gray-700"
+              id="monthlyLabel">
+          Basic
+        </span>
+
+        <label class="relative inline-flex items-center cursor-pointer mx-2">
+
+          <input type="checkbox"
+                 id="billingToggle"
+                 class="sr-only">
+
+          <div class="w-14 h-7 bg-gray-300 rounded-full relative toggle-bg"></div>
+
+        </label>
+
+        <span class="px-4 font-medium text-gray-400"
+              id="yearlyLabel">
+          Pro
+          <span class="text-blue text-xs">
+            Advanced Tools
+          </span>
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+      <!-- Starter -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <h3 class="text-2xl font-bold mb-2">
+          Starter
+        </h3>
+
+        <p class="text-gray-600 mb-6">
+          For users getting started with digital assets.
+        </p>
+
+        <div class="mb-6">
+
+          <span class="text-5xl font-bold text-navy price"
+                data-monthly="0"
+                data-yearly="0">
+            $0
+          </span>
+
+          <span class="text-gray-600">
+            /forever
+          </span>
+
+        </div>
+
+        <ul class="space-y-4 mb-8">
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            No minimum account fee
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Market access
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Mobile dashboard
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Account support
+          </li>
+
+        </ul>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-3 rounded-lg">
+          Open Account
+        </a>
+
+      </div>
+
+
+      <!-- Pro -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow border-2 border-blue relative transform lg:scale-105">
+
+        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+
+          <span class="bg-blue text-white px-4 py-1 rounded-full text-sm font-bold">
+            POPULAR
+          </span>
+
+        </div>
+
+        <h3 class="text-2xl font-bold mb-2">
+          Pro Trader
+        </h3>
+
+        <p class="text-gray-600 mb-6">
+          For users who need advanced tools.
+        </p>
+
+        <div class="mb-6">
+
+          <span class="text-5xl font-bold text-navy price"
+                data-monthly="19"
+                data-yearly="15">
+            $19
+          </span>
+
+          <span class="text-gray-600">
+            /month
+          </span>
+
+        </div>
+
+        <ul class="space-y-4 mb-8">
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Advanced charting
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Market analysis tools
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Portfolio tools
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Priority support
+          </li>
+
+        </ul>
+
+        <a href="register.html"
+           class="w-full btn-primary py-3 rounded-lg">
+          Start Trading
+        </a>
+
+      </div>
+
+
+      <!-- Institutional -->
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <h3 class="text-2xl font-bold mb-2">
+          Institutional
+        </h3>
+
+        <p class="text-gray-600 mb-6">
+          For funds and high-volume users.
+        </p>
+
+        <div class="mb-6">
+
+          <span class="text-5xl font-bold text-navy">
+            Custom
+          </span>
+
+        </div>
+
+        <ul class="space-y-4 mb-8">
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            High-volume support
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Dedicated support
+          </li>
+
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-blue mt-1 mr-3"></i>
+            Custom requirements
+          </li>
+
+        </ul>
+
+        <a href="register.html"
+           class="w-full btn-secondary py-3 rounded-lg">
+          Contact Us
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ROI CALCULATOR
+========================================================= -->
+
+<section id="calculator" class="py-16 sm:py-24">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-12">
+
+      <span class="text-bitcoin font-semibold text-sm uppercase tracking-wide">
+        ROI Calculator
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        Bitcoin
+        <span class="text-bitcoin">
+          Return
+        </span>
+        Calculator
+      </h2>
+
+      <p class="text-lg text-gray-600">
+        Calculate historical Bitcoin performance using market data.
+      </p>
+
+    </div>
+
+
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8">
+
+      <!-- Inputs -->
+
+      <div class="lg:col-span-2">
+
+        <div class="bg-white p-8 rounded-2xl card-shadow">
+
+          <h3 class="text-2xl font-bold mb-6 flex items-center">
+
+            <i class="fab fa-bitcoin text-bitcoin mr-3"></i>
+
+            Calculate Returns
+
+          </h3>
+
+          <div class="space-y-5">
+
+            <div>
+
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Initial Investment (USD)
+              </label>
+
+              <div class="relative">
+
+                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-bold">
+                  $
+                </span>
+
+                <input type="number"
+                       id="calcAmount"
+                       value="1000"
+                       min="1"
+                       step="50"
+                       class="w-full pl-8 pr-4 py-3 border-2 border-gray-200 rounded-lg outline-none text-lg font-semibold">
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Buy Date
+              </label>
+
+              <input type="date"
+                     id="calcBuyDate"
+                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg outline-none text-lg">
+
+            </div>
+
+
+            <div>
+
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Sell Date
+              </label>
+
+              <input type="date"
+                     id="calcSellDate"
+                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg outline-none text-lg">
+
+              <p class="text-xs text-gray-500 mt-1">
+                Leave blank to use the latest available BTC price.
+              </p>
+
+            </div>
+
+
+            <button id="calcBtn"
+                    type="button"
+                    class="w-full btn-primary py-4 rounded-lg text-lg font-semibold">
+
+              <i class="fas fa-calculator mr-2"></i>
+
+              Calculate ROI
+
+            </button>
+
+
+            <div id="calcStatus"
+                 class="hidden rounded-lg p-4 text-sm">
+            </div>
+
+
+            <div class="bg-blue/5 border border-blue/20 rounded-lg p-4">
+
+              <p class="text-xs text-gray-600 leading-relaxed">
+
+                <i class="fas fa-info-circle text-blue mr-1"></i>
+
+                
+      </div>
+
+
+      <!-- Results -->
+
+      <div class="lg:col-span-3">
+
+        <div class="bg-white p-8 rounded-2xl card-shadow h-full">
+
+          <div id="calcResults"
+               class="hidden">
+
+            <h3 class="text-2xl font-bold mb-6">
+              Historical Investment Result
+            </h3>
+
+
+            <div class="grid sm:grid-cols-2 gap-4 mb-6">
+
+              <div class="bg-gradient-to-br from-blue-600 to-cyan-500 p-6 rounded-xl text-white">
+
+                <p class="text-sm opacity-90 mb-1">
+                  BTC Purchased
+                </p>
+
+                <p class="text-3xl font-bold"
+                   id="resultBTC">
+                  —
+                </p>
+
+                <p class="text-xs opacity-75 mt-1">
+                  at $<span id="resultBuyPrice">—</span>/BTC
+                </p>
+
+              </div>
+
+
+              <div class="bg-gradient-to-br from-navy to-blue-700 p-6 rounded-xl text-white">
+
+                <p class="text-sm opacity-90 mb-1">
+                  Ending Value
+                </p>
+
+                <p class="text-3xl font-bold"
+                   id="resultCurrentValue">
+                  —
+                </p>
+
+                <p class="text-xs opacity-75 mt-1">
+                  at $<span id="resultSellPrice">—</span>/BTC
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="space-y-4 mb-6">
+
+              <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+
+                <div>
+                  <p class="text-sm text-gray-600">
+                    Profit/Loss
+                  </p>
+
+                  <p class="text-2xl font-bold"
+                     id="resultProfit">
+                    —
+                  </p>
+                </div>
+
+                <div class="text-right">
+
+                  <p class="text-sm text-gray-600">
+                    ROI
+                  </p>
+
+                  <p class="text-2xl font-bold"
+                     id="resultROI">
+                    —
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+
+                <div>
+
+                  <p class="text-sm text-gray-600">
+                    Holding Period
+                  </p>
+
+                  <p class="text-lg font-semibold"
+                     id="resultPeriod">
+                    —
+                  </p>
+
+                </div>
+
+                <div class="text-right">
+
+                  <p class="text-sm text-gray-600">
+                    Annualized
+                  </p>
+
+                  <p class="text-lg font-semibold"
+                     id="resultAnnualized">
+                    —
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="border-t-2 border-dashed border-gray-200 pt-4">
+
+                <p class="text-sm font-semibold text-gray-700 mb-3">
+                  Comparison
+                </p>
+
+                <div class="flex items-center justify-between mb-2">
+
+                  <span class="text-sm text-gray-600">
+                    Initial investment:
+                  </span>
+
+                  <span class="font-bold"
+                        id="resultUSD">
+                    —
+                  </span>
+
+                </div>
+
+                <div class="flex items-center justify-between">
+
+                  <span class="text-sm text-gray-600">
+                    Difference:
+                  </span>
+
+                  <span class="font-bold"
+                        id="resultExtra">
+                    —
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <canvas id="roiChart"></canvas>
+
+          </div>
+
+
+          <div id="calcPlaceholder"
+               class="text-center py-12">
+
+            <i class="fas fa-chart-line text-6xl text-gray-200 mb-4"></i>
+
+            <p class="text-gray-500">
+              Enter your investment details and calculate historical
+              Bitcoin performance.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SECURITY
+========================================================= -->
+
+<section id="security"
+         class="py-16 sm:py-24 bg-slate-50">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+
+      <span class="text-blue font-semibold text-sm uppercase tracking-wide">
+        Security
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        Security Comes First
+      </h2>
+
+      <p class="text-lg text-gray-600">
+        Account security should be treated as a core part of
+        every digital asset platform.
+      </p>
+
+    </div>
+
+
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <h3 class="text-2xl font-bold mb-6">
+          Security Features
+        </h3>
+
+        <div class="space-y-6">
+
+          <div class="flex items-start">
+
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class="fas fa-lock text-green-600"></i>
+            </div>
+
+            <div>
+              <h4 class="font-bold mb-1">
+                Account Protection
+              </h4>
+
+              <p class="text-gray-600 text-sm">
+                Authentication and controlled account access help
+                protect user information.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="flex items-start">
+
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class="fas fa-user-shield text-green-600"></i>
+            </div>
+
+            <div>
+              <h4 class="font-bold mb-1">
+                Secure Access
+              </h4>
+
+              <p class="text-gray-600 text-sm">
+                User accounts are designed around authenticated
+                access and permission controls.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="flex items-start">
+
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class="fas fa-database text-green-600"></i>
+            </div>
+
+            <div>
+              <h4 class="font-bold mb-1">
+                Protected Data
+              </h4>
+
+              <p class="text-gray-600 text-sm">
+                Sensitive account information should be protected
+                using server-side authorization and database rules.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="flex items-start">
+
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class="fas fa-check-circle text-green-600"></i>
+            </div>
+
+            <div>
+              <h4 class="font-bold mb-1">
+                Controlled Transactions
+              </h4>
+
+              <p class="text-gray-600 text-sm">
+                Financial operations should be verified by trusted
+                backend systems rather than browser JavaScript.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+
+        <h3 class="text-2xl font-bold mb-6">
+          Platform Overview
+        </h3>
+
+        <canvas id="securityChart"></canvas>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW BITCOIN WORKS
+========================================================= -->
+
+<section class="py-16 sm:py-24">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+
+      <span class="text-blue font-semibold text-sm uppercase tracking-wide">
+        Education
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        How Bitcoin Works
+      </h2>
+
+      <p class="text-lg text-gray-600">
+        A simple overview of how Bitcoin transactions move through
+        the network.
+      </p>
+
+    </div>
+
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <div class="text-center">
+
+        <div class="w-16 h-16 gradient-bitcoin rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+          1
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Transaction
+        </h3>
+
+        <p class="text-gray-600 text-sm">
+          A Bitcoin transaction is created and signed by the sender.
+        </p>
+
+      </div>
+
+
+      <div class="text-center">
+
+        <div class="w-16 h-16 gradient-bitcoin rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+          2
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Broadcast
+        </h3>
+
+        <p class="text-gray-600 text-sm">
+          The transaction is broadcast to the Bitcoin network.
+        </p>
+
+      </div>
+
+
+      <div class="text-center">
+
+        <div class="w-16 h-16 gradient-bitcoin rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+          3
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Verification
+        </h3>
+
+        <p class="text-gray-600 text-sm">
+          Network participants verify the transaction and include
+          it in a block.
+        </p>
+
+      </div>
+
+
+      <div class="text-center">
+
+        <div class="w-16 h-16 gradient-bitcoin rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+          4
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Confirmation
+        </h3>
+
+        <p class="text-gray-600 text-sm">
+          Once confirmed, the transaction becomes part of the
+          blockchain's permanent record.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section id="faq"
+         class="py-16 sm:py-24 bg-slate-50">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+
+      <span class="text-blue font-semibold text-sm uppercase tracking-wide">
+        FAQ
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        Frequently Asked Questions
+      </h2>
+
+      <p class="text-lg text-gray-600">
+        Common questions about cryptocurrency and the platform.
+      </p>
+
+    </div>
+
+
+    <div class="max-w-3xl mx-auto space-y-4">
+
+      <div class="bg-white rounded-xl card-shadow overflow-hidden">
+
+        <button class="faq-toggle w-full text-left p-6 font-semibold text-lg flex justify-between items-center"
+                type="button">
+
+          <span>
+            Is cryptocurrency a good investment?
+          </span>
+
+          <i class="fas fa-chevron-down text-blue transition-transform"></i>
+
+        </button>
+
+        <div class="faq-content px-6">
+
+          <p class="pb-6 text-gray-600">
+            Cryptocurrency can provide opportunities but also
+            carries significant volatility and risk. Historical
+            performance does not guarantee future results.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="bg-white rounded-xl card-shadow overflow-hidden">
+
+        <button class="faq-toggle w-full text-left p-6 font-semibold text-lg flex justify-between items-center"
+                type="button">
+
+          <span>
+            How do I create an account?
+          </span>
+
+          <i class="fas fa-chevron-down text-blue transition-transform"></i>
+
+        </button>
+
+        <div class="faq-content px-6">
+
+          <p class="pb-6 text-gray-600">
+            Select Start Trading or Get Started and complete the
+            registration process on the account creation page.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="bg-white rounded-xl card-shadow overflow-hidden">
+
+        <button class="faq-toggle w-full text-left p-6 font-semibold text-lg flex justify-between items-center"
+                type="button">
+
+          <span>
+            What is the difference between Bitcoin and Ethereum?
+          </span>
+
+          <i class="fas fa-chevron-down text-blue transition-transform"></i>
+
+        </button>
+
+        <div class="faq-content px-6">
+
+          <p class="pb-6 text-gray-600">
+            Bitcoin was designed primarily as a decentralized
+            digital currency, while Ethereum provides a
+            programmable blockchain for smart contracts and
+            decentralized applications.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="bg-white rounded-xl card-shadow overflow-hidden">
+
+        <button class="faq-toggle w-full text-left p-6 font-semibold text-lg flex justify-between items-center"
+                type="button">
+
+          <span>
+            Can cryptocurrency prices change quickly?
+          </span>
+
+          <i class="fas fa-chevron-down text-blue transition-transform"></i>
+
+        </button>
+
+        <div class="faq-content px-6">
+
+          <p class="pb-6 text-gray-600">
+            Yes. Cryptocurrency markets can be highly volatile,
+            and prices may move significantly over short periods.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="bg-white rounded-xl card-shadow overflow-hidden">
+
+        <button class="faq-toggle w-full text-left p-6 font-semibold text-lg flex justify-between items-center"
+                type="button">
+
+          <span>
+            Can I withdraw my cryptocurrency?
+          </span>
+
+          <i class="fas fa-chevron-down text-blue transition-transform"></i>
+
+        </button>
+
+        <div class="faq-content px-6">
+
+          <p class="pb-6 text-gray-600">
+            Available withdrawal methods depend on the account
+            and services enabled on the platform.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="bg-white rounded-xl card-shadow overflow-hidden">
+
+        <button class="faq-toggle w-full text-left p-6 font-semibold text-lg flex justify-between items-center"
+                type="button">
+
+          <span>
+            Is the ROI calculator financial advice?
+          </span>
+
+          <i class="fas fa-chevron-down text-blue transition-transform"></i>
+
+        </button>
+
+        <div class="faq-content px-6">
+
+          <p class="pb-6 text-gray-600">
+            No. It is an educational calculator that illustrates
+            historical Bitcoin price performance. It does not
+            predict future returns.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="py-16 sm:py-24 gradient-hero text-white">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto text-center">
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+        Ready to Get Started?
+      </h2>
+
+      <p class="text-xl text-gray-300 mb-8">
+        Create your FastCashSignals account and explore the platform.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+
+        <a href="register.html"
+           class="btn-primary px-10 py-4 rounded-lg text-lg">
+
+          Start Trading
+
+          <i class="fas fa-arrow-right ml-2"></i>
+
+        </a>
+
+        <a href="login.html"
+           class="border-2 border-white px-10 py-4 rounded-lg text-lg hover:bg-white hover:text-navy transition">
+
+          Sign In
+
+        </a>
+
+      </div>
+
+      <p class="text-sm text-gray-400">
+        Cryptocurrency trading involves substantial risk.
+        Prices can rise or fall and you may lose money.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="bg-navy text-gray-300 py-12">
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+
+      <div>
+
+        <div class="flex items-center gap-3 mb-4">
+
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center">
+
+            <i class="fas fa-chart-line text-white"></i>
+
+          </div>
+
+          <span class="text-xl font-bold text-white">
+            FastCash<span class="text-cyan">Signals</span>
+          </span>
+
+        </div>
+
+        <p class="text-sm leading-relaxed mb-4">
+          A modern platform for exploring cryptocurrency markets,
+          account tools, and digital asset information.
+        </p>
+
+        <div class="flex gap-3">
+
+          <a href="#"
+             class="w-10 h-10 bg-navy-light rounded-lg flex items-center justify-center hover:bg-blue transition">
+            <i class="fab fa-twitter"></i>
+          </a>
+
+          <a href="#"
+             class="w-10 h-10 bg-navy-light rounded-lg flex items-center justify-center hover:bg-blue transition">
+            <i class="fab fa-telegram"></i>
+          </a>
+
+          <a href="#"
+             class="w-10 h-10 bg-navy-light rounded-lg flex items-center justify-center hover:bg-blue transition">
+            <i class="fab fa-discord"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h4 class="text-white font-bold mb-4">
+          Products
+        </h4>
+
+        <ul class="space-y-2 text-sm">
+
+          <li>
+            <a href="#cryptos" class="hover:text-cyan transition">
+              Crypto Markets
+            </a>
+          </li>
+
+          <li>
+            <a href="#calculator" class="hover:text-cyan transition">
+              ROI Calculator
+            </a>
+          </li>
+
+          <li>
+            <a href="register.html" class="hover:text-cyan transition">
+              Start Trading
+            </a>
+          </li>
+
+          <li>
+            <a href="login.html" class="hover:text-cyan transition">
+              Sign In
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h4 class="text-white font-bold mb-4">
+          Resources
+        </h4>
+
+        <ul class="space-y-2 text-sm">
+
+          <li>
+            <a href="#bitcoin" class="hover:text-cyan transition">
+              Bitcoin
+            </a>
+          </li>
+
+          <li>
+            <a href="#features" class="hover:text-cyan transition">
+              Features
+            </a>
+          </li>
+
+          <li>
+            <a href="#faq" class="hover:text-cyan transition">
+              FAQ
+            </a>
+          </li>
+
+          <li>
+            <a href="#security" class="hover:text-cyan transition">
+              Security
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h4 class="text-white font-bold mb-4">
+          Legal
+        </h4>
+
+        <ul class="space-y-2 text-sm">
+
+          <li>
+            <a href="#" class="hover:text-cyan transition">
+              Privacy Policy
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="hover:text-cyan transition">
+              Terms of Service
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="hover:text-cyan transition">
+              Risk Disclosure
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="hover:text-cyan transition">
+              Licensing
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="border-t border-white/10 pt-8 text-sm text-center">
+
+      <p>
+        &copy; 2026 FastCashSignals. All rights reserved.
+      </p>
+
+      <p class="mt-2 text-gray-500">
+        Cryptocurrency trading involves substantial risk of loss.
+        Past performance does not guarantee future results.
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDd-DCUCIwOGI-zA9AbQfGKNfuZNRCf0_0A",
+  authDomain: "fastcashsignals-1f30f.firebaseapp.com",
+  projectId: "fastcashsignals-1f30f",
+  storageBucket: "fastcashsignals-1f30f.firebasestorage.app",
+  messagingSenderId: "120931439285",
+  appId: "1:120931439285:web:7b1dfa391474dd03ad24fc",
+  measurementId: "G-WVLLXP2219"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function formatCurrency(value) {
+
+  if (!Number.isFinite(value)) {
+    return "—";
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: value < 1 ? 4 : 2
+  }).format(value);
+
+}
+
+
+function formatNumber(value) {
+
+  if (!Number.isFinite(value)) {
+    return "—";
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 2
+  }).format(value);
+
+}
+
+
+function formatCompact(value) {
+
+  if (!Number.isFinite(value)) {
+    return "—";
+  }
+
+  if (value >= 1e12) {
+    return "$" + (value / 1e12).toFixed(2) + "T";
+  }
+
+  if (value >= 1e9) {
+    return "$" + (value / 1e9).toFixed(2) + "B";
+  }
+
+  if (value >= 1e6) {
+    return "$" + (value / 1e6).toFixed(2) + "M";
+  }
+
+  return formatCurrency(value);
+}
+
+
+function escapeHTML(value) {
+
+  const div = document.createElement("div");
+
+  div.textContent = value ?? "";
+
+  return div.innerHTML;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const mobileMenuBtn =
+  document.getElementById("mobileMenuBtn");
+
+const closeMenuBtn =
+  document.getElementById("closeMenuBtn");
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+mobileMenuBtn.addEventListener("click", () => {
+  mobileMenu.classList.add("active");
+});
+
+closeMenuBtn.addEventListener("click", () => {
+  mobileMenu.classList.remove("active");
+});
+
+document.querySelectorAll(".mobile-link").forEach(link => {
+
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
+  });
+
+});
+
+
+/* =========================================================
+   BILLING TOGGLE
+========================================================= */
+
+const billingToggle =
+  document.getElementById("billingToggle");
+
+const monthlyLabel =
+  document.getElementById("monthlyLabel");
+
+const yearlyLabel =
+  document.getElementById("yearlyLabel");
+
+const prices =
+  document.querySelectorAll(".price");
+
+billingToggle.addEventListener("change", () => {
+
+  if (billingToggle.checked) {
+
+    monthlyLabel.classList.remove("text-gray-700");
+    monthlyLabel.classList.add("text-gray-400");
+
+    yearlyLabel.classList.remove("text-gray-400");
+    yearlyLabel.classList.add("text-gray-700");
+
+    prices.forEach(price => {
+
+      const yearly =
+        price.getAttribute("data-yearly");
+
+      price.textContent =
+        yearly === "Custom"
+          ? yearly
+          : "$" + yearly;
+
+    });
+
+  } else {
+
+    monthlyLabel.classList.remove("text-gray-400");
+    monthlyLabel.classList.add("text-gray-700");
+
+    yearlyLabel.classList.remove("text-gray-700");
+    yearlyLabel.classList.add("text-gray-400");
+
+    prices.forEach(price => {
+
+      const monthly =
+        price.getAttribute("data-monthly");
+
+      price.textContent =
+        monthly === "Custom"
+          ? monthly
+          : "$" + monthly;
+
+    });
+
+  }
+
+});
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+document.querySelectorAll(".faq-toggle").forEach(toggle => {
+
+  toggle.addEventListener("click", () => {
+
+    const content =
+      toggle.nextElementSibling;
+
+    const icon =
+      toggle.querySelector("i");
+
+    document.querySelectorAll(".faq-content")
+      .forEach(item => {
+
+        if (item !== content) {
+
+          item.classList.remove("active");
+
+          const previous =
+            item.previousElementSibling;
+
+          if (previous) {
+
+            const previousIcon =
+              previous.querySelector("i");
+
+            if (previousIcon) {
+              previousIcon.style.transform =
+                "rotate(0deg)";
+            }
+
+          }
+
+        }
+
+      });
+
+    content.classList.toggle("active");
+
+    icon.style.transform =
+      content.classList.contains("active")
+        ? "rotate(180deg)"
+        : "rotate(0deg)";
+
+  });
+
+});
+
+
+/* =========================================================
+   LIVE CRYPTO DATA
+   CoinGecko public market API
+========================================================= */
+
+const cryptoIds =
+  "bitcoin,ethereum,solana,binancecoin,cardano,ripple";
+
+let latestMarketData = null;
+
+async function loadCryptoData() {
+
+  const endpoint =
+    "https://api.coingecko.com/api/v3/coins/markets" +
+    "?vs_currency=usd" +
+    "&ids=" + cryptoIds +
+    "&order=market_cap_desc" +
+    "&per_page=6" +
+    "&page=1" +
+    "&sparkline=false" +
+    "&price_change_percentage=24h";
+
+  try {
+
+    const response =
+      await fetch(endpoint, {
+        cache: "no-store"
+      });
+
+    if (!response.ok) {
+      throw new Error("Market API unavailable");
+    }
+
+    const data =
+      await response.json();
+
+    latestMarketData = data;
+
+    const coins = {};
+
+    data.forEach(coin => {
+      coins[coin.id] = coin;
+    });
+
+
+    updateMarketAsset(
+      "bitcoin",
+      coins.bitcoin
+    );
+
+    updateMarketAsset(
+      "ethereum",
+      coins.ethereum
+    );
+
+    updateMarketAsset(
+      "solana",
+      coins.solana
+    );
+
+    updateMarketAsset(
+      "binancecoin",
+      coins.binancecoin
+    );
+
+    updateMarketAsset(
+      "cardano",
+      coins.cardano
+    );
+
+    updateMarketAsset(
+      "ripple",
+      coins.ripple
+    );
+
+
+    if (coins.bitcoin) {
+
+      document.getElementById("heroBTCPrice")
+        .textContent =
+        formatCurrency(coins.bitcoin.current_price);
+
+      document.getElementById("heroBTCChange")
+        .textContent =
+        formatChange(
+          coins.bitcoin.price_change_percentage_24h
+        );
+
+      document.getElementById("heroVolume")
+        .textContent =
+        formatCompact(
+          coins.bitcoin.total_volume
+        );
+
+      document.getElementById("heroMarketCap")
+        .textContent =
+        formatCompact(
+          coins.bitcoin.market_cap
+        );
+
+      document.getElementById("heroHigh")
+        .textContent =
+        formatCurrency(
+          coins.bitcoin.high_24h
+        );
+
+      document.getElementById("statBTCPrice")
+        .textContent =
+        formatCurrency(
+          coins.bitcoin.current_price
+        );
+
+    }
+
+
+    if (coins.ethereum) {
+
+      document.getElementById("statETHPrice")
+        .textContent =
+        formatCurrency(
+          coins.ethereum.current_price
+        );
+
+    }
+
+
+    if (coins.solana) {
+
+      document.getElementById("statSOLPrice")
+        .textContent =
+        formatCurrency(
+          coins.solana.current_price
+        );
+
+    }
+
+
+    document.getElementById("statUpdated")
+      .textContent =
+      new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+  } catch (error) {
+
+    console.error("Crypto API error:", error);
+
+    document.querySelectorAll(
+      ".market-price"
+    ).forEach(element => {
+
+      element.textContent =
+        "Unavailable";
+
+    });
+
+  }
+
+}
+
+
+function formatChange(change) {
+
+  if (!Number.isFinite(change)) {
+    return "—";
+  }
+
+  return (change >= 0 ? "+" : "") +
+    change.toFixed(2) +
+    "%";
+
+}
+
+
+function applyChangeStyle(element, change) {
+
+  if (!element) return;
+
+  element.classList.remove(
+    "market-change-up",
+    "market-change-down",
+    "market-neutral"
+  );
+
+  if (!Number.isFinite(change)) {
+
+    element.classList.add("market-neutral");
+
+    return;
+  }
+
+  element.classList.add(
+    change >= 0
+      ? "market-change-up"
+      : "market-change-down"
+  );
+
+}
+
+
+function updateMarketAsset(id, coin) {
+
+  if (!coin) return;
+
+
+  const map = {
+
+    bitcoin: {
+      price: "ticker-btc",
+      change: "ticker-btc-change",
+      price2: "ticker-btc-2"
+    },
+
+    ethereum: {
+      price: "ticker-eth",
+      change: "ticker-eth-change",
+      price2: "ticker-eth-2"
+    },
+
+    solana: {
+      price: "ticker-sol",
+      change: "ticker-sol-change",
+      price2: "ticker-sol-2"
+    },
+
+    binancecoin: {
+      price: "ticker-bnb",
+      change: "ticker-bnb-change",
+      price2: "ticker-bnb-2"
+    },
+
+    cardano: {
+      price: "ticker-ada",
+      change: "ticker-ada-change",
+      price2: "ticker-ada-2"
+    },
+
+    ripple: {
+      price: "ticker-xrp",
+      change: "ticker-xrp-change",
+      price2: "ticker-xrp-2"
+    }
+
+  };
+
+
+  const ids = map[id];
+
+  if (!ids) return;
+
+
+  const priceText =
+    formatCurrency(coin.current_price);
+
+  const changeText =
+    formatChange(
+      coin.price_change_percentage_24h
+    );
+
+
+  const priceEl =
+    document.getElementById(ids.price);
+
+  const changeEl =
+    document.getElementById(ids.change);
+
+  const priceEl2 =
+    document.getElementById(ids.price2);
+
+
+  if (priceEl) {
+    priceEl.textContent = priceText;
+  }
+
+  if (priceEl2) {
+    priceEl2.textContent = priceText;
+  }
+
+  if (changeEl) {
+
+    changeEl.textContent =
+      changeText;
+
+    applyChangeStyle(
+      changeEl,
+      coin.price_change_percentage_24h
+    );
+
+  }
+
+
+  const cardPrice =
+    document.getElementById(
+      id === "bitcoin"
+        ? "ticker-btc"
+        : id === "ethereum"
+        ? "eth-price"
+        : id === "solana"
+        ? "sol-price"
+        : id === "binancecoin"
+        ? "bnb-price"
+        : id === "cardano"
+        ? "ada-price"
+        : "xrp-price"
+    );
+
+
+  const cardChange =
+    document.getElementById(
+      id === "ethereum"
+        ? "eth-change"
+        : id === "solana"
+        ? "sol-change"
+        : id === "binancecoin"
+        ? "bnb-change"
+        : id === "cardano"
+        ? "ada-change"
+        : id === "ripple"
+        ? "xrp-change"
+        : null
+    );
+
+
+  if (id !== "bitcoin" && cardPrice) {
+
+    cardPrice.textContent =
+      priceText;
+
+  }
+
+
+  if (id === "bitcoin") {
+
+    const btcCardPrice =
+      document.getElementById("heroBTCPrice");
+
+    if (btcCardPrice) {
+      btcCardPrice.textContent =
+        priceText;
+    }
+
+  }
+
+
+  if (cardChange) {
+
+    cardChange.textContent =
+      changeText;
+
+    applyChangeStyle(
+      cardChange,
+      coin.price_change_percentage_24h
+    );
+
+  }
+
+
+  if (id === "binancecoin") {
+
+    const bnb =
+      document.getElementById("bnb-price");
+
+    if (bnb) bnb.textContent = priceText;
+
+  }
+
+
+  if (id === "cardano") {
+
+    const ada =
+      document.getElementById("ada-price");
+
+    if (ada) ada.textContent = priceText;
+
+  }
+
+
+  if (id === "ripple") {
+
+    const xrp =
+      document.getElementById("xrp-price");
+
+    if (xrp) xrp.textContent = priceText;
+
+  }
+
+
+  if (id === "ethereum") {
+
+    const eth =
+      document.getElementById("eth-price");
+
+    if (eth) eth.textContent = priceText;
+
+  }
+
+
+  if (id === "solana") {
+
+    const sol =
+      document.getElementById("sol-price");
+
+    if (sol) sol.textContent = priceText;
+
+  }
+
+
+  if (id === "bitcoin") {
+
+    const heroChange =
+      document.getElementById("heroBTCChange");
+
+    if (heroChange) {
+
+      heroChange.textContent =
+        changeText;
+
+      applyChangeStyle(
+        heroChange,
+        coin.price_change_percentage_24h
+      );
+
+    }
+
+  }
+
+}
+
+
+/* Refresh live prices */
+
+loadCryptoData();
+
+setInterval(
+  loadCryptoData,
+  60000
+);
+
+
+/* =========================================================
+   HERO BTC CHART
+========================================================= */
+
+let heroChart = null;
+
+async function loadHeroChart() {
+
+  const canvas =
+    document.getElementById("heroChart");
+
+  if (!canvas) return;
+
+
+  try {
+
+    const endpoint =
+      "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart" +
+      "?vs_currency=usd&days=1&interval=hourly";
+
+    const response =
+      await fetch(endpoint);
+
+    if (!response.ok) {
+      throw new Error("Chart API unavailable");
+    }
+
+    const data =
+      await response.json();
+
+    const prices =
+      data.prices || [];
+
+
+    const labels =
+      prices.map(item =>
+        new Date(item[0]).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
+      );
+
+    const values =
+      prices.map(item => item[1]);
+
+
+    if (heroChart) {
+      heroChart.destroy();
+    }
+
+
+    heroChart =
+      new Chart(canvas, {
+
+        type: "line",
+
+        data: {
+
+          labels,
+
+          datasets: [{
+
+            data: values,
+
+            borderColor: "#f7931a",
+
+            backgroundColor:
+              "rgba(247,147,26,.10)",
+
+            borderWidth: 2,
+
+            tension: .35,
+
+            pointRadius: 0,
+
+            fill: true
+
+          }]
+
+        },
+
+        options: {
+
+          responsive: true,
+
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+
+          scales: {
+
+            y: {
+
+              grid: {
+                color: "rgba(255,255,255,.08)"
+              },
+
+              ticks: {
+                color: "#94a3b8",
+                callback: value =>
+                  "$" + Number(value).toLocaleString()
+              }
+
+            },
+
+            x: {
+
+              grid: {
+                display: false
+              },
+
+              ticks: {
+                color: "#64748b",
+                maxTicksLimit: 6
+              }
+
+            }
+
+          }
+
+        }
+
+      });
+
+  } catch (error) {
+
+    console.error(
+      "BTC chart error:",
+      error
+    );
+
+  }
+
+}
+
+loadHeroChart();
+
+
+/* =========================================================
+   SECURITY CHART
+========================================================= */
+
+const securityCanvas =
+  document.getElementById("securityChart");
+
+if (securityCanvas) {
+
+  new Chart(
+    securityCanvas,
+    {
+
+      type: "doughnut",
+
+      data: {
+
+        labels: [
+          "Cold Storage",
+          "Protected Wallets",
+          "Operational"
+        ],
+
+        datasets: [{
+
+          data: [
+            70,
+            20,
+            10
+          ],
+
+          backgroundColor: [
+            "#2563eb",
+            "#06b6d4",
+            "#94a3b8"
+          ],
+
+          borderWidth: 0
+
+        }]
+
+      },
+
+      options: {
+
+        responsive: true,
+
+        plugins: {
+
+          legend: {
+
+            position: "bottom",
+
+            labels: {
+              color: "#475569",
+              padding: 15
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  );
+
+}
+
+
+/* =========================================================
+   ROI CALCULATOR
+========================================================= */
+
+const calcBtn =
+  document.getElementById("calcBtn");
+
+const calcAmount =
+  document.getElementById("calcAmount");
+
+const calcBuyDate =
+  document.getElementById("calcBuyDate");
+
+const calcSellDate =
+  document.getElementById("calcSellDate");
+
+const calcResults =
+  document.getElementById("calcResults");
+
+const calcPlaceholder =
+  document.getElementById("calcPlaceholder");
+
+const calcStatus =
+  document.getElementById("calcStatus");
+
+let roiChart = null;
+
+
+const today =
+  new Date().toISOString().split("T")[0];
+
+calcBuyDate.setAttribute(
+  "max",
+  today
+);
+
+calcSellDate.setAttribute(
+  "max",
+  today
+);
+
+
+/* Default buy date = approximately one year ago */
+
+const defaultBuyDate =
+  new Date();
+
+defaultBuyDate.setFullYear(
+  defaultBuyDate.getFullYear() - 1
+);
+
+calcBuyDate.value =
+  defaultBuyDate.toISOString()
+    .split("T")[0];
+
+
+function showCalcStatus(message, type = "info") {
+
+  calcStatus.classList.remove(
+    "hidden",
+    "bg-red-50",
+    "text-red-700",
+    "bg-blue-50",
+    "text-blue-700",
+    "bg-green-50",
+    "text-green-700"
+  );
+
+
+  if (type === "error") {
+
+    calcStatus.classList.add(
+      "bg-red-50",
+      "text-red-700"
+    );
+
+  } else if (type === "success") {
+
+    calcStatus.classList.add(
+      "bg-green-50",
+      "text-green-700"
+    );
+
+  } else {
+
+    calcStatus.classList.add(
+      "bg-blue-50",
+      "text-blue-700"
+    );
+
+  }
+
+
+  calcStatus.textContent =
+    message;
+
+}
+
+
+async function getHistoricalBTCPrice(dateString) {
+
+  const parts =
+    dateString.split("-");
+
+  const date =
+    `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+
+  const endpoint =
+    `https://api.coingecko.com/api/v3/coins/bitcoin/history?date=${date}&localization=false`;
+
+
+  const response =
+    await fetch(endpoint);
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      "Unable to retrieve historical BTC price."
+    );
+
+  }
+
+
+  const data =
+    await response.json();
+
+
+  const price =
+    data?.market_data?.current_price?.usd;
+
+
+  if (!Number.isFinite(price)) {
+
+    throw new Error(
+      "Historical BTC price was not available."
+    );
+
+  }
+
+
+  return price;
+
+}
+
+
+async function getCurrentBTCPrice() {
+
+  const endpoint =
+    "https://api.coingecko.com/api/v3/simple/price" +
+    "?ids=bitcoin" +
+    "&vs_currencies=usd";
+
+
+  const response =
+    await fetch(endpoint);
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      "Unable to retrieve current BTC price."
+    );
+
+  }
+
+
+  const data =
+    await response.json();
+
+
+  const price =
+    data?.bitcoin?.usd;
+
+
+  if (!Number.isFinite(price)) {
+
+    throw new Error(
+      "Current BTC price was not available."
+    );
+
+  }
+
+
+  return price;
+
+}
+
+
+async function calculateROI() {
+
+  const amount =
+    parseFloat(calcAmount.value);
+
+  const buyDate =
+    calcBuyDate.value;
+
+  const sellDate =
+    calcSellDate.value || today;
+
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+
+    showCalcStatus(
+      "Please enter a valid investment amount.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (!buyDate) {
+
+    showCalcStatus(
+      "Please select a buy date.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const buy =
+    new Date(buyDate);
+
+  const sell =
+    new Date(sellDate);
+
+
+  if (buy >= sell) {
+
+    showCalcStatus(
+      "The buy date must be before the sell date.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  calcBtn.disabled = true;
+
+  calcBtn.classList.add("loading");
+
+  calcBtn.innerHTML =
+    '<i class="fas fa-spinner fa-spin mr-2"></i>Loading market data...';
+
+
+  try {
+
+    showCalcStatus(
+      "Retrieving historical Bitcoin market data...",
+      "info"
+    );
+
+
+    const buyPrice =
+      await getHistoricalBTCPrice(
+        buyDate
+      );
+
+
+    let sellPrice;
+
+
+    if (calcSellDate.value) {
+
+      sellPrice =
+        await getHistoricalBTCPrice(
+          sellDate
+        );
+
+    } else {
+
+      sellPrice =
+        await getCurrentBTCPrice();
+
+    }
+
+
+    const btcAmount =
+      amount / buyPrice;
+
+
+    const endingValue =
+      btcAmount * sellPrice;
+
+
+    const profit =
+      endingValue - amount;
+
+
+    const roi =
+      (profit / amount) * 100;
+
+
+    const daysHeld =
+      Math.max(
+        1,
+        Math.floor(
+          (sell - buy) /
+          (1000 * 60 * 60 * 24)
+        )
+      );
+
+
+    const yearsHeld =
+      daysHeld / 365;
+
+
+    let annualized = 0;
+
+
+    if (endingValue > 0) {
+
+      annualized =
+        (Math.pow(
+          endingValue / amount,
+          1 / yearsHeld
+        ) - 1) * 100;
+
+    }
+
+
+    document.getElementById(
+      "resultBTC"
+    ).textContent =
+      btcAmount.toFixed(8);
+
+
+    document.getElementById(
+      "resultBuyPrice"
+    ).textContent =
+      formatNumber(buyPrice);
+
+
+    document.getElementById(
+      "resultCurrentValue"
+    ).textContent =
+      formatCurrency(endingValue);
+
+
+    document.getElementById(
+      "resultSellPrice"
+    ).textContent =
+      formatNumber(sellPrice);
+
+
+    const profitEl =
+      document.getElementById(
+        "resultProfit"
+      );
+
+
+    const roiEl =
+      document.getElementById(
+        "resultROI"
+      );
+
+
+    profitEl.textContent =
+      formatCurrency(profit);
+
+
+    roiEl.textContent =
+      (roi >= 0 ? "+" : "") +
+      roi.toFixed(2) +
+      "%";
+
+
+    profitEl.className =
+      "text-2xl font-bold " +
+      (profit >= 0
+        ? "roi-positive"
+        : "roi-negative");
+
+
+    roiEl.className =
+      "text-2xl font-bold " +
+      (roi >= 0
+        ? "roi-positive"
+        : "roi-negative");
+
+
+    document.getElementById(
+      "resultPeriod"
+    ).textContent =
+      `${daysHeld} days (${yearsHeld.toFixed(2)} years)`;
+
+
+    document.getElementById(
+      "resultAnnualized"
+    ).textContent =
+      (annualized >= 0 ? "+" : "") +
+      annualized.toFixed(2) +
+      "%";
+
+
+    document.getElementById(
+      "resultUSD"
+    ).textContent =
+      formatCurrency(amount);
+
+
+    document.getElementById(
+      "resultExtra"
+    ).textContent =
+      formatCurrency(profit);
+
+
+    calcResults.classList.remove(
+      "hidden"
+    );
+
+    calcPlaceholder.classList.add(
+      "hidden"
+    );
+
+
+    showCalcStatus(
+      "Calculation completed using market data.",
+      "success"
+    );
+
+
+    if (roiChart) {
+      roiChart.destroy();
+    }
+
+
+    const roiCanvas =
+      document.getElementById(
+        "roiChart"
+      );
+
+
+    roiChart =
+      new Chart(
+        roiCanvas,
+        {
+
+          type: "bar",
+
+          data: {
+
+            labels: [
+              "Initial Investment",
+              "Bitcoin Value"
+            ],
+
+            datasets: [{
+
+              data: [
+                amount,
+                endingValue
+              ],
+
+              backgroundColor: [
+                "#94a3b8",
+                "#f7931a"
+              ],
+
+              borderWidth: 0,
+
+              borderRadius: 8
+
+            }]
+
+          },
+
+          options: {
+
+            responsive: true,
+
+            plugins: {
+
+              legend: {
+                display: false
+              },
+
+              tooltip: {
+
+                callbacks: {
+
+                  label: context =>
+                    formatCurrency(
+                      context.parsed.y
+                    )
+
+                }
+
+              }
+
+            },
+
+            scales: {
+
+              y: {
+
+                beginAtZero: true,
+
+                ticks: {
+
+                  color: "#64748b",
+
+                  callback: value =>
+                    formatCurrency(value)
+
+                },
+
+                grid: {
+                  color: "#e2e8f0"
+                }
+
+              },
+
+              x: {
+
+                ticks: {
+                  color: "#64748b"
+                },
+
+                grid: {
+                  display: false
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      );
+
+
+  } catch (error) {
+
+    console.error(
+      "ROI error:",
+      error
+    );
+
+
+    showCalcStatus(
+      error.message ||
+      "Unable to retrieve market data. Please try again.",
+      "error"
+    );
+
+  } finally {
+
+    calcBtn.disabled = false;
+
+    calcBtn.classList.remove(
+      "loading"
+    );
+
+    calcBtn.innerHTML =
+      '<i class="fas fa-calculator mr-2"></i>Calculate ROI';
+
+  }
+
+}
+
+
+calcBtn.addEventListener(
+  "click",
+  calculateROI
+);
+
+
+calcAmount.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Enter") {
+      calculateROI();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   FIREBASE TESTIMONIALS
+========================================================= */
+
+let stories = [];
+
+let storyIndex = 0;
+
+let storyTimer = null;
+
+
+function getInitials(name) {
+
+  if (!name) return "?";
+
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(word =>
+      word.charAt(0).toUpperCase()
+    )
+    .join("");
+
+}
+
+
+function renderStory(index) {
+
+  const card =
+    document.getElementById(
+      "storyCard"
+    );
+
+  if (!stories.length) {
+
+    document.getElementById(
+      "storyName"
+    ).textContent =
+      "Customer stories";
+
+    document.getElementById(
+      "storyText"
+    ).textContent =
+      "Verified customer feedback will appear here.";
+
+    document.getElementById(
+      "storyCounter"
+    ).textContent =
+      "Awaiting verified stories";
+
+    return;
+
+  }
+
+
+  const story =
+    stories[index];
+
+
+  card.classList.add(
+    "changing"
+  );
+
+
+  setTimeout(() => {
+
+    const name =
+      story.name ||
+      "Verified customer";
+
+
+    document.getElementById(
+      "storyAvatar"
+    ).textContent =
+      getInitials(name);
+
+
+    document.getElementById(
+      "storyName"
+    ).textContent =
+      name;
+
+
+    document.getElementById(
+      "storyText"
+    ).textContent =
+      story.text ||
+      story.message ||
+      "";
+
+
+    document.getElementById(
+      "storyDate"
+    ).textContent =
+      story.date ||
+      "";
+
+
+    document.getElementById(
+      "storyCounter"
+    ).textContent =
+      `${index + 1} / ${stories.length}`;
+
+
+    card.classList.remove(
+      "changing"
+    );
+
+  }, 220);
+
+}
+
+
+async function loadTestimonials() {
+
+  try {
+
+    const snapshot =
+      await db
+        .collection("testimonials")
+        .where("active", "==", true)
+        .limit(20)
+        .get();
+
+
+    stories =
+      snapshot.docs
+        .map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        .filter(story =>
+          story.text ||
+          story.message
+        );
+
+
+    if (!stories.length) {
+
+      renderStory(0);
+
+      return;
+
+    }
+
+
+    storyIndex = 0;
+
+    renderStory(
+      storyIndex
+    );
+
+
+    if (storyTimer) {
+      clearInterval(storyTimer);
+    }
+
+
+    storyTimer =
+      setInterval(() => {
+
+        storyIndex =
+          (storyIndex + 1) %
+          stories.length;
+
+        renderStory(
+          storyIndex
+        );
+
+      }, 2000);
+
+  } catch (error) {
+
+    console.error(
+      "Testimonials error:",
+      error
+    );
+
+    stories = [];
+
+    renderStory(0);
+
+  }
+
+}
+
+
+loadTestimonials();
+
+
+/* =========================================================
+   SMOOTH ANCHOR SCROLL
+========================================================= */
+
+document.querySelectorAll(
+  'a[href^="#"]'
+).forEach(anchor => {
+
+  anchor.addEventListener(
+    "click",
+    function(event) {
+
+      const selector =
+        this.getAttribute("href");
+
+      if (!selector || selector === "#") {
+        return;
+      }
+
+      const target =
+        document.querySelector(
+          selector
+        );
+
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const headerOffset =
+        110;
+
+      const elementPosition =
+        target.getBoundingClientRect()
+          .top;
+
+      const offsetPosition =
+        elementPosition +
+        window.pageYOffset -
+        headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+console.log(
+  "FastCashSignals landing page initialized."
+);
+
+</script>
+
+</body>
+  </html>
