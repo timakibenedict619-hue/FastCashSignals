@@ -1254,7 +1254,11 @@
 
 <script type="module">
 
-    import { auth } from "./firebase-config.js";
+    import { auth, db } from "./firebase-config.js";
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
     import {
         signInWithEmailAndPassword,
@@ -1518,6 +1522,36 @@
 
 
             try {
+
+
+
+                /* -------------------------
+   MAINTENANCE MODE CHECK
+------------------------- */
+
+let maintenance = null;
+
+try {
+    const maintenanceSnap = await getDoc(
+        doc(db, "settings", "maintenance")
+    );
+
+    if (
+        maintenanceSnap.exists() &&
+        maintenanceSnap.data().enabled === true
+    ) {
+        maintenance = maintenanceSnap.data();
+    }
+} catch (checkError) {
+    console.warn("Maintenance check skipped:", checkError);
+}
+
+if (maintenance) {
+    throw new Error(
+        maintenance.message ||
+        "We're currently under maintenance. Please try again later."
+    );
+}
 
                 /* -------------------------
                    SET FIREBASE PERSISTENCE
